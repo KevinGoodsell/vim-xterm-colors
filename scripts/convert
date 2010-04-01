@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+import sys
+import optparse
+
+import color
+import parser
+
+def cterm_params(params):
+    new_params = []
+
+    # colors
+    for ground in ('fg', 'bg'):
+        guiground = 'gui' + ground
+        ctermground = 'cterm' + ground
+        if guiground in params:
+            gui = params[guiground]
+            if gui.lower() == 'none':
+                new_params.append((ctermground, gui))
+            else:
+                gui_color = color.Color.from_string(gui)
+                cterm_color = str(gui_color.nearest_xterm())
+                new_params.append((ctermground, cterm_color))
+
+    # Attributes
+    if 'gui' in params:
+        attrs = params['gui'].split(',')
+        new_attrs = []
+        for attr in attrs:
+            if attr.strip().lower() in ('bold', 'underline', 'reverse',
+                                        'inverse', 'none'):
+                new_attrs.append(attr)
+
+        if new_attrs:
+            cterm = ','.join(new_attrs)
+        else:
+            cterm = 'NONE'
+        new_params.append(('cterm', cterm))
+
+    return new_params
+
+def process_line(line):
+    try:
+        val = parser.parse(line)
+    except ValueError, e:
+        return line
+
+    params = dict(val.params)
+    extra_params = cterm_params(params)
+    return val.text(extra_params)
+
+def parse_args(args):
+    parser = optparse.OptionParser()
+
+    parser.add_option('--standalone', '-s', action='store_true',
+                      help="don't use colors.vim")
+    parser.add_option('--indirect', '-i', action='store_true',
+                      help="Use the output from :highlight instead of the "
+                           "syntax file directly")
+
+    (opts, arguments) = parser.parse_args(args)
+    return (opts, arguments)
+
+def main(args=None):
+    if args is None:
+        args = sys.argv[1:]
+
+    global opts
+    (opts, arguments) = parse_args(args)
+
+    assert len(arguments) == 1
+    filename = arguments[0]
+
+    for line in open(filename):
+        if line.endswith('\n'):
+            line = line[:-1]
+        print process_line(line)
+
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main())
