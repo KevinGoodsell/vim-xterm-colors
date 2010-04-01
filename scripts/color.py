@@ -51,7 +51,7 @@ class Color(object):
 
     def nearest_xterm(self):
         # Brute-force search, could be better
-        distances = [(color_distance(color, x), x)
+        distances = [(color_distance(self, x), x)
                      for x in self._color_map.keys()]
         distances.sort()
         (dist, c) = distances[0]
