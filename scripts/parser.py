@@ -23,18 +23,14 @@ class Lexer(object):
 
     def t_PARAMETER(self, t):
         r'\s*(c?term|start|stop|cterm[fb]g|gui(fg|bg|sp)?|font)'
-        t.value = t.value.strip()
         return t
 
     def t_VALUE(self, t):
-        r'''=(
-            [^" \t]+
+        r"""=(
+            [^' \t]+
             |
-            "[^"]*"
-        )'''
-        t.value = t.value[1:]
-        if t.value.startswith('"') and t.value.endswith('"'):
-            t.value = t.value[1:-1]
+            '[^']*'
+        )"""
         return t
 
     def t_GROUPNAME(self, t):
@@ -53,17 +49,62 @@ def lex_test(data):
     lexer.lexer.input(data)
     return list(lexer.lexer)
 
-class HighlightExpr(object):
-    def __init__(self, cmd, grpname, params, comment=''):
-        self.cmd = cmd
-        self.grpname = grpname
-        self.params = dict(params)
-        self.comment = comment
-
-class HighlightOutput(object):
+class Highlight(object):
+    '''Simple object representing a parse result'''
     def __init__(self, grpname, params):
         self.grpname = grpname
-        self.params = dict(params)
+        self.params = params
+
+    def text(self, extra_params):
+        raise NotImplementedError()
+
+    @staticmethod
+    def _format_params(params):
+        if isinstance(params, dict):
+            params = params.items()
+
+        pieces = []
+        for (param, value) in params:
+            if ' ' in value or '\t' in value:
+                value = "'%s'" % value
+            pieces.append('%s=%s' % (param, value))
+
+        return ' '.join(pieces)
+
+class HighlightExpr(Highlight):
+    def __init__(self, cmd, grpname, params, comment=''):
+        # params has whitespace for original formatting
+        formatted = []
+        unformatted = {}
+        for (param, value) in params:
+            formatted.append('%s%s' % (param, value))
+            value = value[1:] # remove '='
+            if value.startswith("'") and value.endswith("'"):
+                value = value[1:-1]
+            unformatted[param.strip()] = value.strip()
+        Highlight.__init__(self, grpname, unformatted)
+        self.cmd = cmd
+        self.comment = comment
+        self._formatted_params = ''.join(formatted)
+
+    def text(self, extra_params):
+        extra_str = self._format_params(extra_params)
+        if extra_str:
+            extra_str = ' ' + extra_str
+        return '%s%s%s%s%s' % (self.cmd, self.grpname, self._formatted_params,
+                               extra_str, self.comment)
+
+class HighlightOutput(Highlight):
+    def __init__(self, grpname, params):
+        self.grpname = grpname
+        self.params = params
+
+    def text(self, extra_params):
+        param_str = self._format_params(self.params)
+        extra_str = self._format_params(extra_params)
+        if extra_str:
+            extra_str = ' ' + extra_str
+        return 'hi %s %s%s' % (self.grpname, param_str, extra_str)
 
 class Parser(object):
     def __init__(self):
@@ -99,7 +140,8 @@ class Parser(object):
         p[0] = [(p[1], p[2])]
 
     def p_error(self, p):
-        raise ValueError('Non-parsable line (position %d)' % p.lexpos)
+        pos = 'end' if p is None else p.lexpos
+        raise ValueError('Non-parsable line (position %s)' % pos)
 
 def parse(data):
     lexer = Lexer()
