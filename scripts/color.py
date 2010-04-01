@@ -2,6 +2,7 @@ from __future__ import division
 
 import math
 import re
+import subprocess
 
 class Color(object):
     def __init__(self, red, green, blue):
@@ -13,8 +14,16 @@ class Color(object):
                                     (?P<g>[0-9A-Fa-f]{2})
                                     (?P<b>[0-9A-Fa-f]{2})''', re.VERBOSE)
 
+    _x_colors = None
+
     @classmethod
     def from_string(cls, s):
+        if cls._x_colors is None:
+            cls._x_colors = _get_x_rgb()
+
+        if s.lower() in cls._x_colors:
+            return cls._x_colors[s.lower()]
+
         m = cls._hex_matcher.match(s)
         if m is None:
             raise ValueError('Bad color string: %s' % s)
@@ -81,3 +90,24 @@ def color_distance(color1, color2):
         4 * g*g +
         (((767 - rmean) * b*b) >> 8)
     )
+
+_x_rgb_matcher = re.compile(r'''
+    \s*(?P<r>[0-9]+)
+    \s+(?P<g>[0-9]+)
+    \s+(?P<b>[0-9]+)
+    \s+(?P<name>.*)\n
+''', re.VERBOSE)
+
+def _get_x_rgb():
+    result = {}
+    proc = subprocess.Popen(['showrgb'], stdout=subprocess.PIPE)
+    (stdout, stderr) = proc.communicate()
+    for m in _x_rgb_matcher.finditer(stdout):
+        print m.groupdict()
+        name = m.group('name').lower()
+        color = Color(int(m.group('r')),
+                      int(m.group('g')),
+                      int(m.group('b')))
+        result[name] = color
+
+    return result
