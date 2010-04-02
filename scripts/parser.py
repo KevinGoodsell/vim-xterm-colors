@@ -1,3 +1,5 @@
+import re
+
 from ply import lex, yacc
 
 class Lexer(object):
@@ -58,6 +60,9 @@ class Highlight(object):
     def text(self, extra_params):
         raise NotImplementedError()
 
+    def indent(self):
+        return ''
+
     @staticmethod
     def _format_params(params):
         if isinstance(params, dict):
@@ -93,6 +98,10 @@ class HighlightExpr(Highlight):
             extra_str = ' ' + extra_str
         return '%s%s%s%s%s' % (self.cmd, self.grpname, self._formatted_params,
                                extra_str, self.comment)
+
+    _indent_matcher = re.compile(r'^\s*')
+    def indent(self):
+        return self._indent_matcher.match(self.cmd).group()
 
 class HighlightOutput(Highlight):
     def __init__(self, grpname, params):
