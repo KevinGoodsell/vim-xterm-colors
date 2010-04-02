@@ -45,9 +45,27 @@ def process_line(line):
     except ValueError, e:
         return line
 
-    params = dict(val.params)
-    extra_params = cterm_params(params)
-    return val.text(extra_params)
+    extra_params = cterm_params(val.params)
+    if opts.standalone:
+        return val.text(val.format_params(extra_params))
+    else:
+        # XXX This is ugly.
+        extra_params = dict(extra_params)
+        args = ["'%s'" % val.grpname]
+        extra_arg = [] # Optional 4th arg, if needed
+        for ground in ('fg', 'bg'):
+            attr = 'cterm' + ground
+            c = extra_params.get(attr, '-1')
+            if c.lower() == 'none':
+                c = '-1'
+                extra_arg.append('%s=NONE' % attr)
+            args.append(c)
+
+        if 'cterm' in extra_params or extra_arg:
+            args.append("'%s'" % extra_params.get('cterm', ''))
+        if extra_arg:
+            args.append("'%s'" % ' '.join(extra_arg))
+        return '%sexec colors#Highlight(%s)' % (val.indent(), ', '.join(args))
 
 def parse_args(args):
     parser = optparse.OptionParser()

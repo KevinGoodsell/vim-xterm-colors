@@ -55,7 +55,7 @@ class Highlight(object):
     '''Simple object representing a parse result'''
     def __init__(self, grpname, params):
         self.grpname = grpname
-        self.params = params
+        self.params = dict(params)
 
     def text(self, extra_params):
         raise NotImplementedError()
@@ -63,8 +63,7 @@ class Highlight(object):
     def indent(self):
         return ''
 
-    @staticmethod
-    def _format_params(params):
+    def format_params(self, params):
         if isinstance(params, dict):
             params = params.items()
 
@@ -78,8 +77,8 @@ class Highlight(object):
 
 class HighlightExpr(Highlight):
     def __init__(self, cmd, grpname, params, comment=''):
-        # params has whitespace for original formatting
-        formatted = []
+        # Save original formatting
+        formatted = [cmd, grpname]
         unformatted = {}
         for (param, value) in params:
             formatted.append('%s%s' % (param, value))
@@ -87,32 +86,29 @@ class HighlightExpr(Highlight):
             if value.startswith("'") and value.endswith("'"):
                 value = value[1:-1]
             unformatted[param.strip()] = value.strip()
-        Highlight.__init__(self, grpname, unformatted)
-        self.cmd = cmd
-        self.comment = comment
-        self._formatted_params = ''.join(formatted)
 
-    def text(self, extra_params):
-        extra_str = self._format_params(extra_params)
-        if extra_str:
-            extra_str = ' ' + extra_str
-        return '%s%s%s%s%s' % (self.cmd, self.grpname, self._formatted_params,
-                               extra_str, self.comment)
+        Highlight.__init__(self, grpname.strip(), unformatted)
+
+        self._formatted_head = ''.join(formatted)
+        self._formatted_tail = comment
+
+    def text(self, extra=''):
+        if extra:
+            extra = ' ' + extra
+        return '%s%s%s' % (self._formatted_head, extra, self._formatted_tail)
 
     _indent_matcher = re.compile(r'^\s*')
     def indent(self):
-        return self._indent_matcher.match(self.cmd).group()
+        return self._indent_matcher.match(self._formatted_head).group()
 
 class HighlightOutput(Highlight):
     def __init__(self, grpname, params):
-        self.grpname = grpname
-        self.params = params
+        Highlight.__init__(self, grpname, params)
 
-    def text(self, extra_params):
-        param_str = self._format_params(self.params)
-        extra_str = self._format_params(extra_params)
-        if extra_str:
-            extra_str = ' ' + extra_str
+    def text(self, extra):
+        param_str = self.format_params(self.params)
+        if extra:
+            extra = ' ' + extra
         return 'hi %s %s%s' % (self.grpname, param_str, extra_str)
 
 class Parser(object):
