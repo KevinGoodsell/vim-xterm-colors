@@ -103,7 +103,6 @@ def _get_x_rgb():
     proc = subprocess.Popen(['showrgb'], stdout=subprocess.PIPE)
     (stdout, stderr) = proc.communicate()
     for m in _x_rgb_matcher.finditer(stdout):
-        print m.groupdict()
         name = m.group('name').lower()
         color = Color(int(m.group('r')),
                       int(m.group('g')),
