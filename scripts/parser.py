@@ -24,7 +24,7 @@ class Lexer(object):
         return t
 
     def t_PARAMETER(self, t):
-        r'\s*(c?term|start|stop|cterm[fb]g|gui(fg|bg|sp)?|font)'
+        r'\s*(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)'
         return t
 
     def t_VALUE(self, t):
@@ -55,7 +55,12 @@ class Highlight(object):
     '''Simple object representing a parse result'''
     def __init__(self, grpname, params):
         self.grpname = grpname
-        self.params = dict(params)
+        self.params = {}
+        for (param, value) in params:
+            value = value[1:] # remove '='
+            if value.startswith("'") and value.endswith("'"):
+                value = value[1:-1]
+            self.params[param.strip()] = value.strip()
 
     def text(self, extra_params):
         raise NotImplementedError()
@@ -77,17 +82,12 @@ class Highlight(object):
 
 class HighlightExpr(Highlight):
     def __init__(self, cmd, grpname, params, comment=''):
+        Highlight.__init__(self, grpname.strip(), params)
+
         # Save original formatting
         formatted = [cmd, grpname]
-        unformatted = {}
         for (param, value) in params:
             formatted.append('%s%s' % (param, value))
-            value = value[1:] # remove '='
-            if value.startswith("'") and value.endswith("'"):
-                value = value[1:-1]
-            unformatted[param.strip()] = value.strip()
-
-        Highlight.__init__(self, grpname.strip(), unformatted)
 
         self._formatted_head = ''.join(formatted)
         self._formatted_tail = comment
@@ -109,7 +109,7 @@ class HighlightOutput(Highlight):
         param_str = self.format_params(self.params)
         if extra:
             extra = ' ' + extra
-        return 'hi %s %s%s' % (self.grpname, param_str, extra_str)
+        return 'hi %s %s%s' % (self.grpname, param_str, extra)
 
 class Parser(object):
     def __init__(self):
