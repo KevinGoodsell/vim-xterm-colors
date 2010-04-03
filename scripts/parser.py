@@ -40,7 +40,7 @@ class Lexer(object):
         return t
 
     def t_COMMENT(self, t):
-        r'\s*".*'
+        r'\s*".*|\s+' # also handles trailing whitespace
         return t
 
     def t_error(self, t):
