@@ -47,7 +47,8 @@ def process_line(line):
         return line
 
     extra_params = cterm_params(val.params)
-    return val.text(val.format_params(extra_params))
+    formatted = val.formatted()
+    return formatted.text(dict(extra_params))
 
 def get_lines_direct(filename):
     return open(filename)

@@ -62,11 +62,8 @@ class Highlight(object):
                 value = value[1:-1]
             self.params[param.strip()] = value.strip()
 
-    def text(self, extra_params):
+    def formatted(self):
         raise NotImplementedError()
-
-    def indent(self):
-        return ''
 
     def format_params(self, params):
         if isinstance(params, dict):
@@ -92,24 +89,61 @@ class HighlightExpr(Highlight):
         self._formatted_head = ''.join(formatted)
         self._formatted_tail = comment
 
-    def text(self, extra=''):
-        if extra:
-            extra = ' ' + extra
-        return '%s%s%s' % (self._formatted_head, extra, self._formatted_tail)
-
-    _indent_matcher = re.compile(r'^\s*')
-    def indent(self):
-        return self._indent_matcher.match(self._formatted_head).group()
+    def formatted(self):
+        return FormattedHighlight(self._formatted_head, self._formatted_tail)
 
 class HighlightOutput(Highlight):
     def __init__(self, grpname, params):
         Highlight.__init__(self, grpname, params)
 
-    def text(self, extra):
-        param_str = self.format_params(self.params)
-        if extra:
-            extra = ' ' + extra
-        return 'hi %s %s%s' % (self.grpname, param_str, extra)
+    def formatted(self):
+        head = 'hi %s %s' % (self.grpname, self.format_params(self.params))
+        return FormattedHighlight(head, '')
+
+class FormattedHighlight(object):
+    def __init__(self, head, tail):
+        self._head = head
+        self._tail = tail
+
+    def _fix_value(self, value):
+        # Quote value if necessary
+        if ' ' in value:
+            return "'%s'" % value
+        return value
+
+    _attr_matcher = re.compile(r'''
+        (?P<attr>cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
+        =
+        (?P<value>[^' \t]+|'[^']*')
+    ''', re.VERBOSE)
+
+    def _replace(self, attrs, match):
+        attr = match.group('attr')
+        if attr in attrs:
+            # There's a replacement attr for this one
+            value = attrs[attr]
+            result = '%s=%s' % (attr, self._fix_value(value))
+            # Used this attr, so remove it
+            attrs.pop(attr)
+        else:
+            # No replacement, keep as-is
+            result = match.group()
+
+        return result
+
+    def text(self, new_attrs):
+        attrs = dict(new_attrs)
+        repl = lambda m: self._replace(attrs, m)
+        head = self._attr_matcher.sub(repl, self._head)
+        # Use the remaining attrs for middle.
+        middle = []
+        for (attr, value) in attrs.items():
+            middle.append('%s=%s' % (attr, self._fix_value(value)))
+        middle = ' '.join(middle)
+        if middle:
+            middle = ' ' + middle
+
+        return '%s%s%s' % (head, middle, self._tail)
 
 class Parser(object):
     def __init__(self):
