@@ -36,7 +36,7 @@ class Lexer(object):
         return t
 
     def t_GROUPNAME(self, t):
-        r'\s*[A-Za-z]+'
+        r'\s*[A-Za-z0-9]+'
         return t
 
     def t_COMMENT(self, t):
