@@ -14,15 +14,15 @@ class Color(object):
                                     (?P<g>[0-9A-Fa-f]{2})
                                     (?P<b>[0-9A-Fa-f]{2})''', re.VERBOSE)
 
-    _x_colors = None
+    _color_names = None
 
     @classmethod
     def from_string(cls, s):
-        if cls._x_colors is None:
-            cls._x_colors = _get_x_rgb()
+        if cls._color_names is None:
+            cls._color_names = _get_color_names()
 
-        if s.lower() in cls._x_colors:
-            return cls._x_colors[s.lower()]
+        if s.lower() in cls._color_names:
+            return cls._color_names[s.lower()]
 
         m = cls._hex_matcher.match(s)
         if m is None:
@@ -109,4 +109,18 @@ def _get_x_rgb():
                       int(m.group('b')))
         result[name] = color
 
+    return result
+
+_extra_color_names = {
+    # These colors are listed in :help gui-colors as colors that should be
+    # available on most systems, but they aren't in the X rgb database (at
+    # least not on mine).
+    'lightred'       : Color(0xff, 0xd7, 0xd7),
+    'lightmagenta'   : Color(0xff, 0xd7, 0xff),
+    'darkyellow'     : Color(0xaf, 0x5f, 0x00),
+}
+
+def _get_color_names():
+    result = _get_x_rgb()
+    result.update(_extra_color_names)
     return result
