@@ -2,6 +2,7 @@
 
 import sys
 import optparse
+import subprocess
 
 import color
 import parser
@@ -48,6 +49,16 @@ def process_line(line):
     extra_params = cterm_params(val.params)
     return val.text(val.format_params(extra_params))
 
+def get_lines_direct(filename):
+    return open(filename)
+
+def get_lines_indirect(filename):
+    cmd = ['gvim', '-u', 'NONE', '-U', 'NONE', '-c',
+           'source %s|redir >> /dev/stdout|hi|redir END|q' % filename]
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    (out, err) = proc.communicate()
+    return out.split('\n')
+
 def parse_args(args):
     parser = optparse.OptionParser()
 
@@ -68,7 +79,11 @@ def main(args=None):
     assert len(arguments) == 1
     filename = arguments[0]
 
-    for line in open(filename):
+    get_lines = get_lines_direct
+    if opts.indirect:
+        get_lines = get_lines_indirect
+
+    for line in get_lines(filename):
         if line.endswith('\n'):
             line = line[:-1]
         print process_line(line)
