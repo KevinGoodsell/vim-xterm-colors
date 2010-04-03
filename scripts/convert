@@ -15,7 +15,7 @@ def cterm_params(params):
         ctermground = 'cterm' + ground
         if guiground in params:
             gui = params[guiground]
-            if gui.lower() == 'none':
+            if gui.lower() in ('none', 'fg', 'bg'):
                 new_params.append((ctermground, gui))
             else:
                 gui_color = color.Color.from_string(gui)
