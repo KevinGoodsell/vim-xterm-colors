@@ -14,7 +14,7 @@ class HighlightLine(object):
             \s+
         )
         (?P<groupname>[A-Za-z0-9]+)
-        (?P<attrs>(
+        (?P<params>(
             \s+
             (cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
             =
@@ -34,53 +34,53 @@ class HighlightLine(object):
 
         self._head = '%s%s%s' % (m.group('head'), m.group('command'),
                                  m.group('groupname'))
-        self._attrs = m.group('attrs')
+        self._params = m.group('params')
         self._tail = m.group('tail')
 
-    _attr_matcher = re.compile(r'''
-        (?P<attr>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
+    _param_matcher = re.compile(r'''
+        (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
         =
         (?P<value>[^ \t]+)
     ''', re.VERBOSE)
 
-    def get_attr(self, attr):
+    def get_param(self, param):
         '''
-        Return the value for the given attr, or None if the attr doesn't
+        Return the value for the given param, or None if the param doesn't
         exist in the line.
         '''
-        for m in self._attr_matcher.finditer(self._attrs):
-            if m.group('attr') == attr:
+        for m in self._param_matcher.finditer(self._params):
+            if m.group('param') == param:
                 return m.group('value')
 
         return None
 
-    def _replace(self, new_attrs, match):
+    def _replace(self, new_params, match):
         '''
         Helper for updated().
         '''
-        attr = match.group('attr')
-        if attr in new_attrs:
-            value = new_attrs[attr]
-            new_attrs.pop(attr)
-            return '%s=%s' % (attr, value)
+        param = match.group('param')
+        if param in new_params:
+            value = new_params[param]
+            new_params.pop(param)
+            return '%s=%s' % (param, value)
         else:
             return match.group()
 
-    def updated(self, new_attrs):
+    def updated(self, new_params):
         '''
-        Return a new line using new_attrs. The new attributes replace
-        existing attributes when possible, or they get appended to the line.
+        Return a new line using new_params. The new parameters replace
+        existing parameters when possible, or they get appended to the line.
         '''
-        unused_attrs = dict(new_attrs)
-        repl = lambda m: self._replace(unused_attrs, m)
-        attr_str = self._attr_matcher.sub(repl, self._attrs)
+        unused_params = dict(new_params)
+        repl = lambda m: self._replace(unused_params, m)
+        param_str = self._param_matcher.sub(repl, self._params)
 
-        append_attrs = ' '.join('%s=%s' % (attr, value)
-                                for (attr, value) in unused_attrs.items())
-        if append_attrs:
-            append_attrs = ' ' + append_attrs
+        append_params = ' '.join('%s=%s' % (param, value)
+                                 for (param, value) in unused_params.items())
+        if append_params:
+            append_params = ' ' + append_params
 
-        return '%s%s%s%s' % (self._head, attr_str, append_attrs, self._tail)
+        return '%s%s%s%s' % (self._head, param_str, append_params, self._tail)
 
 class NoHighlightMatch(ValueError):
     pass
@@ -96,9 +96,6 @@ def cterm_color(gui_color):
     c = color.Color.from_string(gui_color)
     return c.nearest_xterm()
 
-# XXX This confusingly overloads the term "attr", so it is used for general
-# foo=bar parameters to highlight, and it is used for the specific items in
-# the gui= and cterm= parameters.
 def cterm_attrs(gui_attrs):
     '''
     Return the cterm attributes based on gui_attrs. This means dropping
@@ -118,21 +115,21 @@ def cterm_attrs(gui_attrs):
     else:
         return 'NONE'
 
-def find_attrs(hl):
+def find_params(hl):
     '''
-    Find cterm attributes based on existing gui attributes.
+    Find cterm parameters based on existing gui parameters.
     '''
     result = {}
 
-    gui = hl.get_attr('gui')
+    gui = hl.get_param('gui')
     if gui:
         result['cterm'] = cterm_attrs(gui)
 
-    guifg = hl.get_attr('guifg')
+    guifg = hl.get_param('guifg')
     if guifg:
         result['ctermfg'] = cterm_color(guifg)
 
-    guibg = hl.get_attr('guibg')
+    guibg = hl.get_param('guibg')
     if guibg:
         result['ctermbg'] = cterm_color(guibg)
 
@@ -158,8 +155,8 @@ def main(args=None):
     for line in open(filename):
         try:
             hl = HighlightLine(line)
-            attrs = find_attrs(hl)
-            sys.stdout.write(hl.updated(attrs))
+            params = find_params(hl)
+            sys.stdout.write(hl.updated(params))
         except NoHighlightMatch:
             sys.stdout.write(line)
 
