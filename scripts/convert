@@ -2,70 +2,145 @@
 
 import sys
 import optparse
-import subprocess
+import re
 
 import color
-import parser
 
-def cterm_params(params):
-    new_params = []
+class HighlightLine(object):
+    _hi_matcher = re.compile(r'''
+        (?P<head>\s*"?\s*)     # catches commented-out lines also
+        (?P<command>
+            hi(g(h(l(i(g(ht?)?)?)?)?)?)?
+            \s+
+        )
+        (?P<groupname>[A-Za-z0-9]+)
+        (?P<attrs>(
+            \s+
+            (cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
+            =
+            [^ \t\n]+          # NOTE: doesn't match quoted values
+        )+)
+        (?P<tail>
+            [ \t]*             # optional whitespace
+            ("[^\n]*)?         # optional comment
+            \n?                # optional newline
+        )
+    ''', re.VERBOSE)
 
-    # colors
-    for ground in ('fg', 'bg'):
-        guiground = 'gui' + ground
-        ctermground = 'cterm' + ground
-        if guiground in params:
-            gui = params[guiground]
-            if gui.lower() in ('none', 'fg', 'bg'):
-                new_params.append((ctermground, gui))
-            else:
-                gui_color = color.Color.from_string(gui)
-                cterm_color = str(gui_color.nearest_xterm())
-                new_params.append((ctermground, cterm_color))
+    def __init__(self, line):
+        m = self._hi_matcher.match(line)
+        if m is None:
+            raise NoHighlightMatch()
 
-    # Attributes
-    if 'gui' in params:
-        attrs = params['gui'].split(',')
-        new_attrs = []
-        for attr in attrs:
-            if attr.strip().lower() in ('bold', 'underline', 'reverse',
-                                        'inverse', 'none'):
-                new_attrs.append(attr)
+        self._head = '%s%s%s' % (m.group('head'), m.group('command'),
+                                 m.group('groupname'))
+        self._attrs = m.group('attrs')
+        self._tail = m.group('tail')
 
-        if new_attrs:
-            cterm = ','.join(new_attrs)
+    _attr_matcher = re.compile(r'''
+        (?P<attr>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
+        =
+        (?P<value>[^ \t]+)
+    ''', re.VERBOSE)
+
+    def get_attr(self, attr):
+        '''
+        Return the value for the given attr, or None if the attr doesn't
+        exist in the line.
+        '''
+        for m in self._attr_matcher.finditer(self._attrs):
+            if m.group('attr') == attr:
+                return m.group('value')
+
+        return None
+
+    def _replace(self, new_attrs, match):
+        '''
+        Helper for updated().
+        '''
+        attr = match.group('attr')
+        if attr in new_attrs:
+            value = new_attrs[attr]
+            new_attrs.pop(attr)
+            return '%s=%s' % (attr, value)
         else:
-            cterm = 'NONE'
-        new_params.append(('cterm', cterm))
+            return match.group()
 
-    return new_params
+    def updated(self, new_attrs):
+        '''
+        Return a new line using new_attrs. The new attributes replace
+        existing attributes when possible, or they get appended to the line.
+        '''
+        unused_attrs = dict(new_attrs)
+        repl = lambda m: self._replace(unused_attrs, m)
+        attr_str = self._attr_matcher.sub(repl, self._attrs)
 
-def process_line(line):
-    try:
-        val = parser.parse(line)
-    except ValueError, e:
-        return line
+        append_attrs = ' '.join('%s=%s' % (attr, value)
+                                for (attr, value) in unused_attrs.items())
+        if append_attrs:
+            append_attrs = ' ' + append_attrs
 
-    extra_params = cterm_params(val.params)
-    formatted = val.formatted()
-    return formatted.text(dict(extra_params))
+        return '%s%s%s%s' % (self._head, attr_str, append_attrs, self._tail)
 
-def get_lines_direct(filename):
-    return open(filename)
+class NoHighlightMatch(ValueError):
+    pass
 
-def get_lines_indirect(filename):
-    cmd = ['gvim', '-u', 'NONE', '-U', 'NONE', '-c',
-           'source %s|redir >> /dev/stdout|hi|redir END|q' % filename]
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    (out, err) = proc.communicate()
-    return out.split('\n')
+def cterm_color(gui_color):
+    '''
+    Return the cterm color corresponding to gui_color. This might not be a
+    color at all if gui_color is none, fg, or bg.
+    '''
+    if gui_color.lower() in ('none', 'fg', 'bg'):
+        return gui_color
+
+    c = color.Color.from_string(gui_color)
+    return c.nearest_xterm()
+
+# XXX This confusingly overloads the term "attr", so it is used for general
+# foo=bar parameters to highlight, and it is used for the specific items in
+# the gui= and cterm= parameters.
+def cterm_attrs(gui_attrs):
+    '''
+    Return the cterm attributes based on gui_attrs. This means dropping
+    attributes that don't work on the terminal.
+    '''
+    if gui_attrs.lower() == 'none':
+        return gui_attrs
+
+    attrs = [attr.strip() for attr in gui_attrs.split(',')]
+    new_attrs = []
+    for attr in attrs:
+        if attr.lower() in ('bold', 'underline', 'reverse', 'inverse'):
+            new_attrs.append(attr)
+
+    if new_attrs:
+        return ','.join(new_attrs)
+    else:
+        return 'NONE'
+
+def find_attrs(hl):
+    '''
+    Find cterm attributes based on existing gui attributes.
+    '''
+    result = {}
+
+    gui = hl.get_attr('gui')
+    if gui:
+        result['cterm'] = cterm_attrs(gui)
+
+    guifg = hl.get_attr('guifg')
+    if guifg:
+        result['ctermfg'] = cterm_color(guifg)
+
+    guibg = hl.get_attr('guibg')
+    if guibg:
+        result['ctermbg'] = cterm_color(guibg)
+
+    return result
 
 def parse_args(args):
+    # There are no actual options at the moment.
     parser = optparse.OptionParser()
-
-    parser.add_option('--indirect', '-i', action='store_true',
-                      help="Use the output from :highlight instead of the "
-                           "syntax file directly")
 
     (opts, arguments) = parser.parse_args(args)
     return (opts, arguments)
@@ -80,14 +155,13 @@ def main(args=None):
     assert len(arguments) == 1
     filename = arguments[0]
 
-    get_lines = get_lines_direct
-    if opts.indirect:
-        get_lines = get_lines_indirect
-
-    for line in get_lines(filename):
-        if line.endswith('\n'):
-            line = line[:-1]
-        print process_line(line)
+    for line in open(filename):
+        try:
+            hl = HighlightLine(line)
+            attrs = find_attrs(hl)
+            sys.stdout.write(hl.updated(attrs))
+        except NoHighlightMatch:
+            sys.stdout.write(line)
 
     return 0
 
