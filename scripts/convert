@@ -27,15 +27,21 @@ class HighlightLine(object):
         )
     ''', re.VERBOSE)
 
-    def __init__(self, line):
+    def __init__(self, line, dark=True):
         m = self._hi_matcher.match(line)
         if m is None:
             raise NoHighlightMatch()
 
+        group = m.group('groupname')
+
         self._head = '%s%s%s' % (m.group('head'), m.group('command'),
-                                 m.group('groupname'))
+                                 group)
         self._params = m.group('params')
         self._tail = m.group('tail')
+        if dark:
+            self._defaults = self._dark_defaults.get(group, {})
+        else:
+            self._defaults = self._light_defaults.get(group, {})
 
     _param_matcher = re.compile(r'''
         (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
@@ -52,7 +58,7 @@ class HighlightLine(object):
             if m.group('param') == param:
                 return m.group('value')
 
-        return None
+        return self._defaults.get(param)
 
     def _replace(self, new_params, match):
         '''
@@ -81,6 +87,102 @@ class HighlightLine(object):
             append_params = ' ' + append_params
 
         return '%s%s%s%s' % (self._head, param_str, append_params, self._tail)
+
+    _defaults = {
+        'NonText' : {'gui' : 'bold', 'guifg' : 'Blue'},
+        'ErrorMsg' : {'guifg' : 'White', 'guibg' : 'Red'},
+        'IncSearch' : {'gui' : 'reverse'},
+        'ModeMsg' : {'gui' : 'bold'},
+        'StatusLine' : {'gui' : 'bold,reverse'},
+        'StatusLineNC' : {'gui' : 'reverse'},
+        'VertSplit' : {'gui' : 'reverse'},
+        'VisualNOS' : {'gui' : 'bold,underline'},
+        'WildMenu' : {'guifg' : 'Black', 'guibg' : 'Yellow'},
+        'DiffText' : {'gui' : 'bold', 'guibg' : 'Red'},
+        'PmenuSbar' : {'guibg' : 'Grey'},
+        'PmenuThumb' : {'gui' : 'reverse'},
+        'TabLineSel' : {'gui' : 'bold'},
+        'TabLineFill' : {'gui' : 'reverse'},
+        'Cursor' : {'guifg' : 'bg', 'guibg' : 'fg'},
+        'lCursor' : {'guifg' : 'bg', 'guibg' : 'fg'},
+        'Error' : {'guifg' : 'White', 'guibg' : 'Red'},
+    }
+
+    _dark_defaults = {
+        'SpecialKey' : {'guifg' : 'Cyan'},
+        'Directory' : {'guifg' : 'Cyan'},
+        'Search' : {'guifg' : 'Black', 'guibg' : 'Yellow'},
+        'MoreMsg' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
+        'LineNr' : {'guifg' : 'Yellow'},
+        'Question' : {'gui' : 'bold', 'guifg' : 'Green'},
+        'Title' : {'gui' : 'bold', 'guifg' : 'Magenta'},
+        'Visual' : {'guibg' : 'DarkGrey'},
+        'WarningMsg' : {'guifg' : 'Red'},
+        'Folded' : {'guifg' : 'Cyan', 'guibg' : 'DarkGrey'},
+        'FoldColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
+        'DiffAdd' : {'guibg' : 'DarkBlue'},
+        'DiffChange' : {'guibg' : 'DarkMagenta'},
+        'DiffDelete' : {'gui' : 'bold', 'guifg' : 'Blue', 'guibg' : 'DarkCyan'},
+        'SignColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
+        'SpellBad' : {'gui' : 'undercurl', 'guisp' : 'Red'},
+        'SpellCap' : {'gui' : 'undercurl', 'guisp' : 'Blue'},
+        'SpellRare' : {'gui' : 'undercurl', 'guisp' : 'Magenta'},
+        'SpellLocal' : {'gui' : 'undercurl', 'guisp' : 'Cyan'},
+        'Pmenu' : {'guibg' : 'Magenta'},
+        'PmenuSel' : {'guibg' : 'DarkGrey'},
+        'TabLine' : {'gui' : 'underline', 'guibg' : 'DarkGrey'},
+        'CursorColumn' : {'guibg' : 'Grey40'},
+        'CursorLine' : {'guibg' : 'Grey40'},
+        'MatchParen' : {'guibg' : 'DarkCyan'},
+        'Comment' : {'guifg' : '#80a0ff'},
+        'Constant' : {'guifg' : '#ffa0a0'},
+        'Special' : {'guifg' : 'Orange'},
+        'Identifier' : {'guifg' : '#40ffff'},
+        'Statement' : {'gui' : 'bold', 'guifg' : '#ffff60'},
+        'PreProc' : {'guifg' : '#ff80ff'},
+        'Type' : {'gui' : 'bold', 'guifg' : '#60ff60'},
+        'Underlined' : {'gui' : 'underline', 'guifg' : '#80a0ff'},
+        'Ignore' : {'guifg' : 'bg'},
+    }
+    _dark_defaults.update(_defaults)
+
+    _light_defaults = {
+        'SpecialKey' : {'guifg' : 'Cyan'},
+        'Directory' : {'guifg' : 'Cyan'},
+        'Search' : {'guifg' : 'Black', 'guibg' : 'Yellow'},
+        'MoreMsg' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
+        'LineNr' : {'guifg' : 'Yellow'},
+        'Question' : {'gui' : 'bold', 'guifg' : 'Green'},
+        'Title' : {'gui' : 'bold', 'guifg' : 'Magenta'},
+        'Visual' : {'guibg' : 'DarkGrey'},
+        'WarningMsg' : {'guifg' : 'Red'},
+        'Folded' : {'guifg' : 'Cyan', 'guibg' : 'DarkGrey'},
+        'FoldColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
+        'DiffAdd' : {'guibg' : 'DarkBlue'},
+        'DiffChange' : {'guibg' : 'DarkMagenta'},
+        'DiffDelete' : {'gui' : 'bold', 'guifg' : 'Blue', 'guibg' : 'DarkCyan'},
+        'SignColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
+        'SpellBad' : {'gui' : 'undercurl', 'guisp' : 'Red'},
+        'SpellCap' : {'gui' : 'undercurl', 'guisp' : 'Blue'},
+        'SpellRare' : {'gui' : 'undercurl', 'guisp' : 'Magenta'},
+        'SpellLocal' : {'gui' : 'undercurl', 'guisp' : 'Cyan'},
+        'Pmenu' : {'guibg' : 'Magenta'},
+        'PmenuSel' : {'guibg' : 'DarkGrey'},
+        'TabLine' : {'gui' : 'underline', 'guibg' : 'DarkGrey'},
+        'CursorColumn' : {'guibg' : 'Grey40'},
+        'CursorLine' : {'guibg' : 'Grey40'},
+        'MatchParen' : {'guibg' : 'DarkCyan'},
+        'Comment' : {'guifg' : '#80a0ff'},
+        'Constant' : {'guifg' : '#ffa0a0'},
+        'Special' : {'guifg' : 'Orange'},
+        'Identifier' : {'guifg' : '#40ffff'},
+        'Statement' : {'gui' : 'bold', 'guifg' : '#ffff60'},
+        'PreProc' : {'guifg' : '#ff80ff'},
+        'Type' : {'gui' : 'bold', 'guifg' : '#60ff60'},
+        'Underlined' : {'gui' : 'underline', 'guifg' : '#80a0ff'},
+        'Ignore' : {'guifg' : 'bg'},
+    }
+    _light_defaults.update(_defaults)
 
 class NoHighlightMatch(ValueError):
     pass
@@ -136,8 +238,10 @@ def find_params(hl):
     return result
 
 def parse_args(args):
-    # There are no actual options at the moment.
     parser = optparse.OptionParser()
+
+    parser.add_option('-l', '--light', action='store_true',
+        help='use light background defaults')
 
     (opts, arguments) = parser.parse_args(args)
     return (opts, arguments)
@@ -152,9 +256,11 @@ def main(args=None):
     assert len(arguments) == 1
     filename = arguments[0]
 
+    dark = not opts.light
+
     for line in open(filename):
         try:
-            hl = HighlightLine(line)
+            hl = HighlightLine(line, dark)
             params = find_params(hl)
             sys.stdout.write(hl.updated(params))
         except NoHighlightMatch:
