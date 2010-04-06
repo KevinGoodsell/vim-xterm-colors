@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env python
 
-src=originals
-dest=term
+import sys
+import os
+
+import fabricate
 
 # These don't convert (no lines match highlight commands)
 # astronaut.vim
@@ -28,135 +30,157 @@ dest=term
 # sienna.vim
 # vividchalk.vim
 
-dark='
-    adaryn.vim
-    adrian.vim
-    aiseered.vim
-    anotherdark.vim
-    aqua.vim
-    asu1dark.vim
-    blacksea.vim
-    bluegreen.vim
-    borland.vim
-    breeze.vim
-    brookstream.vim
-    camo.vim
-    candycode.vim
-    candy.vim
-    chocolateliquor.vim
-    clarity.vim
-    cleanphp.vim
-    colorer.vim
-    darkblue2.vim
-    darkbone.vim
-    darkslategray.vim
-    darkspectrum.vim
-    darkZ.vim
-    denim.vim
-    desertEx.vim
-    dusk.vim
-    dw_blue.vim
-    dw_cyan.vim
-    dw_green.vim
-    dw_orange.vim
-    dw_purple.vim
-    dw_red.vim
-    dw_yellow.vim
-    fnaqevan.vim
-    freya.vim
-    fruity.vim
-    golden.vim
-    guardian.vim
-    herald.vim
-    inkpot.vim
-    ir_black.vim
-    jammy.vim
-    kellys.vim
-    leo.vim
-    lettuce.vim
-    lucius.vim
-    manxome.vim
-    marklar.vim
-    matrix.vim
-    molokai.vim
-    moss.vim
-    motus.vim
-    mustang.vim
-    navajo-night.vim
-    neon.vim
-    neverness.vim
-    night.vim
-    no_quarter.vim
-    northland.vim
-    oceanblack.vim
-    oceandeep.vim
-    olive.vim
-    railscasts2.vim
-    railscasts.vim
-    rdark.vim
-    relaxedgreen.vim
-    robinhood.vim
-    rootwater.vim
-    sea.vim
-    settlemyer.vim
-    softblue.vim
-    synic.vim
-    tabula.vim
-    tango2.vim
-    tango.vim
-    tir_black.vim
-    torte.vim
-    twilight.vim
-    two2tango.vim
-    vibrantink.vim
-    wombat.vim
-    wood.vim
-    wuye.vim
-    xemacs.vim
-    xoria256.vim
-    zenburn.vim
-    zmrok.vim
-'
+dark_schemes = [
+    'adaryn.vim',
+    'adrian.vim',
+    'aiseered.vim',
+    'anotherdark.vim',
+    'aqua.vim',
+    'asu1dark.vim',
+    'blacksea.vim',
+    'bluegreen.vim',
+    'borland.vim',
+    'breeze.vim',
+    'brookstream.vim',
+    'camo.vim',
+    'candycode.vim',
+    'candy.vim',
+    'chocolateliquor.vim',
+    'clarity.vim',
+    'cleanphp.vim',
+    'colorer.vim',
+    'darkblue2.vim',
+    'darkbone.vim',
+    'darkslategray.vim',
+    'darkspectrum.vim',
+    'darkZ.vim',
+    'denim.vim',
+    'desertEx.vim',
+    'dusk.vim',
+    'dw_blue.vim',
+    'dw_cyan.vim',
+    'dw_green.vim',
+    'dw_orange.vim',
+    'dw_purple.vim',
+    'dw_red.vim',
+    'dw_yellow.vim',
+    'fnaqevan.vim',
+    'freya.vim',
+    'fruity.vim',
+    'golden.vim',
+    'guardian.vim',
+    'herald.vim',
+    'inkpot.vim',
+    'ir_black.vim',
+    'jammy.vim',
+    'kellys.vim',
+    'leo.vim',
+    'lettuce.vim',
+    'lucius.vim',
+    'manxome.vim',
+    'marklar.vim',
+    'matrix.vim',
+    'molokai.vim',
+    'moss.vim',
+    'motus.vim',
+    'mustang.vim',
+    'navajo-night.vim',
+    'neon.vim',
+    'neverness.vim',
+    'night.vim',
+    'no_quarter.vim',
+    'northland.vim',
+    'oceanblack.vim',
+    'oceandeep.vim',
+    'olive.vim',
+    'railscasts2.vim',
+    'railscasts.vim',
+    'rdark.vim',
+    'relaxedgreen.vim',
+    'robinhood.vim',
+    'rootwater.vim',
+    'sea.vim',
+    'settlemyer.vim',
+    'softblue.vim',
+    'synic.vim',
+    'tabula.vim',
+    'tango2.vim',
+    'tango.vim',
+    'tir_black.vim',
+    'torte.vim',
+    'twilight.vim',
+    'two2tango.vim',
+    'vibrantink.vim',
+    'wombat.vim',
+    'wood.vim',
+    'wuye.vim',
+    'xemacs.vim',
+    'xoria256.vim',
+    'zenburn.vim',
+    'zmrok.vim',
+]
 
-light='
-    autumn2.vim
-    autumnleaf.vim
-    autumn.vim
-    bclear.vim
-    biogoo.vim
-    buttercream.vim
-    chela_light.vim
-    dawn.vim
-    eclipse.vim
-    fine_blue2.vim
-    fine_blue.vim
-    fog.vim
-    fruit.vim
-    habilight.vim
-    ironman.vim
-    martin_krischik.vim
-    navajo.vim
-    nuvola.vim
-    oceanlight.vim
-    papayawhip.vim
-    print_bw.vim
-    pyte.vim
-    silent.vim
-    simpleandfriendly.vim
-    soso.vim
-    spring.vim
-    taqua.vim
-    tcsoft.vim
-    tolerable.vim
-    vc.vim
-    vylight.vim
-    winter.vim
-'
+light_schemes = [
+    'autumn2.vim',
+    'autumnleaf.vim',
+    'autumn.vim',
+    'bclear.vim',
+    'biogoo.vim',
+    'buttercream.vim',
+    'chela_light.vim',
+    'dawn.vim',
+    'eclipse.vim',
+    'fine_blue2.vim',
+    'fine_blue.vim',
+    'fog.vim',
+    'fruit.vim',
+    'habilight.vim',
+    'ironman.vim',
+    'martin_krischik.vim',
+    'navajo.vim',
+    'nuvola.vim',
+    'oceanlight.vim',
+    'papayawhip.vim',
+    'print_bw.vim',
+    'pyte.vim',
+    'silent.vim',
+    'simpleandfriendly.vim',
+    'soso.vim',
+    'spring.vim',
+    'taqua.vim',
+    'tcsoft.vim',
+    'tolerable.vim',
+    'vc.vim',
+    'vylight.vim',
+    'winter.vim',
+]
 
-for f in $dark ; do
-    ./scripts/gui2xterm $src/$f > $dest/$f
-done
+def mkdir(path):
+    try:
+        os.makedirs(path)
+    except OSError:
+        pass
 
-for f in $light ; do
-    ./scripts/gui2xterm --light $src/$f > $dest/$f
-done
+def patch(scheme):
+    fabricate.run('cp', os.path.join('originals', scheme), 'patched/')
+
+    patch_file = os.path.join('patches', scheme + '.diff')
+    if os.path.exists(patch_file):
+        fabricate.run('sh', '-c', 'patch -p0 < ' + patch_file)
+
+def build():
+    mkdir('patched')
+    for scheme in dark_schemes + light_schemes:
+        patch(scheme)
+
+    mkdir('term')
+    for scheme in dark_schemes:
+        fabricate.run('sh', '-c', './scripts/gui2xterm patched/' +
+                                  scheme + ' > term/' + scheme)
+
+    for scheme in light_schemes:
+        fabricate.run('sh', '-c', './scripts/gui2xterm --light patched/' +
+                                  scheme + ' > term/' + scheme)
+
+if __name__ == '__main__':
+    fabricate.main()
