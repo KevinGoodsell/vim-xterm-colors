@@ -15,41 +15,43 @@ dest=term
 #
 # This doesn't convert due to weird color names:
 # nightshimmer.vim
+#
+# These are weird about the background option:
+# baycomb.vim
+# dante.vim
+# earendel.vim
+# ekvoli.vim
+# maroloccio.vim
+# moria.vim
+# peaksea.vim
+# satori.vim
+# sienna.vim
+# vividchalk.vim
 
-convertable='
+dark='
     adaryn.vim
     adrian.vim
     aiseered.vim
     anotherdark.vim
     aqua.vim
     asu1dark.vim
-    autumn2.vim
-    autumnleaf.vim
-    autumn.vim
-    baycomb.vim
-    bclear.vim
-    biogoo.vim
     blacksea.vim
     bluegreen.vim
     borland.vim
     breeze.vim
     brookstream.vim
-    buttercream.vim
     camo.vim
     candycode.vim
     candy.vim
-    chela_light.vim
     chocolateliquor.vim
     clarity.vim
     cleanphp.vim
     colorer.vim
-    dante.vim
     darkblue2.vim
     darkbone.vim
     darkslategray.vim
     darkspectrum.vim
     darkZ.vim
-    dawn.vim
     denim.vim
     desertEx.vim
     dusk.vim
@@ -60,23 +62,14 @@ convertable='
     dw_purple.vim
     dw_red.vim
     dw_yellow.vim
-    earendel.vim
-    eclipse.vim
-    ekvoli.vim
-    fine_blue2.vim
-    fine_blue.vim
     fnaqevan.vim
-    fog.vim
     freya.vim
-    fruit.vim
     fruity.vim
     golden.vim
     guardian.vim
-    habilight.vim
     herald.vim
     inkpot.vim
     ir_black.vim
-    ironman.vim
     jammy.vim
     kellys.vim
     leo.vim
@@ -84,61 +77,38 @@ convertable='
     lucius.vim
     manxome.vim
     marklar.vim
-    maroloccio.vim
-    martin_krischik.vim
     matrix.vim
     molokai.vim
-    moria.vim
     moss.vim
     motus.vim
     mustang.vim
     navajo-night.vim
-    navajo.vim
     neon.vim
     neverness.vim
     night.vim
     no_quarter.vim
     northland.vim
-    nuvola.vim
     oceanblack.vim
     oceandeep.vim
-    oceanlight.vim
     olive.vim
-    papayawhip.vim
-    peaksea.vim
-    print_bw.vim
-    pyte.vim
     railscasts2.vim
     railscasts.vim
     rdark.vim
     relaxedgreen.vim
     robinhood.vim
     rootwater.vim
-    satori.vim
     sea.vim
     settlemyer.vim
-    sienna.vim
-    silent.vim
-    simpleandfriendly.vim
     softblue.vim
-    soso.vim
-    spring.vim
     synic.vim
     tabula.vim
     tango2.vim
     tango.vim
-    taqua.vim
-    tcsoft.vim
     tir_black.vim
-    tolerable.vim
     torte.vim
     twilight.vim
     two2tango.vim
-    vc.vim
     vibrantink.vim
-    vividchalk.vim
-    vylight.vim
-    winter.vim
     wombat.vim
     wood.vim
     wuye.vim
@@ -148,6 +118,45 @@ convertable='
     zmrok.vim
 '
 
-for f in $convertable ; do
+light='
+    autumn2.vim
+    autumnleaf.vim
+    autumn.vim
+    bclear.vim
+    biogoo.vim
+    buttercream.vim
+    chela_light.vim
+    dawn.vim
+    eclipse.vim
+    fine_blue2.vim
+    fine_blue.vim
+    fog.vim
+    fruit.vim
+    habilight.vim
+    ironman.vim
+    martin_krischik.vim
+    navajo.vim
+    nuvola.vim
+    oceanlight.vim
+    papayawhip.vim
+    print_bw.vim
+    pyte.vim
+    silent.vim
+    simpleandfriendly.vim
+    soso.vim
+    spring.vim
+    taqua.vim
+    tcsoft.vim
+    tolerable.vim
+    vc.vim
+    vylight.vim
+    winter.vim
+'
+
+for f in $dark ; do
     ./scripts/convert $src/$f > $dest/$f
+done
+
+for f in $light ; do
+    ./scripts/convert --light $src/$f > $dest/$f
 done
