@@ -217,9 +217,13 @@ def find_params(hl):
     '''
     result = {}
 
+    undercurl = None
     gui = hl.get_param('gui')
     if gui:
         result['cterm'] = cterm_attrs(gui)
+
+        if 'undercurl' in gui:
+            undercurl = hl.get_param('guisp')
 
     guifg = hl.get_param('guifg')
     if guifg:
@@ -228,6 +232,9 @@ def find_params(hl):
     guibg = hl.get_param('guibg')
     if guibg:
         result['ctermbg'] = cterm_color(guibg)
+    elif undercurl:
+        # Fall back on undercurl color
+        result['ctermbg'] = cterm_color(undercurl)
 
     return result
 
