@@ -154,9 +154,9 @@ light='
 '
 
 for f in $dark ; do
-    ./scripts/convert $src/$f > $dest/$f
+    ./scripts/gui2xterm $src/$f > $dest/$f
 done
 
 for f in $light ; do
-    ./scripts/convert --light $src/$f > $dest/$f
+    ./scripts/gui2xterm --light $src/$f > $dest/$f
 done
