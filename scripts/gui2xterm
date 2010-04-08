@@ -6,6 +6,178 @@ import re
 
 import color
 
+class ColorSchemeSettings(object):
+    def __init__(self):
+        self._settings = {} # {'GroupName' : {'param' : 'value'}}
+
+    def add(self, group, param, value):
+        params = self._settings.setdefault(group, {})
+        params[param] = value
+
+    def remove(self, group, param=None):
+        if param is None:
+            self._settings.pop(group, None)
+        else:
+            params = self._settings.get(group)
+            if params is None:
+                return
+            params.pop(param, None)
+
+    def get(self, group, param, default=None):
+        params = self._settings.get(group)
+        if params is None:
+            return default
+        else:
+            return params.get(param, default)
+
+    def get_group(self, group, default=None):
+        return self._settings.get(group, default)
+
+    def update(self, other):
+        if isinstance(other, ColorSchemeSettings):
+            other = other._settings
+
+        for (group, value) in other.items():
+            params = self._settings.setdefault(group, {})
+            params.update(value)
+
+class ColorSchemeDefaults(ColorSchemeSettings):
+    _defaults = {
+        'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
+        'CursorLine' : {'cterm' : 'underline'},
+        'DiffDelete' : {'ctermfg' : '12', 'gui' : 'bold', 'guifg' : 'Blue'},
+        'DiffText' : {'cterm' : 'bold', 'ctermbg' : '9', 'gui' : 'bold',
+                      'guibg' : 'Red'},
+        'Error' : {'ctermbg' : '9', 'ctermfg' : '15', 'guibg' : 'Red',
+                   'guifg' : 'White'},
+        'ErrorMsg' : {'ctermbg' : '1', 'ctermfg' : '15', 'guibg' : 'Red',
+                      'guifg' : 'White'},
+        'FoldColumn' : {'guibg' : 'Grey'},
+        'Ignore' : {'guifg' : 'bg'},
+        'IncSearch' : {'cterm' : 'reverse', 'gui' : 'reverse'},
+        'ModeMsg' : {'cterm' : 'bold', 'gui' : 'bold'},
+        'MoreMsg' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
+        'NonText' : {'ctermfg' : '12', 'gui' : 'bold', 'guifg' : 'Blue'},
+        'PmenuSbar' : {'ctermbg' : '248', 'guibg' : 'Grey'},
+        'PmenuThumb' : {'cterm' : 'reverse', 'gui' : 'reverse'},
+        'Question' : {'gui' : 'bold'},
+        'Search' : {'ctermbg' : '11', 'guibg' : 'Yellow'},
+        'SignColumn' : {'guibg' : 'Grey'},
+        'SpellBad' : {'gui' : 'undercurl', 'guisp' : 'Red'},
+        'SpellCap' : {'gui' : 'undercurl', 'guisp' : 'Blue'},
+        'SpellLocal' : {'ctermbg' : '14', 'gui' : 'undercurl'},
+        'SpellRare' : {'gui' : 'undercurl', 'guisp' : 'Magenta'},
+        'Statement' : {'gui' : 'bold'},
+        'StatusLine' : {'cterm' : 'bold,reverse', 'gui' : 'bold,reverse'},
+        'StatusLineNC' : {'cterm' : 'reverse', 'gui' : 'reverse'},
+        'TabLine' : {'cterm' : 'underline', 'gui' : 'underline'},
+        'TabLineFill' : {'cterm' : 'reverse', 'gui' : 'reverse'},
+        'TabLineSel' : {'cterm' : 'bold', 'gui' : 'bold'},
+        'Title' : {'gui' : 'bold', 'guifg' : 'Magenta'},
+        'Todo' : {'ctermbg' : '11', 'ctermfg' : '0', 'guibg' : 'Yellow',
+                  'guifg' : 'Blue'},
+        'Type' : {'gui' : 'bold'},
+        'Underlined' : {'cterm' : 'underline', 'gui' : 'underline'},
+        'VertSplit' : {'cterm' : 'reverse', 'gui' : 'reverse'},
+        'VisualNOS' : {'cterm' : 'bold,underline', 'gui' : 'bold,underline'},
+        'WarningMsg' : {'guifg' : 'Red'},
+        'WildMenu' : {'ctermbg' : '11', 'ctermfg' : '0', 'guibg' : 'Yellow',
+                      'guifg' : 'Black'},
+        'lCursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
+    }
+
+    def __init__(self):
+        ColorSchemeSettings.__init__(self)
+        self.update(self._defaults)
+
+class DarkColorSchemesDefaults(ColorSchemeDefaults):
+    _defaults = {
+        'Comment' : {'ctermfg' : '14', 'guifg' : '#80a0ff'},
+        'Constant' : {'ctermfg' : '13', 'guifg' : '#ffa0a0'},
+        'CursorColumn' : {'ctermbg' : '242', 'guibg' : 'Grey40'},
+        'CursorLine' : {'guibg' : 'Grey40'},
+        'DiffAdd' : {'ctermbg' : '4', 'guibg' : 'DarkBlue'},
+        'DiffChange' : {'ctermbg' : '5', 'guibg' : 'DarkMagenta'},
+        'DiffDelete' : {'ctermbg' : '6', 'guibg' : 'DarkCyan'},
+        'Directory' : {'ctermfg' : '159', 'guifg' : 'Cyan'},
+        'FoldColumn' : {'ctermbg' : '242', 'ctermfg' : '14', 'guifg' : 'Cyan'},
+        'Folded' : {'ctermbg' : '242', 'ctermfg' : '14', 'guibg' : 'DarkGrey',
+                    'guifg' : 'Cyan'},
+        'Identifier' : {'cterm' : 'bold', 'ctermfg' : '14',
+                        'guifg' : '#40ffff'},
+        'Ignore' : {'ctermfg' : '0'},
+        'LineNr' : {'ctermfg' : '11', 'guifg' : 'Yellow'},
+        'MatchParen' : {'ctermbg' : '6', 'guibg' : 'DarkCyan'},
+        'MoreMsg' : {'ctermfg' : '121'},
+        'Pmenu' : {'ctermbg' : '13', 'guibg' : 'Magenta'},
+        'PmenuSel' : {'ctermbg' : '242', 'guibg' : 'DarkGrey'},
+        'PreProc' : {'ctermfg' : '81', 'guifg' : '#ff80ff'},
+        'Question' : {'ctermfg' : '121', 'guifg' : 'Green'},
+        'Search' : {'ctermfg' : '0', 'guifg' : 'Black'},
+        'SignColumn' : {'ctermbg' : '242', 'ctermfg' : '14', 'guifg' : 'Cyan'},
+        'Special' : {'ctermfg' : '224', 'guifg' : 'Orange'},
+        'SpecialKey' : {'ctermfg' : '81', 'guifg' : 'Cyan'},
+        'SpellBad' : {'ctermbg' : '9'},
+        'SpellCap' : {'ctermbg' : '12'},
+        'SpellLocal' : {'guisp' : 'Cyan'},
+        'SpellRare' : {'ctermbg' : '13'},
+        'Statement' : {'ctermfg' : '11', 'guifg' : '#ffff60'},
+        'TabLine' : {'ctermbg' : '242', 'ctermfg' : '15',
+                     'guibg' : 'DarkGrey'},
+        'Title' : {'ctermfg' : '225'},
+        'Type' : {'ctermfg' : '121', 'guifg' : '#60ff60'},
+        'Underlined' : {'ctermfg' : '81', 'guifg' : '#80a0ff'},
+        'Visual' : {'ctermbg' : '242', 'guibg' : 'DarkGrey'},
+        'WarningMsg' : {'ctermfg' : '224'},
+    }
+
+    _defaults.update(ColorSchemeDefaults._defaults)
+
+class LightColorSchemesDefaults(ColorSchemeDefaults):
+    _defaults = {
+        'Comment' : {'ctermfg' : '4', 'guifg' : 'Blue'},
+        'Constant' : {'ctermfg' : '1', 'guifg' : 'Magenta'},
+        'CursorColumn' : {'ctermbg' : '7', 'guibg' : 'Grey90'},
+        'CursorLine' : {'guibg' : 'Grey90'},
+        'DiffAdd' : {'ctermbg' : '81', 'guibg' : 'LightBlue'},
+        'DiffChange' : {'ctermbg' : '225', 'guibg' : 'LightMagenta'},
+        'DiffDelete' : {'ctermbg' : '159', 'guibg' : 'LightCyan'},
+        'Directory' : {'ctermfg' : '4', 'guifg' : 'Blue'},
+        'FoldColumn' : {'ctermbg' : '248', 'ctermfg' : '4',
+                        'guifg' : 'DarkBlue'},
+        'Folded' : {'ctermbg' : '248', 'ctermfg' : '4', 'guibg' : 'LightGrey',
+                    'guifg' : 'DarkBlue'},
+        'Identifier' : {'ctermfg' : '6', 'guifg' : 'DarkCyan'},
+        'Ignore' : {'ctermfg' : '15'},
+        'LineNr' : {'ctermfg' : '130', 'guifg' : 'Brown'},
+        'MatchParen' : {'ctermbg' : '14', 'guibg' : 'Cyan'},
+        'MoreMsg' : {'ctermfg' : '2'},
+        'Pmenu' : {'ctermbg' : '225', 'guibg' : 'LightMagenta'},
+        'PmenuSel' : {'ctermbg' : '7', 'guibg' : 'Grey'},
+        'PreProc' : {'ctermfg' : '5', 'guifg' : 'Purple'},
+        'Question' : {'ctermfg' : '2', 'guifg' : 'SeaGreen'},
+        'SignColumn' : {'ctermbg' : '248', 'ctermfg' : '4',
+                        'guifg' : 'DarkBlue'},
+        'Special' : {'ctermfg' : '5', 'guifg' : 'SlateBlue'},
+        'SpecialKey' : {'ctermfg' : '4', 'guifg' : 'Blue'},
+        'SpellBad' : {'ctermbg' : '224'},
+        'SpellCap' : {'ctermbg' : '81'},
+        'SpellLocal' : {'guisp' : 'DarkCyan'},
+        'SpellRare' : {'ctermbg' : '225'},
+        'Statement' : {'ctermfg' : '130', 'guifg' : 'Brown'},
+        'TabLine' : {'ctermbg' : '7', 'ctermfg' : '0', 'guibg' : 'LightGrey'},
+        'Title' : {'ctermfg' : '5'},
+        'Type' : {'ctermfg' : '2', 'guifg' : 'SeaGreen'},
+        'Underlined' : {'ctermfg' : '5', 'guifg' : 'SlateBlue'},
+        'Visual' : {'ctermbg' : '7', 'guibg' : 'LightGrey'},
+        'WarningMsg' : {'ctermfg' : '1'},
+    }
+
+    _defaults.update(ColorSchemeDefaults._defaults)
+
+dark_defaults = DarkColorSchemesDefaults()
+light_defaults = LightColorSchemesDefaults()
+
 class HighlightLine(object):
     _hi_matcher = re.compile(r'''
         (?P<head>\s*"?\s*)     # catches commented-out lines also
@@ -39,9 +211,9 @@ class HighlightLine(object):
         self._params = m.group('params')
         self._tail = m.group('tail')
         if dark:
-            self._defaults = self._dark_defaults.get(group, {})
+            self._defaults = dark_defaults.get_group(group, {})
         else:
-            self._defaults = self._light_defaults.get(group, {})
+            self._defaults = light_defaults.get_group(group, {})
 
     _param_matcher = re.compile(r'''
         (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
@@ -87,96 +259,6 @@ class HighlightLine(object):
             append_params = ' ' + append_params
 
         return '%s%s%s%s' % (self._head, param_str, append_params, self._tail)
-
-    _defaults = {
-        'NonText' : {'gui' : 'bold', 'guifg' : 'Blue'},
-        'ErrorMsg' : {'guifg' : 'White', 'guibg' : 'Red'},
-        'IncSearch' : {'gui' : 'reverse'},
-        'MoreMsg' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
-        'ModeMsg' : {'gui' : 'bold'},
-        'StatusLine' : {'gui' : 'bold,reverse'},
-        'StatusLineNC' : {'gui' : 'reverse'},
-        'VertSplit' : {'gui' : 'reverse'},
-        'Title' : {'gui' : 'bold', 'guifg' : 'Magenta'},
-        'VisualNOS' : {'gui' : 'bold,underline'},
-        'WarningMsg' : {'guifg' : 'Red'},
-        'WildMenu' : {'guifg' : 'Black', 'guibg' : 'Yellow'},
-        'DiffText' : {'gui' : 'bold', 'guibg' : 'Red'},
-        'SpellBad' : {'gui' : 'undercurl', 'guisp' : 'Red'},
-        'SpellCap' : {'gui' : 'undercurl', 'guisp' : 'Blue'},
-        'SpellRare' : {'gui' : 'undercurl', 'guisp' : 'Magenta'},
-        'PmenuSbar' : {'guibg' : 'Grey'},
-        'PmenuThumb' : {'gui' : 'reverse'},
-        'TabLineSel' : {'gui' : 'bold'},
-        'TabLineFill' : {'gui' : 'reverse'},
-        'Cursor' : {'guifg' : 'bg', 'guibg' : 'fg'},
-        'lCursor' : {'guifg' : 'bg', 'guibg' : 'fg'},
-        'Ignore' : {'guifg' : 'bg'},
-        'Error' : {'guifg' : 'White', 'guibg' : 'Red'},
-        'Todo' : {'guifg' : 'Blue', 'guibg' : 'Yellow'},
-    }
-
-    _dark_defaults = {
-        'SpecialKey' : {'guifg' : 'Cyan'},
-        'Directory' : {'guifg' : 'Cyan'},
-        'Search' : {'guifg' : 'Black', 'guibg' : 'Yellow'},
-        'LineNr' : {'guifg' : 'Yellow'},
-        'Question' : {'gui' : 'bold', 'guifg' : 'Green'},
-        'Visual' : {'guibg' : 'DarkGrey'},
-        'Folded' : {'guifg' : 'Cyan', 'guibg' : 'DarkGrey'},
-        'FoldColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
-        'DiffAdd' : {'guibg' : 'DarkBlue'},
-        'DiffChange' : {'guibg' : 'DarkMagenta'},
-        'DiffDelete' : {'gui' : 'bold', 'guifg' : 'Blue', 'guibg' : 'DarkCyan'},
-        'SignColumn' : {'guifg' : 'Cyan', 'guibg' : 'Grey'},
-        'SpellLocal' : {'gui' : 'undercurl', 'guisp' : 'Cyan'},
-        'Pmenu' : {'guibg' : 'Magenta'},
-        'PmenuSel' : {'guibg' : 'DarkGrey'},
-        'TabLine' : {'gui' : 'underline', 'guibg' : 'DarkGrey'},
-        'CursorColumn' : {'guibg' : 'Grey40'},
-        'CursorLine' : {'guibg' : 'Grey40'},
-        'MatchParen' : {'guibg' : 'DarkCyan'},
-        'Comment' : {'guifg' : '#80a0ff'},
-        'Constant' : {'guifg' : '#ffa0a0'},
-        'Special' : {'guifg' : 'Orange'},
-        'Identifier' : {'guifg' : '#40ffff'},
-        'Statement' : {'gui' : 'bold', 'guifg' : '#ffff60'},
-        'PreProc' : {'guifg' : '#ff80ff'},
-        'Type' : {'gui' : 'bold', 'guifg' : '#60ff60'},
-        'Underlined' : {'gui' : 'underline', 'guifg' : '#80a0ff'},
-    }
-    _dark_defaults.update(_defaults)
-
-    _light_defaults = {
-        'SpecialKey' : {'guifg' : 'Blue'},
-        'Directory' : {'guifg' : 'Blue'},
-        'Search' : {'guibg' : 'Yellow'},
-        'LineNr' : {'guifg' : 'Brown'},
-        'Question' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
-        'Visual' : {'guibg' : 'LightGrey'},
-        'Folded' : {'guifg' : 'DarkBlue', 'guibg' : 'LightGrey'},
-        'FoldColumn' : {'guifg' : 'DarkBlue', 'guibg' : 'Grey'},
-        'DiffAdd' : {'guibg' : 'LightBlue'},
-        'DiffChange' : {'guibg' : 'LightMagenta'},
-        'DiffDelete' : {'gui' : 'bold', 'guifg' : 'Blue', 'guibg' : 'LightCyan'},
-        'SignColumn' : {'guifg' : 'DarkBlue', 'guibg' : 'Grey'},
-        'SpellLocal' : {'gui' : 'undercurl', 'guisp' : 'DarkCyan'},
-        'Pmenu' : {'guibg' : 'LightMagenta'},
-        'PmenuSel' : {'guibg' : 'Grey'},
-        'TabLine' : {'gui' : 'underline', 'guibg' : 'LightGrey'},
-        'CursorColumn' : {'guibg' : 'Grey90'},
-        'CursorLine' : {'guibg' : 'Grey90'},
-        'MatchParen' : {'guibg' : 'Cyan'},
-        'Comment' : {'guifg' : 'Blue'},
-        'Constant' : {'guifg' : 'Magenta'},
-        'Special' : {'guifg' : 'SlateBlue'},
-        'Identifier' : {'guifg' : 'DarkCyan'},
-        'Statement' : {'gui' : 'bold', 'guifg' : 'Brown'},
-        'PreProc' : {'guifg' : 'Purple'},
-        'Type' : {'gui' : 'bold', 'guifg' : 'SeaGreen'},
-        'Underlined' : {'gui' : 'underline', 'guifg' : 'SlateBlue'},
-    }
-    _light_defaults.update(_defaults)
 
 class NoHighlightMatch(ValueError):
     pass
