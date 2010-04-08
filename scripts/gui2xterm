@@ -42,7 +42,7 @@ class ColorSchemeSettings(object):
             params.update(value)
 
 class ColorSchemeDefaults(ColorSchemeSettings):
-    _defaults = {
+    _common_defaults = {
         'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
         'CursorLine' : {'cterm' : 'underline'},
         'DiffDelete' : {'ctermfg' : '12', 'gui' : 'bold', 'guifg' : 'Blue'},
@@ -85,9 +85,11 @@ class ColorSchemeDefaults(ColorSchemeSettings):
                       'guifg' : 'Black'},
         'lCursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
     }
+    _defaults = {} # To be replaced in derived classes
 
     def __init__(self):
         ColorSchemeSettings.__init__(self)
+        self.update(self._common_defaults)
         self.update(self._defaults)
 
 class DarkColorSchemesDefaults(ColorSchemeDefaults):
@@ -131,8 +133,6 @@ class DarkColorSchemesDefaults(ColorSchemeDefaults):
         'WarningMsg' : {'ctermfg' : '224'},
     }
 
-    _defaults.update(ColorSchemeDefaults._defaults)
-
 class LightColorSchemesDefaults(ColorSchemeDefaults):
     _defaults = {
         'Comment' : {'ctermfg' : '4', 'guifg' : 'Blue'},
@@ -172,8 +172,6 @@ class LightColorSchemesDefaults(ColorSchemeDefaults):
         'Visual' : {'ctermbg' : '7', 'guibg' : 'LightGrey'},
         'WarningMsg' : {'ctermfg' : '1'},
     }
-
-    _defaults.update(ColorSchemeDefaults._defaults)
 
 dark_defaults = DarkColorSchemesDefaults()
 light_defaults = LightColorSchemesDefaults()
