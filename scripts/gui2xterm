@@ -41,6 +41,36 @@ class ColorSchemeSettings(object):
             params = self._settings.setdefault(group, {})
             params.update(value)
 
+    def copy(self):
+        new = ColorSchemeDefaults()
+        new.update(self)
+        return new
+
+    def __sub__(self, other):
+        new = self.copy()
+        for (group, params) in other._settings.items():
+            new_params = new._settings.get(group, {})
+            for pname in params.keys():
+                new_params.pop(pname, None)
+            if not new_params:
+                new._settings.pop(group, None)
+
+        return new
+
+    def items(self):
+        result = []
+        for (group, params) in self._settings.items():
+            for (pname, pval) in params.items():
+                result.append((group, pname, pval))
+
+        return result
+
+    def groups(self):
+        return self._settings.keys()
+
+    def __nonzero__(self):
+        return bool(self._settings)
+
 class ColorSchemeDefaults(ColorSchemeSettings):
     _common_defaults = {
         'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
@@ -202,16 +232,17 @@ class HighlightLine(object):
         if m is None:
             raise NoHighlightMatch()
 
-        group = m.group('groupname')
+        self.group = m.group('groupname')
+        head = m.group('head')
 
-        self._head = '%s%s%s' % (m.group('head'), m.group('command'),
-                                 group)
+        self._head = '%s%s%s' % (head, m.group('command'), self.group)
         self._params = m.group('params')
         self._tail = m.group('tail')
+        self.comment = '"' in head
         if dark:
-            self._defaults = dark_defaults.get_group(group, {})
+            self._defaults = dark_defaults.get_group(self.group, {})
         else:
-            self._defaults = light_defaults.get_group(group, {})
+            self._defaults = light_defaults.get_group(self.group, {})
 
     _param_matcher = re.compile(r'''
         (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
@@ -318,6 +349,61 @@ def find_params(hl):
 
     return result
 
+def check_defaults(settings, dark):
+    '''
+    Try to find defaults that won't display correctly, write to stderr.
+    Note that settings contains *only* the cterm settings that have been
+    calculated by the script, no gui settings.
+    '''
+    if dark:
+        defaults = dark_defaults
+    else:
+        defaults = light_defaults
+
+    still_defaults = defaults - settings
+
+    # Compare remaining cterm defaults against the corresponding gui defaults.
+    # Often these won't match. This can be fixed by adding the gui defaults as
+    # explicit settings in the colorscheme (which the script will then
+    # translate to matching cterm settings).
+    recommended = ColorSchemeSettings()
+    for (group, param, val) in still_defaults.items():
+        if param == 'cterm':
+            # gui attributes need to be converted to cterm versions for
+            # comparison. It's also important that 'gui=NONE' gets used if
+            # there's no gui default.
+            gui = defaults.get(group, 'gui', 'NONE')
+            if val != cterm_attrs(gui):
+                recommended.add(group, 'gui', gui)
+        elif param == 'ctermfg':
+            # ctermfg colors are assumed to not match. They usually don't.
+            guifg = defaults.get(group, 'guifg', 'NONE')
+            recommended.add(group, 'guifg', guifg)
+        elif param == 'ctermbg':
+            # ctermbg colors are also assumed to not match, but gui+guisp is
+            # used as a substitute when guibg doesn't exist (but only if gui
+            # includes undercurl). This makes the cterm background match the
+            # gui undercurl color.
+            guibg = defaults.get(group, 'guibg')
+            if guibg:
+                recommended.add(group, 'guibg', guibg)
+            else:
+                gui = defaults.get(group, 'gui', '')
+                guisp = defaults.get(group, 'guisp')
+                if 'undercurl' in gui and guisp:
+                    recommended.add(group, 'gui', gui)
+                    recommended.add(group, 'guisp', guisp)
+
+    if recommended:
+        print >> sys.stderr, "Warning: some default values won't look right."
+        print >> sys.stderr, 'You might want to try adding these:'
+        for group in recommended.groups():
+            params = recommended.get_group(group)
+            param_str = ' '.join('%s=%s' % (pname, pval)
+                                 for (pname, pval) in params.items())
+            line = 'hi %s %s' % (group, param_str)
+            print >> sys.stderr, line
+
 def parse_args(args):
     parser = optparse.OptionParser()
 
@@ -339,13 +425,20 @@ def main(args=None):
 
     dark = not opts.light
 
+    settings = ColorSchemeSettings()
+
     for line in open(filename):
         try:
             hl = HighlightLine(line, dark)
             params = find_params(hl)
             sys.stdout.write(hl.updated(params))
+            if not hl.comment:
+                for (param, val) in params.items():
+                    settings.add(hl.group, param, val)
         except NoHighlightMatch:
             sys.stdout.write(line)
+
+    check_defaults(settings, dark)
 
     return 0
 
