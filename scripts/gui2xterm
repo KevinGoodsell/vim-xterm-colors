@@ -227,7 +227,7 @@ class HighlightLine(object):
         )
     ''', re.VERBOSE)
 
-    def __init__(self, line, dark=True):
+    def __init__(self, line):
         m = self._hi_matcher.match(line)
         if m is None:
             raise NoHighlightMatch()
@@ -239,10 +239,6 @@ class HighlightLine(object):
         self._params = m.group('params')
         self._tail = m.group('tail')
         self.comment = '"' in head
-        if dark:
-            self._defaults = dark_defaults.get_group(self.group, {})
-        else:
-            self._defaults = light_defaults.get_group(self.group, {})
 
     _param_matcher = re.compile(r'''
         (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
@@ -259,7 +255,7 @@ class HighlightLine(object):
             if m.group('param') == param:
                 return m.group('value')
 
-        return self._defaults.get(param)
+        return None
 
     def _replace(self, new_params, match):
         '''
@@ -429,7 +425,7 @@ def main(args=None):
 
     for line in open(filename):
         try:
-            hl = HighlightLine(line, dark)
+            hl = HighlightLine(line)
             params = find_params(hl)
             sys.stdout.write(hl.updated(params))
             if not hl.comment:
