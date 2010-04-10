@@ -71,6 +71,16 @@ class ColorSchemeSettings(object):
     def __nonzero__(self):
         return bool(self._settings)
 
+    def fill(self):
+        '''
+        Add explicit '=NONE' for all missing params.
+        '''
+        for group in self.groups():
+            params = self._settings[group]
+            for param in ['cterm', 'ctermfg', 'ctermbg', 'gui', 'guifg',
+                          'guibg', 'guisp']:
+                params.setdefault(param, 'NONE')
+
 class ColorSchemeDefaults(ColorSchemeSettings):
     _common_defaults = {
         'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
@@ -122,11 +132,7 @@ class ColorSchemeDefaults(ColorSchemeSettings):
         self.update(self._common_defaults)
         self.update(self._defaults)
 
-        for group in self.groups():
-            params = self._settings[group]
-            for param in ['cterm', 'ctermfg', 'ctermbg', 'gui', 'guifg',
-                          'guibg', 'guisp']:
-                params.setdefault(param, 'NONE')
+        self.fill()
 
 class DarkColorSchemeDefaults(ColorSchemeDefaults):
     _defaults = {
@@ -315,7 +321,7 @@ def cterm_color(gui_color):
         return gui_color
 
     c = color.Color.from_string(gui_color)
-    return c.nearest_xterm()
+    return str(c.nearest_xterm())
 
 def cterm_attrs(gui_attrs):
     '''
@@ -363,61 +369,83 @@ def find_params(hl):
 
     return result
 
-def check_defaults(settings, dark):
-    '''
-    Try to find defaults that won't display correctly, write to stderr.
-    Note that settings contains *only* the cterm settings that have been
-    calculated by the script, no gui settings.
-    '''
-    if dark:
-        defaults = DarkColorSchemeDefaults()
-    else:
-        defaults = LightColorSchemeDefaults()
+class SettingsValidator(object):
+    def __init__(self, settings, dark):
+        if dark:
+            self.settings = DarkColorSchemeDefaults()
+        else:
+            self.settings = LightColorSchemeDefaults()
+        self.settings.update(settings)
+        self.settings.fill()
 
-    still_defaults = defaults - settings
+    def validate(self):
+        '''
+        try to validate settings, reporting issues on stderr.
+        '''
+        recommended = ColorSchemeSettings()
+        for group in self.settings.groups():
+            recommended.update(self._validate_group(group))
 
-    # Compare remaining cterm defaults against the corresponding gui defaults.
-    # Often these won't match. This can be fixed by adding the gui defaults as
-    # explicit settings in the colorscheme (which the script will then
-    # translate to matching cterm settings).
-    recommended = ColorSchemeSettings()
-    for (group, param, val) in still_defaults.items():
-        if param == 'cterm':
-            # gui attributes need to be converted to cterm versions for
-            # comparison. It's also important that 'gui=NONE' gets used if
-            # there's no gui default.
-            gui = defaults.get(group, 'gui')
-            if val != cterm_attrs(gui):
-                recommended.add(group, 'gui', gui)
-        elif param == 'ctermfg':
-            # ctermfg colors are assumed to not match. They usually don't.
-            guifg = defaults.get(group, 'guifg')
-            if val != 'NONE' or guifg != 'NONE':
-                recommended.add(group, 'guifg', guifg)
-        elif param == 'ctermbg':
-            # ctermbg colors are also assumed to not match, but gui+guisp is
-            # used as a substitute when guibg doesn't exist (but only if gui
-            # includes undercurl). This makes the cterm background match the
-            # gui undercurl color.
-            guibg = defaults.get(group, 'guibg')
-            if guibg != 'NONE':
-                recommended.add(group, 'guibg', guibg)
+        if recommended:
+            print >> sys.stderr, "Warning: some default values won't look right."
+            print >> sys.stderr, 'You might want to try adding these:'
+            for group in recommended.groups():
+                params = recommended.get_group(group)
+                param_str = ' '.join('%s=%s' % (pname, pval)
+                                     for (pname, pval) in params.items())
+                line = 'hi %s %s' % (group, param_str)
+                print >> sys.stderr, line
+
+    def _validate_group(self, group):
+        # This assumes all gui and cterm parameters are present
+        # because they should come from the Default object.
+        params = self.settings.get_group(group)
+        recommended = {} # {'param' : 'value'}
+        recommended.update(self._validate_attrs(params))
+        recommended.update(self._validate_fg(params))
+        recommended.update(self._validate_bg(params))
+
+        result = ColorSchemeSettings()
+        if recommended:
+            result.update({group : recommended})
+        return result
+
+    def _validate_attrs(self, params):
+        # Convert gui attrs to cterm attrs and check equality.
+        result = {}
+        gui = params['gui']
+        cterm = params['cterm']
+        if cterm_attrs(gui) != cterm:
+            result['gui'] = gui
+
+        return result
+
+    def _validate_fg(self, params):
+        result = {}
+        gui = params['guifg']
+        cterm = params['ctermfg']
+        if cterm_color(gui) != cterm:
+            result['guifg'] = gui
+
+        return result
+
+    def _validate_bg(self, params):
+        result = {}
+        gui = params['guibg']
+        cterm = params['ctermbg']
+        use_undercurl = False
+        if gui == 'NONE' and 'undercurl' in params['gui']:
+            gui = params['guisp']
+            use_undercurl = True
+
+        if cterm_color(gui) != cterm:
+            if use_undercurl:
+                result['gui'] = params['gui']
+                result['guisp'] = params['guisp']
             else:
-                gui = defaults.get(group, 'gui')
-                guisp = defaults.get(group, 'guisp')
-                if 'undercurl' in gui and guisp != 'NONE':
-                    recommended.add(group, 'gui', gui)
-                    recommended.add(group, 'guisp', guisp)
+                result['guibg'] = params['guibg']
 
-    if recommended:
-        print >> sys.stderr, "Warning: some default values won't look right."
-        print >> sys.stderr, 'You might want to try adding these:'
-        for group in recommended.groups():
-            params = recommended.get_group(group)
-            param_str = ' '.join('%s=%s' % (pname, pval)
-                                 for (pname, pval) in params.items())
-            line = 'hi %s %s' % (group, param_str)
-            print >> sys.stderr, line
+        return result
 
 def parse_args(args):
     parser = optparse.OptionParser()
@@ -453,7 +481,8 @@ def main(args=None):
         except NoHighlightMatch:
             sys.stdout.write(line)
 
-    check_defaults(settings, dark)
+    validator = SettingsValidator(settings, dark)
+    validator.validate()
 
     return 0
 
