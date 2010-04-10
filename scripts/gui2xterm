@@ -11,6 +11,9 @@ class ColorSchemeSettings(object):
         self._settings = {} # {'GroupName' : {'param' : 'value'}}
 
     def add(self, group, param, value):
+        group = self.normalize_group(group)
+        param = param.lower()
+        value = self.normalize_value(value)
         params = self._settings.setdefault(group, {})
         params[param] = value
 
@@ -37,9 +40,9 @@ class ColorSchemeSettings(object):
         if isinstance(other, ColorSchemeSettings):
             other = other._settings
 
-        for (group, value) in other.items():
-            params = self._settings.setdefault(group, {})
-            params.update(value)
+        for (group, params) in other.items():
+            for (pname, pval) in params.items():
+                self.add(group, pname, pval)
 
     def copy(self):
         new = ColorSchemeSettings()
@@ -96,6 +99,17 @@ class ColorSchemeSettings(object):
         new.update(cls._light_defaults)
         new.fill()
         return new
+
+    @classmethod
+    def normalize_value(cls, val):
+        result = val.lower()
+        if result == 'none':
+            result = 'NONE'
+        return result
+
+    @classmethod
+    def normalize_group(cls, group):
+        return cls._group_map.get(group.lower(), group)
 
     _common_defaults = {
         'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
@@ -219,6 +233,10 @@ class ColorSchemeSettings(object):
         'Visual' : {'ctermbg' : '7', 'guibg' : 'LightGrey'},
         'WarningMsg' : {'ctermfg' : '1'},
     }
+
+    _group_map = dict((group.lower(), group) for group
+                      in _common_defaults.keys() + _dark_defaults.keys() +
+                      _light_defaults.keys())
 
 class HighlightLine(object):
     _hi_matcher = re.compile(r'''
