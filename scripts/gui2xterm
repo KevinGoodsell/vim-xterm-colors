@@ -42,7 +42,7 @@ class ColorSchemeSettings(object):
             params.update(value)
 
     def copy(self):
-        new = ColorSchemeDefaults()
+        new = ColorSchemeSettings()
         new.update(self)
         return new
 
@@ -117,15 +117,11 @@ class ColorSchemeDefaults(ColorSchemeSettings):
     }
     _defaults = {} # To be replaced in derived classes
 
-    def __init__(self, fill_empty=False):
+    def __init__(self):
         ColorSchemeSettings.__init__(self)
         self.update(self._common_defaults)
         self.update(self._defaults)
 
-        if fill_empty:
-            self._fill()
-
-    def _fill(self):
         for group in self.groups():
             params = self._settings[group]
             for param in ['cterm', 'ctermfg', 'ctermbg', 'gui', 'guifg',
@@ -359,9 +355,9 @@ def check_defaults(settings, dark):
     calculated by the script, no gui settings.
     '''
     if dark:
-        defaults = DarkColorSchemeDefaults(fill_empty=True)
+        defaults = DarkColorSchemeDefaults()
     else:
-        defaults = LightColorSchemeDefaults(fill_empty=True)
+        defaults = LightColorSchemeDefaults()
 
     still_defaults = defaults - settings
 
