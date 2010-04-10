@@ -117,10 +117,20 @@ class ColorSchemeDefaults(ColorSchemeSettings):
     }
     _defaults = {} # To be replaced in derived classes
 
-    def __init__(self):
+    def __init__(self, fill_empty=False):
         ColorSchemeSettings.__init__(self)
         self.update(self._common_defaults)
         self.update(self._defaults)
+
+        if fill_empty:
+            self._fill()
+
+    def _fill(self):
+        for group in self.groups():
+            params = self._settings[group]
+            for param in ['cterm', 'ctermfg', 'ctermbg', 'gui', 'guifg',
+                          'guibg', 'guisp']:
+                params.setdefault(param, 'NONE')
 
 class DarkColorSchemeDefaults(ColorSchemeDefaults):
     _defaults = {
@@ -349,9 +359,9 @@ def check_defaults(settings, dark):
     calculated by the script, no gui settings.
     '''
     if dark:
-        defaults = DarkColorSchemeDefaults()
+        defaults = DarkColorSchemeDefaults(fill_empty=True)
     else:
-        defaults = LightColorSchemeDefaults()
+        defaults = LightColorSchemeDefaults(fill_empty=True)
 
     still_defaults = defaults - settings
 
@@ -365,25 +375,26 @@ def check_defaults(settings, dark):
             # gui attributes need to be converted to cterm versions for
             # comparison. It's also important that 'gui=NONE' gets used if
             # there's no gui default.
-            gui = defaults.get(group, 'gui', 'NONE')
+            gui = defaults.get(group, 'gui')
             if val != cterm_attrs(gui):
                 recommended.add(group, 'gui', gui)
         elif param == 'ctermfg':
             # ctermfg colors are assumed to not match. They usually don't.
-            guifg = defaults.get(group, 'guifg', 'NONE')
-            recommended.add(group, 'guifg', guifg)
+            guifg = defaults.get(group, 'guifg')
+            if val != 'NONE' or guifg != 'NONE':
+                recommended.add(group, 'guifg', guifg)
         elif param == 'ctermbg':
             # ctermbg colors are also assumed to not match, but gui+guisp is
             # used as a substitute when guibg doesn't exist (but only if gui
             # includes undercurl). This makes the cterm background match the
             # gui undercurl color.
             guibg = defaults.get(group, 'guibg')
-            if guibg:
+            if guibg != 'NONE':
                 recommended.add(group, 'guibg', guibg)
             else:
-                gui = defaults.get(group, 'gui', '')
+                gui = defaults.get(group, 'gui')
                 guisp = defaults.get(group, 'guisp')
-                if 'undercurl' in gui and guisp:
+                if 'undercurl' in gui and guisp != 'NONE':
                     recommended.add(group, 'gui', gui)
                     recommended.add(group, 'guisp', guisp)
 
