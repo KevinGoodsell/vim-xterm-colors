@@ -288,6 +288,21 @@ class HighlightLine(object):
 
         return '%s%s%s%s' % (self._head, param_str, append_params, self._tail)
 
+    def settings(self):
+        '''
+        return items from the line as a ColorSchemeSettings object
+        '''
+        result = ColorSchemeSettings()
+        for m in self._param_matcher.finditer(self._params):
+            # Try to normalize case
+            value = m.group('value').lower()
+            if value == 'none':
+                value = 'NONE'
+
+            result.add(self.group, m.group('param'), value)
+
+        return result
+
 class NoHighlightMatch(ValueError):
     pass
 
@@ -433,8 +448,8 @@ def main(args=None):
             params = find_params(hl)
             sys.stdout.write(hl.updated(params))
             if not hl.comment:
-                for (param, val) in params.items():
-                    settings.add(hl.group, param, val)
+                settings.update(hl.settings())
+                settings.update({hl.group : params})
         except NoHighlightMatch:
             sys.stdout.write(line)
 
