@@ -1,6 +1,5 @@
 from __future__ import division
 
-import math
 import re
 import subprocess
 
@@ -62,8 +61,7 @@ class Color(object):
         # Brute-force search, could be better
         distances = [(color_distance(self, x), x)
                      for x in self._color_map.keys()]
-        distances.sort()
-        (dist, c) = distances[0]
+        (dist, c) = min(distances)
 
         return self._color_map[c]
 
@@ -85,7 +83,9 @@ def color_distance(color1, color2):
     r = color1.red - color2.red
     g = color1.green - color2.green
     b = color1.blue - color2.blue
-    return math.sqrt(
+    # This should technically be a square root, but for comparison purposes
+    # the squared distance is fine.
+    return (
         (((512 + rmean) * r*r) >> 8) +
         4 * g*g +
         (((767 - rmean) * b*b) >> 8)
