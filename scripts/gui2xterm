@@ -81,7 +81,22 @@ class ColorSchemeSettings(object):
                           'guibg', 'guisp']:
                 params.setdefault(param, 'NONE')
 
-class ColorSchemeDefaults(ColorSchemeSettings):
+    @classmethod
+    def dark_defaults(cls):
+        new = cls()
+        new.update(cls._common_defaults)
+        new.update(cls._dark_defaults)
+        new.fill()
+        return new
+
+    @classmethod
+    def light_defaults(cls):
+        new = cls()
+        new.update(cls._common_defaults)
+        new.update(cls._light_defaults)
+        new.fill()
+        return new
+
     _common_defaults = {
         'Cursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
         'CursorLine' : {'cterm' : 'underline'},
@@ -125,17 +140,8 @@ class ColorSchemeDefaults(ColorSchemeSettings):
                       'guifg' : 'Black'},
         'lCursor' : {'guibg' : 'fg', 'guifg' : 'bg'},
     }
-    _defaults = {} # To be replaced in derived classes
 
-    def __init__(self):
-        ColorSchemeSettings.__init__(self)
-        self.update(self._common_defaults)
-        self.update(self._defaults)
-
-        self.fill()
-
-class DarkColorSchemeDefaults(ColorSchemeDefaults):
-    _defaults = {
+    _dark_defaults = {
         'Comment' : {'ctermfg' : '14', 'guifg' : '#80a0ff'},
         'Constant' : {'ctermfg' : '13', 'guifg' : '#ffa0a0'},
         'CursorColumn' : {'ctermbg' : '242', 'guibg' : 'Grey40'},
@@ -175,8 +181,7 @@ class DarkColorSchemeDefaults(ColorSchemeDefaults):
         'WarningMsg' : {'ctermfg' : '224'},
     }
 
-class LightColorSchemeDefaults(ColorSchemeDefaults):
-    _defaults = {
+    _light_defaults = {
         'Comment' : {'ctermfg' : '4', 'guifg' : 'Blue'},
         'Constant' : {'ctermfg' : '1', 'guifg' : 'Magenta'},
         'CursorColumn' : {'ctermbg' : '7', 'guibg' : 'Grey90'},
@@ -372,9 +377,9 @@ def find_params(hl):
 class SettingsValidator(object):
     def __init__(self, settings, dark):
         if dark:
-            self.settings = DarkColorSchemeDefaults()
+            self.settings = ColorSchemeSettings.dark_defaults()
         else:
-            self.settings = LightColorSchemeDefaults()
+            self.settings = ColorSchemeSettings.light_defaults()
         self.settings.update(settings)
         self.settings.fill()
 
