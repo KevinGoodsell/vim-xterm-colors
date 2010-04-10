@@ -122,7 +122,7 @@ class ColorSchemeDefaults(ColorSchemeSettings):
         self.update(self._common_defaults)
         self.update(self._defaults)
 
-class DarkColorSchemesDefaults(ColorSchemeDefaults):
+class DarkColorSchemeDefaults(ColorSchemeDefaults):
     _defaults = {
         'Comment' : {'ctermfg' : '14', 'guifg' : '#80a0ff'},
         'Constant' : {'ctermfg' : '13', 'guifg' : '#ffa0a0'},
@@ -163,7 +163,7 @@ class DarkColorSchemesDefaults(ColorSchemeDefaults):
         'WarningMsg' : {'ctermfg' : '224'},
     }
 
-class LightColorSchemesDefaults(ColorSchemeDefaults):
+class LightColorSchemeDefaults(ColorSchemeDefaults):
     _defaults = {
         'Comment' : {'ctermfg' : '4', 'guifg' : 'Blue'},
         'Constant' : {'ctermfg' : '1', 'guifg' : 'Magenta'},
@@ -202,9 +202,6 @@ class LightColorSchemesDefaults(ColorSchemeDefaults):
         'Visual' : {'ctermbg' : '7', 'guibg' : 'LightGrey'},
         'WarningMsg' : {'ctermfg' : '1'},
     }
-
-dark_defaults = DarkColorSchemesDefaults()
-light_defaults = LightColorSchemesDefaults()
 
 class HighlightLine(object):
     _hi_matcher = re.compile(r'''
@@ -352,9 +349,9 @@ def check_defaults(settings, dark):
     calculated by the script, no gui settings.
     '''
     if dark:
-        defaults = dark_defaults
+        defaults = DarkColorSchemeDefaults()
     else:
-        defaults = light_defaults
+        defaults = LightColorSchemeDefaults()
 
     still_defaults = defaults - settings
 
