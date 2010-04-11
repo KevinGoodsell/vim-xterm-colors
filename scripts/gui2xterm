@@ -399,11 +399,13 @@ def find_params(hl):
         result['ctermfg'] = cterm_color(guifg)
 
     guibg = hl.get_param('guibg')
-    if guibg:
+    if guibg and guibg.lower() != 'none':
         result['ctermbg'] = cterm_color(guibg)
     elif undercurl:
         # Fall back on undercurl color
         result['ctermbg'] = cterm_color(undercurl)
+    elif guibg:
+        result['ctermbg'] = guibg
 
     return result
 
