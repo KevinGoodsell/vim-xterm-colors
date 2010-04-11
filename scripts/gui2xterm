@@ -371,7 +371,8 @@ def cterm_attrs(gui_attrs):
     attrs = [attr.strip() for attr in gui_attrs.split(',')]
     new_attrs = []
     for attr in attrs:
-        if attr.lower() in ('bold', 'underline', 'reverse', 'inverse'):
+        if attr.lower() in ['bold', 'underline', 'reverse', 'inverse',
+                            'standout']:
             new_attrs.append(attr)
 
     if new_attrs:
