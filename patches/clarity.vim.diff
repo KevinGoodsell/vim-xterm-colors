@@ -1,0 +1,28 @@
+--- originals/clarity.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/clarity.vim	2010-04-11 09:41:37.000000000 -0700
+@@ -50,3 +50,25 @@
+ 
+ 
+ 
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=cyan
++hi Folded guibg=darkgrey guifg=cyan
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold guifg=seagreen
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold guifg=green
++hi SignColumn guibg=grey guifg=cyan
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Underlined guifg=#80a0ff
++hi lCursor guibg=fg guifg=bg

@@ -1,0 +1,18 @@
+--- originals/darkbone.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/darkbone.vim	2010-04-11 10:30:46.000000000 -0700
+@@ -99,4 +99,15 @@
+   hi TabLineSel	  guifg=#c0c0ff guibg=#606080 gui=bold
+ endif
+ 
++hi CursorLine gui=NONE
++hi Identifier gui=NONE
++hi Ignore guifg=bg
++hi MoreMsg gui=bold
++hi Question gui=bold
++hi SignColumn guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++
+ " vim:set ts=8 sts=2 sw=2 tw=0:

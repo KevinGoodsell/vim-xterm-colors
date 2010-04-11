@@ -1,0 +1,36 @@
+--- originals/darkslategray.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/darkslategray.vim	2010-04-11 10:42:28.000000000 -0700
+@@ -29,6 +29,7 @@
+ 
+ " GUI colors
+ 
++hi Normal               guibg=#2f4f4f guifg=#f5deb3
+ hi Cursor               guifg=fg guibg=#da70d6
+ hi CursorIM             guifg=NONE guibg=#ff83fa
+ hi Directory            guifg=#e0ffff
+@@ -46,7 +47,6 @@
+ hi ModeMsg              gui=bold
+ hi MoreMsg              gui=bold guifg=#20b2aa
+ hi NonText              gui=bold guifg=#ffffff
+-hi Normal               guibg=#2f4f4f guifg=#f5deb3
+ hi Question             gui=bold guifg=#ff6347
+ hi Search               gui=bold guifg=#000000 guibg=#ffd700
+ hi SpecialKey           guifg=#00ffff
+@@ -115,3 +115,17 @@
+ 
+ hi Todo                 gui=bold guifg=#000000 guibg=#ff83fa
+ 
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi Identifier gui=NONE
++hi MatchParen guibg=darkcyan
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Underlined guifg=#80a0ff
++hi lCursor guibg=fg guifg=bg

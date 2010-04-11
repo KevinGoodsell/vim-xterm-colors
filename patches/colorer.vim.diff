@@ -1,0 +1,39 @@
+--- originals/colorer.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/colorer.vim	2010-04-11 10:07:51.000000000 -0700
+@@ -77,3 +77,36 @@
+ hi link SpecialComment 	Special
+ hi link Debug		Special
+ 
++hi Cursor guibg=fg guifg=bg
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=cyan
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=cyan
++hi LineNr guifg=yellow
++hi MailQ guifg=NONE
++hi MailQu guifg=NONE
++hi MatchParen guibg=darkcyan
++hi MoreMsg guifg=seagreen
++hi NonText guifg=blue
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question guifg=green
++hi Search guibg=yellow guifg=black
++hi SignColumn guibg=grey guifg=cyan
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title guifg=magenta
++hi Underlined guifg=#80a0ff
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
