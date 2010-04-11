@@ -1,0 +1,25 @@
+--- originals/adaryn.vim	2010-04-10 21:40:16.000000000 -0700
++++ patched/adaryn.vim	2010-04-10 21:39:44.000000000 -0700
+@@ -70,3 +70,22 @@
+ hi Ignore	guifg=bg ctermfg=bg
+ 
+ 
++hi Search gui=NONE
++hi FoldColumn gui=NONE
++hi SpellBad gui=undercurl guisp=red
++hi Pmenu guibg=magenta
++hi Error guibg=red guifg=white
++hi Folded gui=NONE
++hi MatchParen guibg=darkcyan
++hi SpellLocal gui=undercurl guisp=cyan
++hi Underlined guifg=#80a0ff
++hi SignColumn guibg=grey guifg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi SpellCap gui=undercurl guisp=blue
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi CursorLine guibg=grey40 gui=NONE
++hi NonText gui=bold
++hi CursorColumn guibg=grey40
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
