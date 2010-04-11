@@ -1,0 +1,16 @@
+--- originals/dusk.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/dusk.vim	2010-04-11 11:42:22.000000000 -0700
+@@ -68,4 +68,13 @@
+ hi Type		gui=NONE guifg=NavajoWhite guibg=bg
+ hi Underlined	gui=underline guifg=fg guibg=bg
+ 
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi MatchParen guibg=darkcyan
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SignColumn guibg=grey guifg=cyan
++hi TabLine guibg=darkgrey guifg=NONE
++
+ " vim: sw=2
