@@ -427,10 +427,10 @@ class SettingsValidator(object):
         if recommended:
             print >> sys.stderr, "Warning: some default values won't look right."
             print >> sys.stderr, 'You might want to try adding these:'
-            for group in recommended.groups():
+            for group in sorted(recommended.groups()):
                 params = recommended.get_group(group)
-                param_str = ' '.join('%s=%s' % (pname, pval)
-                                     for (pname, pval) in params.items())
+                param_str = ' '.join('%s=%s' % (pname, pval) for (pname, pval)
+                                     in sorted(params.items()))
                 line = 'hi %s %s' % (group, param_str)
                 print >> sys.stderr, line
 
