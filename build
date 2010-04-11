@@ -162,11 +162,13 @@ def mkdir(path):
         pass
 
 def patch(scheme):
-    fabricate.run('cp', os.path.join('originals', scheme), 'patched/')
-
     patch_file = os.path.join('patches', scheme + '.diff')
     if os.path.exists(patch_file):
-        fabricate.run('sh', '-c', 'patch -p0 < ' + patch_file)
+        fabricate.run('sh', '-c',
+                      'patch -p0 -o patched/%s originals/%s < %s' %
+                      (scheme, scheme, patch_file))
+    else:
+        fabricate.run('cp', os.path.join('originals', scheme), 'patched/')
 
 def build():
     mkdir('patched')
