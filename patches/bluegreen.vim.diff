@@ -1,0 +1,38 @@
+--- originals/bluegreen.vim	2009-06-04 21:52:52.000000000 -0700
++++ patched/bluegreen.vim	2010-04-10 23:16:36.000000000 -0700
+@@ -47,4 +47,35 @@
+ hi Ignore       guifg=grey60
+ hi Todo guibg=#9C8C84 guifg=#244C0A
+ 
++hi SpellCap gui=undercurl guisp=blue
++hi SpellBad gui=undercurl guisp=red
++hi Question gui=bold
++hi Pmenu guibg=magenta
++hi MoreMsg gui=bold
++hi Statement gui=bold
++hi Type gui=bold
++hi PmenuSel guibg=darkgrey
++hi NonText gui=bold
++hi LineNr guifg=yellow
++hi Title gui=bold
++hi SpellLocal gui=undercurl guisp=cyan
++hi Underlined guifg=#80a0ff
++hi DiffDelete guibg=darkcyan gui=bold guifg=blue
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi PmenuSbar guibg=grey
++hi WildMenu guibg=yellow guifg=black
++hi SignColumn guibg=grey guifg=cyan
++hi lCursor guibg=fg guifg=bg
++hi Error guibg=red guifg=white
++hi Directory guifg=cyan
++hi CursorLine guibg=grey40 gui=NONE
++hi Identifier gui=NONE
++hi DiffText guibg=red
++hi ErrorMsg guibg=red guifg=white
++hi DiffChange guibg=darkmagenta
++hi MatchParen guibg=darkcyan
++hi DiffAdd guibg=darkblue
++hi CursorColumn guibg=grey40
++
+ "vim: ts=4
