@@ -261,8 +261,10 @@ class LineProducer(object):
 
     _line_matcher = re.compile(r'.*\n?')
 
+    _continue_matcher = re.compile(r'\n[ \t]*\\')
+
     def __init__(self, data):
-        self._data = data
+        self._data = self._continue_matcher.sub('', data)
 
     def __iter__(self):
         while self._data:
