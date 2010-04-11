@@ -238,7 +238,7 @@ class ColorSchemeSettings(object):
                       in _common_defaults.keys() + _dark_defaults.keys() +
                       _light_defaults.keys())
 
-class HighlightLine(object):
+class LineProducer(object):
     _hi_matcher = re.compile(r'''
         (?P<head>\s*"?\s*)     # catches commented-out lines also
         (?P<command>
@@ -259,17 +259,31 @@ class HighlightLine(object):
         )
     ''', re.VERBOSE)
 
-    def __init__(self, line):
-        m = self._hi_matcher.match(line)
-        if m is None:
-            raise NoHighlightMatch()
+    _line_matcher = re.compile(r'.*\n?')
 
-        self.group = m.group('groupname')
-        head = m.group('head')
+    def __init__(self, data):
+        self._data = data
 
-        self._head = '%s%s%s' % (head, m.group('command'), self.group)
-        self._params = m.group('params')
-        self._tail = m.group('tail')
+    def __iter__(self):
+        while self._data:
+            m = self._hi_matcher.match(self._data)
+            if m:
+                yield HighlightLine(m)
+            else:
+                m = self._line_matcher.match(self._data)
+                yield m.group()
+
+            i = len(m.group())
+            self._data = self._data[i:]
+
+class HighlightLine(object):
+    def __init__(self, match):
+        self.group = match.group('groupname')
+        head = match.group('head')
+
+        self._head = '%s%s%s' % (head, match.group('command'), self.group)
+        self._params = match.group('params')
+        self._tail = match.group('tail')
         self.comment = '"' in head
 
     _param_matcher = re.compile(r'''
@@ -331,9 +345,6 @@ class HighlightLine(object):
             result.add(self.group, m.group('param'), value)
 
         return result
-
-class NoHighlightMatch(ValueError):
-    pass
 
 def cterm_color(gui_color):
     '''
@@ -491,17 +502,17 @@ def main(args=None):
 
     dark = not opts.light
 
+    lines = LineProducer(open(filename).read())
     settings = ColorSchemeSettings()
 
-    for line in open(filename):
-        try:
-            hl = HighlightLine(line)
-            params = find_params(hl)
-            sys.stdout.write(hl.updated(params))
-            if not hl.comment:
-                settings.update(hl.settings())
-                settings.update({hl.group : params})
-        except NoHighlightMatch:
+    for line in lines:
+        if isinstance(line, HighlightLine):
+            params = find_params(line)
+            sys.stdout.write(line.updated(params))
+            if not line.comment:
+                settings.update(line.settings())
+                settings.update({line.group : params})
+        else:
             sys.stdout.write(line)
 
     validator = SettingsValidator(settings, dark)
