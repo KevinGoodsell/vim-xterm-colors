@@ -1,0 +1,36 @@
+--- originals/fruity.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/fruity.vim	2010-04-11 12:57:17.000000000 -0700
+@@ -145,3 +145,33 @@
+ " ERuby Highlighting (for my eruby.vim)
+ hi erubyRubyDelim   guifg=#2c8a16                   gui=bold
+ hi erubyComment     guifg=#4d9b3a                   gui=italic
++
++hi Cursor guifg=bg
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=cyan
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=cyan
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold guifg=green
++hi SignColumn guifg=cyan
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Underlined guifg=#80a0ff
++hi Visual guibg=darkgrey
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guifg=bg

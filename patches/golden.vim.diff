@@ -1,0 +1,47 @@
+--- originals/golden.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/golden.vim	2010-04-11 13:18:57.000000000 -0700
+@@ -43,7 +43,7 @@
+ hi VertSplit      guifg=#2E2E2E guibg=#978345 ctermfg=black ctermbg=darkgrey
+ hi Folded		  guifg=orange  guibg=#2E2E2E ctermfg=yellow
+ 
+-hi link IncSearch		Visual
++hi! link IncSearch		Visual
+ hi link String			Constant
+ hi link Character		Constant
+ hi link Number			Constant
+@@ -68,3 +68,35 @@
+ hi link Delimiter		Special
+ hi link SpecialComment	Special
+ hi link Debug			Special
++
++hi Comment gui=NONE
++hi Constant gui=NONE
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory gui=NONE
++hi ErrorMsg gui=NONE
++hi FoldColumn guibg=grey guifg=cyan
++hi Identifier gui=NONE
++hi Ignore guifg=bg
++hi LineNr gui=NONE
++hi MatchParen guibg=darkcyan
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SignColumn guibg=grey guifg=cyan
++hi Special gui=NONE
++hi SpecialKey gui=NONE
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Underlined guifg=#80a0ff
++hi Visual guibg=darkgrey
++hi WarningMsg gui=NONE
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
