@@ -257,7 +257,7 @@ class LineProducer(object):
             ("[^\n]*)?         # optional comment
             \n?                # optional newline
         )
-    ''', re.VERBOSE)
+    ''', re.VERBOSE | re.IGNORECASE)
 
     _line_matcher = re.compile(r'.*\n?')
 
@@ -290,7 +290,7 @@ class HighlightLine(object):
         (?P<param>(cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font))
         =
         (?P<value>[^ \t]+)
-    ''', re.VERBOSE)
+    ''', re.VERBOSE | re.IGNORECASE)
 
     def get_param(self, param):
         '''
@@ -298,7 +298,7 @@ class HighlightLine(object):
         exist in the line.
         '''
         for m in self._param_matcher.finditer(self._params):
-            if m.group('param') == param:
+            if m.group('param').lower() == param:
                 return m.group('value')
 
         return None
@@ -308,9 +308,10 @@ class HighlightLine(object):
         Helper for updated().
         '''
         param = match.group('param')
-        if param in new_params:
-            value = new_params[param]
-            new_params.pop(param)
+        param_norm = param.lower()
+        if param_norm in new_params:
+            value = new_params[param_norm]
+            new_params.pop(param_norm)
             return '%s=%s' % (param, value)
         else:
             return match.group()
@@ -342,7 +343,7 @@ class HighlightLine(object):
             if value == 'none':
                 value = 'NONE'
 
-            result.add(self.group, m.group('param'), value)
+            result.add(self.group, m.group('param').lower(), value)
 
         return result
 
