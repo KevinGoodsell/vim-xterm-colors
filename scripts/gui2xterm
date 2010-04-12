@@ -244,8 +244,9 @@ class LineProducer(object):
         (?P<command>
             hi(g(h(l(i(g(ht?)?)?)?)?)?)?
             \s+
+            (def(a(u(lt?)?)?)?\s+)?
         )
-        (?P<groupname>[A-Za-z0-9]+)
+        (?P<groupname>[A-Za-z0-9_]+)
         (?P<params>(
             \s+
             (cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
