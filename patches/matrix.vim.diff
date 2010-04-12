@@ -1,0 +1,24 @@
+--- originals/matrix.vim	2009-06-04 20:53:28.000000000 -0700
++++ patched/matrix.vim	2010-04-11 18:06:14.000000000 -0700
+@@ -78,3 +78,21 @@
+ hi Underlined   guifg=#55ff55 guibg=#000000 gui=underline
+ hi Error        guifg=#55ff55 guibg=#339933
+ hi Todo         guifg=#113311 guibg=#44cc44 gui=none
++
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi Identifier gui=NONE
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE

@@ -1,0 +1,16 @@
+--- originals/moss.vim	2010-01-20 22:49:02.000000000 -0800
++++ patched/moss.vim	2010-04-11 18:55:25.000000000 -0700
+@@ -107,3 +107,13 @@
+ hi Error       gui=NONE guifg=Khaki3 guibg=VioletRed4
+ hi Todo        gui=BOLD guifg=GoldenRod3 guibg=NONE
+ 
++hi CursorLine gui=NONE
++hi DiffDelete gui=bold
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi Question gui=bold
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi lCursor guibg=fg guifg=bg
