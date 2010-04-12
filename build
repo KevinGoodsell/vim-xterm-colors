@@ -5,34 +5,24 @@ import os
 
 import fabricate
 
-# These don't convert (no lines match highlight commands)
-# astronaut.vim
-# calmar256-dark.vim
-# calmar256-light.vim
-# desert256.vim
-# impact.vim
-# jellybeans.vim
-# summerfruit256.vim
-# wombat256.vim
-#
-# General weirdness:
-# marklar.vim
-# twilight.vim
-# two2tango.vim
-#
-# This doesn't convert due to weird color names:
-#
 # These are weird about the background option:
+# satori.vim (never sets background or any group background)
+#
+# These observe background:
 # baycomb.vim
-# dante.vim
 # earendel.vim
-# ekvoli.vim
-# maroloccio.vim
 # moria.vim
 # peaksea.vim
-# satori.vim
-# sienna.vim
-# vividchalk.vim
+# sienna.vim (actually uses its own variable, but same principle)
+#
+# These use exec:
+# astronaut.vim (variable expansion)
+# calmar256-dark.vim (crazy table stuff)
+# calmar256-light.vim (crazy table stuff)
+# marklar.vim (variable expansion)
+# twilight.vim (variable expansion)
+# two2tango.vim (variable expansion)
+#
 
 dark_schemes = [
     'adaryn.vim',
@@ -53,6 +43,7 @@ dark_schemes = [
     'clarity.vim',
     'cleanphp.vim',
     'colorer.vim',
+    #'dante.vim',
     'darkblue2.vim',
     'darkbone.vim',
     'darkslategray.vim',
@@ -68,6 +59,7 @@ dark_schemes = [
     'dw_purple.vim',
     'dw_red.vim',
     'dw_yellow.vim',
+    #'ekvoli.vim',
     'fnaqevan.vim',
     'freya.vim',
     'fruity.vim',
@@ -81,6 +73,7 @@ dark_schemes = [
     'leo.vim',
     'lucius.vim',
     'manxome.vim',
+    #'maroloccio.vim',
     'matrix.vim',
     'molokai.vim',
     'moss.vim',
@@ -112,6 +105,7 @@ dark_schemes = [
     'tir_black.vim',
     'torte.vim',
     'vibrantink.vim',
+    #'vividchalk.vim',
     'wombat.vim',
     'wood.vim',
     'wuye.vim',
@@ -156,8 +150,18 @@ light_schemes = [
     'winter.vim',
 ]
 
-no_convert = [
+patch_only = [
     'lettuce.vim',
+]
+
+copy_only = [
+    # These calculate cterm colors:
+    'desert256.vim',
+    'jellybeans.vim',
+    'summerfruit256.vim',
+    'wombat256.vim',
+    # Terminal only:
+    #'impact.vim',
 ]
 
 def mkdir(path):
@@ -177,7 +181,7 @@ def patch(scheme):
 
 def build():
     mkdir('patched')
-    for scheme in dark_schemes + light_schemes + no_convert:
+    for scheme in dark_schemes + light_schemes + patch_only:
         patch(scheme)
 
     mkdir('term')
@@ -189,8 +193,11 @@ def build():
         fabricate.run('sh', '-c', './scripts/gui2xterm --light patched/' +
                                   scheme + ' > term/' + scheme)
 
-    for scheme in no_convert:
+    for scheme in patch_only:
         fabricate.run('cp', 'patched/' + scheme, 'term/')
+
+    for scheme in copy_only:
+        fabricate.run('cp', 'originals/' + scheme, 'term/')
 
 if __name__ == '__main__':
     fabricate.main()
