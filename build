@@ -75,7 +75,6 @@ dark_schemes = [
     'jammy.vim',
     'kellys.vim',
     'leo.vim',
-    'lettuce.vim',
     'lucius.vim',
     'manxome.vim',
     'marklar.vim',
@@ -155,6 +154,10 @@ light_schemes = [
     'winter.vim',
 ]
 
+no_convert = [
+    'lettuce.vim',
+]
+
 def mkdir(path):
     try:
         os.makedirs(path)
@@ -172,7 +175,7 @@ def patch(scheme):
 
 def build():
     mkdir('patched')
-    for scheme in dark_schemes + light_schemes:
+    for scheme in dark_schemes + light_schemes + no_convert:
         patch(scheme)
 
     mkdir('term')
@@ -183,6 +186,9 @@ def build():
     for scheme in light_schemes:
         fabricate.run('sh', '-c', './scripts/gui2xterm --light patched/' +
                                   scheme + ' > term/' + scheme)
+
+    for scheme in no_convert:
+        fabricate.run('cp', 'patched/' + scheme, 'term/')
 
 if __name__ == '__main__':
     fabricate.main()
