@@ -251,7 +251,7 @@ class LineProducer(object):
             [ \t]+
             (cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
             =
-            [^ \t\n]+                # NOTE: doesn't match quoted values
+            [^ \t\n"]+               # NOTE: doesn't match quoted values
         )+)
         (?P<tail>
             [ \t]*                   # optional whitespace
