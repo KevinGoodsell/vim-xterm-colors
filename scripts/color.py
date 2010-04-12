@@ -129,3 +129,20 @@ def _get_color_names():
     result = _get_x_rgb()
     result.update(_extra_color_names)
     return result
+
+if __name__ == '__main__':
+    import sys
+    import math
+
+    for color in sys.argv[1:]:
+        try:
+            c = Color.from_string(color)
+        except ValueError:
+            continue
+
+        distances = [(color_distance(c, x), x)
+                     for x in Color._color_map.keys()]
+        distances.sort()
+        nearest = ['%d (%f)' % (Color._color_map[x], math.sqrt(d))
+                   for (d, x) in distances[:10]]
+        print '%s = %r: %s' % (color, c, ', '.join(nearest))
