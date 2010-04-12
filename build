@@ -15,8 +15,10 @@ import fabricate
 # summerfruit256.vim
 # wombat256.vim
 #
+# General weirdness:
+# marklar.vim
+#
 # This doesn't convert due to weird color names:
-# nightshimmer.vim
 #
 # These are weird about the background option:
 # baycomb.vim
@@ -77,7 +79,6 @@ dark_schemes = [
     'leo.vim',
     'lucius.vim',
     'manxome.vim',
-    'marklar.vim',
     'matrix.vim',
     'molokai.vim',
     'moss.vim',
@@ -86,6 +87,7 @@ dark_schemes = [
     'navajo-night.vim',
     'neon.vim',
     'neverness.vim',
+    'nightshimmer.vim',
     'night.vim',
     'no_quarter.vim',
     'northland.vim',
