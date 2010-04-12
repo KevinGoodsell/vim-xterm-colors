@@ -240,23 +240,23 @@ class ColorSchemeSettings(object):
 
 class LineProducer(object):
     _hi_matcher = re.compile(r'''
-        (?P<head>\s*"?\s*)     # catches commented-out lines also
+        (?P<head>[ \t]*"?[ \t]*)     # catches commented-out lines also
         (?P<command>
             hi(g(h(l(i(g(ht?)?)?)?)?)?)?
-            \s+
-            (def(a(u(lt?)?)?)?\s+)?
+            [ \t]+
+            (def(a(u(lt?)?)?)?[ \t]+)?
         )
         (?P<groupname>[A-Za-z0-9_]+)
         (?P<params>(
-            \s+
+            [ \t]+
             (cterm[fb]g|c?term|start|stop|gui(fg|bg|sp)?|font)
             =
-            [^ \t\n]+          # NOTE: doesn't match quoted values
+            [^ \t\n]+                # NOTE: doesn't match quoted values
         )+)
         (?P<tail>
-            [ \t]*             # optional whitespace
-            ("[^\n]*)?         # optional comment
-            \n?                # optional newline
+            [ \t]*                   # optional whitespace
+            ("[^\n]*)?               # optional comment
+            \n?                      # optional newline
         )
     ''', re.VERBOSE | re.IGNORECASE)
 
