@@ -1,0 +1,34 @@
+--- originals/railscasts.vim	2010-01-20 22:49:20.000000000 -0800
++++ patched/railscasts.vim	2010-04-11 21:58:05.000000000 -0700
+@@ -122,3 +122,31 @@
+ hi xmlTag                    guifg=#E8BF6A
+ hi xmlTagName                guifg=#E8BF6A
+ hi xmlEndTag                 guifg=#E8BF6A
++
++hi Cursor guifg=bg
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold
++hi DiffText guibg=red
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=cyan
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold guifg=blue
++hi Question gui=bold guifg=green
++hi Search guifg=black
++hi SignColumn guibg=grey guifg=cyan
++hi Special guifg=orange
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title gui=bold
++hi Underlined guifg=#80a0ff
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

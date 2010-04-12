@@ -1,0 +1,24 @@
+--- originals/no_quarter.vim	2010-01-20 22:54:02.000000000 -0800
++++ patched/no_quarter.vim	2010-04-11 20:45:08.000000000 -0700
+@@ -87,7 +87,7 @@
+ hi perlSpecialMatch			gui=NONE	guifg=#c864c7	guibg=bg
+ hi perlSpecialBEOM			gui=NONE	guifg=fg		guibg=#404040
+ hi perlStringStartEnd		gui=NONE	guifg=#b07050	guibg=#353535
+-hi perlShellCommand			gui=NONE	guibg=#c090c0	guibg=#424242
++hi perlShellCommand			gui=NONE	guifg=#c090c0	guibg=#424242
+ hi perlOperator				gui=NONE	guifg=#c0c090	guibg=#404040
+ hi perlLabel				gui=NONE	guifg=#c0c090	guibg=#404040
+ hi perlControl				gui=NONE	guifg=#c0c090	guibg=#404040
+@@ -131,4 +131,12 @@
+ 
+ hi rightMargin          guibg=#453030
+ 
++hi CursorColumn guibg=grey40
++hi MatchParen guibg=darkcyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++
+ " EOF

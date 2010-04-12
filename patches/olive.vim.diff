@@ -1,0 +1,30 @@
+--- originals/olive.vim	2009-06-04 20:53:30.000000000 -0700
++++ patched/olive.vim	2010-04-11 21:35:51.000000000 -0700
+@@ -117,3 +117,27 @@
+ hi texMatcher           guifg=yellowgreen                       gui=none
+ hi texMath                                                      gui=none
+ 
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Error guibg=red
++hi ErrorMsg guifg=white
++hi Identifier gui=NONE
++hi MatchParen guibg=darkcyan
++hi NonText gui=bold guifg=blue
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Type gui=bold
++hi Underlined guifg=#80a0ff
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

@@ -1,0 +1,9 @@
+--- originals/northland.vim	2009-06-04 20:53:28.000000000 -0700
++++ patched/northland.vim	2010-04-11 21:09:38.000000000 -0700
+@@ -147,3 +147,6 @@
+ 
+ "hi fortranTodo guifg=Black guibg=#507080
+ "hi fortranContinueMark guifg=White guibg=DarkRed
++
++hi CursorLine gui=NONE
++hi lCursor guibg=fg guifg=bg

@@ -1,0 +1,19 @@
+--- originals/night.vim	2010-01-20 23:43:38.000000000 -0800
++++ patched/night.vim	2010-04-11 20:28:09.000000000 -0700
+@@ -68,3 +68,16 @@
+ hi Todo         gui=BOLD guifg=#00ffe0 guibg=#0080a0
+ hi Type         gui=BOLD guifg=#bbaaff guibg=NONE
+ hi Underlined   gui=UNDERLINE,BOLD guifg=#f0f0f8 guibg=NONE
++
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi MatchParen guibg=darkcyan
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
