@@ -1,0 +1,36 @@
+--- originals/rdark.vim	2010-01-20 22:45:24.000000000 -0800
++++ patched/rdark.vim	2010-04-11 22:12:59.000000000 -0700
+@@ -23,9 +23,10 @@
+ " Current Line
+ if exists('rdark_current_line') && rdark_current_line == 1
+ 	set cursorline
+-	hi CursorLine guibg=#191f21
+ endif
+ 
++hi CursorLine guibg=#191f21
++
+ " Default Colors
+ hi Normal guifg=#babdb6 guibg=#1e2426
+ hi NonText guifg=#2c3032 guibg=#2c3032 gui=none
+@@ -157,3 +158,21 @@
+ hi link cssTextAttr Constant
+ hi link cssColorAttr Constant
+ hi link cssFontAttr Constant
++
++hi Cursor guifg=bg
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE
++hi DiffDelete gui=bold
++hi ErrorMsg guibg=red guifg=white
++hi Identifier gui=NONE
++hi Ignore guifg=bg
++hi MoreMsg gui=bold
++hi SignColumn guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Title gui=bold
++hi Underlined guifg=#80a0ff
++hi WarningMsg guifg=red
++hi lCursor guibg=fg guifg=bg
