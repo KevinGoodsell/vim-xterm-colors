@@ -1,0 +1,38 @@
+--- originals/xemacs.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/xemacs.vim	2010-04-12 13:04:18.000000000 -0700
+@@ -42,5 +42,34 @@
+ hi Type                                 guifg=#4a81b4 gui=NONE
+ hi Ignore                               guifg=grey29
+ hi Todo                                 guibg=gold guifg=black
+-hi WildMenu                     guibg=#b7b7b7 guibg=grey91
++hi WildMenu                     guibg=grey91
+ hi Directory            guibg=#cdcecd guifg=navyblue
++
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi Identifier gui=NONE
++hi LineNr guifg=yellow
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold
++hi Search guifg=black
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title gui=bold
++hi Underlined guifg=#80a0ff
++hi WildMenu guifg=black
++hi lCursor guibg=fg guifg=bg
