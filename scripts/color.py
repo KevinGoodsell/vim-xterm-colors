@@ -120,9 +120,9 @@ _extra_color_names = {
     # These colors are listed in :help gui-colors as colors that should be
     # available on most systems, but they aren't in the X rgb database (at
     # least not on mine).
-    'lightred'       : Color(0xff, 0xd7, 0xd7),
-    'lightmagenta'   : Color(0xff, 0xd7, 0xff),
-    'darkyellow'     : Color(0xaf, 0x5f, 0x00),
+    'lightred'       : Color(0xff, 0xbb, 0xbb),
+    'lightmagenta'   : Color(0xff, 0xbb, 0xff),
+    'darkyellow'     : Color(0xbb, 0xbb, 0x00),
 }
 
 def _get_color_names():
