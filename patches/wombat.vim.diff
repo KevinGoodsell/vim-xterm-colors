@@ -1,0 +1,31 @@
+--- originals/wombat.vim	2010-03-30 12:40:39.000000000 -0700
++++ patched/wombat.vim	2010-04-12 12:06:56.000000000 -0700
+@@ -49,3 +49,28 @@
+ hi Special		guifg=#e7f6da gui=none
+ 
+ 
++hi CursorLine gui=NONE
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=cyan
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=cyan
++hi Ignore guifg=bg
++hi MoreMsg gui=bold guifg=seagreen
++hi PmenuSbar guibg=grey
++hi Question gui=bold guifg=green
++hi Search guibg=yellow guifg=black
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=darkgrey guifg=NONE
++hi Todo guibg=yellow
++hi Underlined guifg=#80a0ff
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

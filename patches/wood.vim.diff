@@ -1,0 +1,35 @@
+--- originals/wood.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/wood.vim	2010-04-12 12:11:23.000000000 -0700
+@@ -37,3 +37,32 @@
+ hi Todo				guibg=black guifg=white
+ hi WildMenu			guibg=brown
+ hi LineNr           guifg=#CCCCAA guibg=#61614A
++
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=cyan
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi Identifier gui=NONE
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title gui=bold
++hi Type gui=bold
++hi Underlined guifg=#80a0ff
++hi WildMenu guifg=black
++hi lCursor guibg=fg guifg=bg

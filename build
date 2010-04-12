@@ -17,6 +17,8 @@ import fabricate
 #
 # General weirdness:
 # marklar.vim
+# twilight.vim
+# two2tango.vim
 #
 # This doesn't convert due to weird color names:
 #
@@ -109,8 +111,6 @@ dark_schemes = [
     'tango.vim',
     'tir_black.vim',
     'torte.vim',
-    'twilight.vim',
-    'two2tango.vim',
     'vibrantink.vim',
     'wombat.vim',
     'wood.vim',

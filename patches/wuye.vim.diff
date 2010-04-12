@@ -1,0 +1,22 @@
+--- originals/wuye.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/wuye.vim	2010-04-12 12:23:18.000000000 -0700
+@@ -80,3 +80,19 @@
+ hi Error        guifg=Khaki guibg=VioletRed   ctermfg=Yellow ctermbg=LightMagenta
+ hi Todo         guifg=Yellow guibg=NavyBlue   ctermfg=Yellow ctermbg=DarkBlue
+ 
++hi DiffDelete gui=bold
++hi Identifier gui=NONE
++hi MatchParen guibg=darkcyan
++hi NonText gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi TabLine guibg=darkgrey guifg=NONE
++hi Underlined guifg=#80a0ff
++hi lCursor guibg=fg guifg=bg
