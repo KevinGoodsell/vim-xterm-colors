@@ -1,0 +1,26 @@
+--- originals/vividchalk.vim	2010-01-20 23:07:02.000000000 -0800
++++ patched/vividchalk.vim	2010-04-12 23:08:44.000000000 -0700
+@@ -170,3 +170,23 @@
+ call s:hifg("Regexp"         ,"#44B4CC","DarkCyan",21) " 74
+ call s:hifg("rubyMethod"     ,"#DDE93D","Yellow",77) " 191
+ "highlight railsMethod   guifg=#EE1122 ctermfg=1
++
++hi CursorLine gui=NONE
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Error guibg=red guifg=white
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Title gui=bold
++hi Todo guibg=yellow guifg=blue
++hi Underlined guifg=#80a0ff
++hi lCursor guibg=fg guifg=bg
