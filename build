@@ -124,7 +124,6 @@ light_schemes = [
     'chela_light.vim',
     'dawn.vim',
     'eclipse.vim',
-    'fine_blue2.vim',
     'fine_blue.vim',
     'fog.vim',
     'fruit.vim',
