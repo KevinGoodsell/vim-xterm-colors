@@ -1,5 +1,14 @@
 --- originals/bluegreen.vim	2009-06-04 21:52:52.000000000 -0700
-+++ patched/bluegreen.vim	2010-04-10 23:16:36.000000000 -0700
++++ patched/bluegreen.vim	2010-04-12 16:45:31.000000000 -0700
+@@ -14,7 +14,7 @@
+ if exists("syntax_on")
+     syntax reset
+ endif
+-let g:colors_name="mine"
++let g:colors_name="bluegreen"
+ 
+ hi Normal       guifg=White guibg=#061A3E
+ 
 @@ -47,4 +47,35 @@
  hi Ignore       guifg=grey60
  hi Todo guibg=#9C8C84 guifg=#244C0A

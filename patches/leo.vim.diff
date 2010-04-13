@@ -1,5 +1,5 @@
 --- originals/leo.vim	2010-04-05 19:44:07.000000000 -0700
-+++ patched/leo.vim	2010-04-11 17:00:13.000000000 -0700
++++ patched/leo.vim	2010-04-12 17:06:04.000000000 -0700
 @@ -58,8 +58,6 @@
          end
  endif
@@ -13,7 +13,7 @@
          endif
  endif
  
-+let g:colors_name = "leo256"
++let g:colors_name = "leo"
 +
  " Normal should come first
  hi Normal                               cterm=none              ctermfg=255             ctermbg=16 guibg=#000000 guifg=#ffffff
