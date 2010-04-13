@@ -1,0 +1,11 @@
+--- originals/silent.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/silent.vim	2010-04-12 20:00:19.000000000 -0700
+@@ -89,7 +89,7 @@
+ 
+ " -> 
+ hi Structure		guibg=white 	guifg=black		gui=none
+-hi Chatacter		guibg=white 	guifg=black		gui=none
++hi Character		guibg=white 	guifg=black		gui=none
+ " dark red #D80000
+ hi Float			guibg=#CCFFCC	guifg=blue		gui=NONE
+ hi Macro			guibg=white		guifg=black		gui=bold

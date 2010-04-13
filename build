@@ -150,17 +150,12 @@ light_schemes = [
 ]
 
 patch_only = [
-    'lettuce.vim',
-]
-
-copy_only = [
-    # These calculate cterm colors:
     'desert256.vim',
     'jellybeans.vim',
+    'lettuce.vim',
     'summerfruit256.vim',
     'wombat256.vim',
-    # Terminal only:
-    #'impact.vim',
+    #'impact.vim', # Terminal only
 ]
 
 def mkdir(path):
@@ -194,9 +189,6 @@ def build():
 
     for scheme in patch_only:
         fabricate.run('cp', 'patched/' + scheme, 'term/')
-
-    for scheme in copy_only:
-        fabricate.run('cp', 'originals/' + scheme, 'term/')
 
 if __name__ == '__main__':
     fabricate.main()

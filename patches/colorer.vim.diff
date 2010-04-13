@@ -1,5 +1,14 @@
 --- originals/colorer.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/colorer.vim	2010-04-11 10:07:51.000000000 -0700
++++ patched/colorer.vim	2010-04-12 19:58:15.000000000 -0700
+@@ -17,7 +17,7 @@
+ hi Comment	        ctermfg=Brown guifg=#B46918	gui=NONE
+ hi PerlPOD	        ctermfg=Brown guifg=#B86A18	gui=NONE
+ hi Constant	        ctermfg=White guifg=White gui=NONE
+-hi Charachter	    ctermfg=Yellow guifg=Yellow	gui=NONE
++hi Character	    ctermfg=Yellow guifg=Yellow	gui=NONE
+ hi String           ctermfg=Yellow guifg=Yellow	gui=NONE
+ hi Number	        ctermfg=White guifg=White gui=NONE
+ hi Boolean	        ctermfg=Cyan guifg=DarkGray	gui=NONE
 @@ -77,3 +77,36 @@
  hi link SpecialComment 	Special
  hi link Debug		Special
