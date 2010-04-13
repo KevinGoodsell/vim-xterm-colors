@@ -1,0 +1,43 @@
+--- originals/print_bw.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/print_bw.vim	2010-04-13 11:31:15.000000000 -0700
+@@ -61,5 +61,40 @@
+ " Ideally, the bg color would be white but VIM cannot print white on black!
+ highlight Error         cterm=bold,reverse ctermfg=black ctermbg=grey gui=bold,reverse guifg=black guibg=grey
+ 
++hi Cursor guibg=fg guifg=bg
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=blue
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Folded guibg=lightgrey guifg=darkblue
++hi Ignore guifg=bg
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi Search guibg=yellow
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi TabLine guibg=lightgrey guifg=NONE
++hi Title gui=bold guifg=magenta
++hi Underlined guifg=slateblue
++hi Visual guibg=lightgrey
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
++
+ " vim:et:ff=unix:tw=0:ts=4:sw=4
+ " EOF print_bw.vim

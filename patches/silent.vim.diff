@@ -1,5 +1,30 @@
 --- originals/silent.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/silent.vim	2010-04-12 20:00:19.000000000 -0700
++++ patched/silent.vim	2010-04-13 11:50:15.000000000 -0700
+@@ -1,14 +1,15 @@
+ " Vim color file
+ " @Author: Pascal Vasilii <jabberroid@gmail.com>	
+ 
++set background=light
+ hi clear
+ if exists("syntax_on")
+   syntax reset
+ endif
+ 
+ let g:colors_name = "silent"
+-set background=light
+ 
++hi Normal	        guibg=White		guifg=#141312	gui=NONE
+ hi Cursor           guibg=#0057ae	guifg=white		gui=NONE
+ hi LineNr           guibg=#F1FFC1	guifg=DarkGray	gui=bold,italic 
+ hi StatusLineNC     guibg=#bbbbbb	guifg=White		gui=bold,italic
+@@ -36,7 +37,6 @@
+ hi IncSearch        guibg=Black		guifg=White		gui=none
+ hi Search           guibg=Yellow	guifg=Black		gui=none
+ 
+-hi Normal	        guibg=White		guifg=#141312	gui=NONE
+ hi Visual	        guibg=#4485FF	guifg=white		gui=bold
+ hi VisualNos	    guibg=#4485FF	guifg=white		gui=bold
+ hi Comment	        guibg=white		guifg=#888786	gui=italic
 @@ -89,7 +89,7 @@
  
  " -> 
@@ -9,3 +34,12 @@
  " dark red #D80000
  hi Float			guibg=#CCFFCC	guifg=blue		gui=NONE
  hi Macro			guibg=white		guifg=black		gui=bold
+@@ -114,3 +114,8 @@
+ 
+ hi link SpecialComment 	Special
+ hi link Debug		Special
++
++hi ErrorMsg guibg=red guifg=white
++hi TabLine guibg=lightgrey guifg=NONE
++hi WarningMsg guifg=red
++hi lCursor guibg=fg guifg=bg

@@ -1,0 +1,47 @@
+--- originals/PapayaWhip.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/PapayaWhip.vim	2010-04-13 11:25:11.000000000 -0700
+@@ -29,3 +29,44 @@
+ hi VertSplit gui=None guibg=Gray
+ hi Identifier guifg=#005f5f
+ hi Statement ctermfg=DarkRed
++
++hi Cursor guibg=fg guifg=bg
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi DiffAdd guifg=NONE
++hi DiffChange guifg=NONE
++hi DiffDelete gui=bold
++hi DiffText guifg=NONE
++hi Directory guifg=blue
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Folded guibg=lightgrey guifg=darkblue
++hi Ignore guifg=bg
++hi LineNr guifg=brown
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi Search guibg=yellow
++hi SignColumn guibg=grey guifg=darkblue
++hi Special guifg=slateblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold guifg=brown
++hi StatusLine gui=bold,reverse
++hi TabLine guibg=lightgrey guifg=NONE
++hi Title gui=bold guifg=magenta
++hi Todo guibg=yellow guifg=blue
++hi Type gui=bold guifg=seagreen
++hi Underlined guifg=slateblue
++hi Visual guibg=lightgrey
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

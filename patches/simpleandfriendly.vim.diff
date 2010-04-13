@@ -1,0 +1,37 @@
+--- originals/simpleandfriendly.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/simpleandfriendly.vim	2010-04-13 11:59:39.000000000 -0700
+@@ -63,3 +63,34 @@
+ hi Special 	guibg=grey90	guifg=Slateblue	gui=UNDERLINE
+ 
+ hi operator guifg=gray25  ctermfg=Black   term=bold   cterm=bold  gui=bold
++
++hi Cursor guibg=fg guifg=bg
++hi CursorColumn guibg=grey90
++hi CursorLine guibg=grey90
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=blue
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Folded guibg=lightgrey guifg=darkblue
++hi Ignore guifg=bg
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold guifg=blue
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi Search guibg=yellow
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi Underlined guifg=slateblue
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
