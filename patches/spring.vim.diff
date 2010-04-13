@@ -1,0 +1,49 @@
+--- originals/spring.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/spring.vim	2010-04-13 12:14:09.000000000 -0700
+@@ -11,11 +11,6 @@
+ 
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+-if !has("gui_running")
+-    runtime! colors/default.vim
+-    finish
+-endif
+-
+ set background=light
+ 
+ hi clear
+@@ -64,6 +59,34 @@
+ hi Special          guifg=#8B038D    guibg=NONE     gui=NONE
+ hi SpecialKey       guifg=#d8a080    guibg=#e8e8e8  gui=NONE
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=blue
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Identifier guifg=darkcyan
++hi Ignore guifg=bg
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold guifg=blue
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi Search guibg=yellow
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++
+ """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+ " vim:tabstop=4

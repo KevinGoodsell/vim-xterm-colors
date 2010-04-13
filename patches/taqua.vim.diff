@@ -1,0 +1,22 @@
+--- originals/taqua.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/taqua.vim	2010-04-13 12:19:35.000000000 -0700
+@@ -82,3 +82,19 @@
+ hi Scrollbar  gui=BOLD guifg=#00C0FF guibg=#FFFFFF
+ hi VertSplit  gui=BOLD guifg=#FFFFFF guibg=#0E8ED3
+ hi Visual	  gui=BOLD guifg=#FFFFFF guibg=#1679F9
++
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold guifg=seagreen
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi WildMenu guibg=yellow guifg=black

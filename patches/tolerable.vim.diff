@@ -1,0 +1,33 @@
+--- originals/tolerable.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/tolerable.vim	2010-04-13 12:33:12.000000000 -0700
+@@ -41,3 +41,30 @@
+ hi MoreMsg      gui=none
+ hi ModeMsg      gui=none
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Folded guibg=lightgrey guifg=darkblue
++hi Ignore guifg=bg
++hi LineNr guifg=brown
++hi MatchParen guibg=cyan
++hi MoreMsg guifg=seagreen
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Question gui=bold guifg=seagreen
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi Underlined guifg=slateblue
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

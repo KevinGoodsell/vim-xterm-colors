@@ -1,5 +1,5 @@
 --- originals/tcsoft.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/tcsoft.vim	2010-04-12 21:07:49.000000000 -0700
++++ patched/tcsoft.vim	2010-04-13 12:26:04.000000000 -0700
 @@ -10,7 +10,7 @@
  if exists("syntax_on")
    syntax reset
@@ -9,3 +9,32 @@
  
  if version >= 700
    hi CursorLine                 guibg=#FFFF33  gui=NONE  "hellgelb
+@@ -81,3 +81,28 @@
+ hi link   Delimiter	  Special
+ hi link   SpecialComment Comment
+ hi link   Debug		    Special
++
++hi Cursor guibg=fg
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=blue
++hi Error guibg=red guifg=white
++hi FoldColumn guibg=grey guifg=darkblue
++hi Folded guibg=lightgrey guifg=darkblue
++hi NonText gui=bold guifg=blue
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Search guibg=yellow
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Title gui=bold guifg=magenta
++hi Underlined guifg=slateblue
++hi Visual guibg=lightgrey
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
