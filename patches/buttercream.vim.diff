@@ -1,0 +1,24 @@
+--- originals/buttercream.vim	2009-06-04 20:53:28.000000000 -0700
++++ patched/buttercream.vim	2010-04-13 00:01:11.000000000 -0700
+@@ -57,3 +57,21 @@
+ hi Visual               guifg=LightGrey                                         gui=reverse
+ hi VisualNOS                                                                    gui=underline,bold
+ hi Todo                                         guibg=#ccaa22                   gui=bold,underline
++
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi Error guibg=red guifg=white
++hi MatchParen guibg=cyan
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi Todo guifg=blue
++hi Type gui=bold
++hi Underlined guifg=slateblue
++hi Visual guibg=lightgrey

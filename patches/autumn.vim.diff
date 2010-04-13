@@ -1,0 +1,19 @@
+--- originals/autumn.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/autumn.vim	2010-04-12 23:38:56.000000000 -0700
+@@ -67,3 +67,16 @@
+ hi Todo         gui=BOLD,UNDERLINE guifg=#0080f0 guibg=NONE
+ hi Type         gui=BOLD guifg=#b06c58 guibg=NONE
+ hi Underlined   gui=UNDERLINE guifg=blue guibg=NONE
++
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi MatchParen guibg=cyan
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE

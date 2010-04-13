@@ -1,5 +1,5 @@
---- originals/autumn2.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/autumn2.vim	2010-04-12 20:49:50.000000000 -0700
+--- originals/autumn2.vim	2009-06-04 21:52:32.000000000 -0700
++++ patched/autumn2.vim	2010-04-12 23:20:00.000000000 -0700
 @@ -8,7 +8,7 @@
          syntax reset
  endif
@@ -9,3 +9,40 @@
  
  hi Normal       term=none      cterm=none ctermfg=black         ctermbg=White           gui=none guifg=Black            guibg=#f0f2f0
  hi Cursor       term=none      cterm=none ctermfg=white         ctermbg=darkgrey        gui=none guifg=black            guibg=red
+@@ -32,17 +32,10 @@
+ hi NonText      term=bold      cterm=none ctermfg=lightgrey     ctermbg=white           gui=none guifg=#c6c6c6          guibg=bg
+ hi StatusLine   term=reverse   cterm=none ctermfg=white         ctermbg=black           gui=none guifg=#80624d          guibg=#ddd9b8
+ hi Title        term=bold      cterm=none ctermfg=DarkMagenta   ctermbg=white           gui=none guifg=DarkMagenta      guibg=bg
+-if has("gui_running") || &t_Co > 8
+         hi Visual       term=reverse   cterm=none ctermfg=black         ctermbg=lightgrey       gui=none guifg=black       guibg=lightgreen
+         hi VertSplit    term=reverse   cterm=none ctermfg=darkgrey      ctermbg=darkgrey        gui=none guifg=#c7c7c2     guibg=#d7d7d2 
+         hi StatusLineNC term=reverse   cterm=none ctermfg=white         ctermbg=darkgrey        gui=none guifg=darkgrey    guibg=#d7d7d2
+         hi Comment      term=italic    cterm=none ctermfg=grey          ctermbg=white           gui=none guifg=#ccaaaa     guibg=bg
+-else
+-        hi Visual       term=reverse   cterm=none ctermfg=green         ctermbg=darkgreen       gui=none guifg=black    guibg=lightgreen
+-        hi VertSplit    term=reverse   cterm=none ctermfg=darkcyan      ctermbg=darkblue        gui=none guifg=darkgrey guibg=darkgrey 
+-        hi StatusLineNC term=reverse   cterm=none ctermfg=white         ctermbg=darkblue        gui=none guifg=white    guibg=darkgrey
+-        hi Comment      term=italic    cterm=none ctermfg=darkcyan      ctermbg=white           gui=none guifg=#ccaaaa  guibg=bg
+-endif
+ hi VisualNOS    term=bold      cterm=none ctermfg=grey         ctermbg=black        gui=none guifg=grey         guibg=black
+ hi WarningMsg   term=standout  cterm=none ctermfg=Red          ctermbg=white        gui=none guifg=Red          guibg=bg
+ hi WildMenu     term=bold      cterm=none ctermfg=darkblue     ctermbg=yellow       gui=none guifg=black        guibg=lightyellow
+@@ -85,4 +78,18 @@
+ hi link vimfunction     function
+ 
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi Error guibg=red guifg=white
++hi MatchParen guibg=cyan
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++
+ " vim: set ts=8 sw=8 et sts=8 tw=72 fo-=t ff=unix :
