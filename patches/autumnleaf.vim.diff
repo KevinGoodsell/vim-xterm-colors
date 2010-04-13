@@ -1,0 +1,11 @@
+--- originals/autumnleaf.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/autumnleaf.vim	2010-04-12 20:50:50.000000000 -0700
+@@ -12,7 +12,7 @@
+     syntax reset
+ endif
+ 
+-let colors_name="AutumnLeaf"
++let colors_name="autumnleaf"
+ 
+ 
+ " Colors for the User Interface.

@@ -1,0 +1,11 @@
+--- originals/autumn2.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/autumn2.vim	2010-04-12 20:49:50.000000000 -0700
+@@ -8,7 +8,7 @@
+         syntax reset
+ endif
+ 
+-let colors_name = "autumn"
++let colors_name = "autumn2"
+ 
+ hi Normal       term=none      cterm=none ctermfg=black         ctermbg=White           gui=none guifg=Black            guibg=#f0f2f0
+ hi Cursor       term=none      cterm=none ctermfg=white         ctermbg=darkgrey        gui=none guifg=black            guibg=red

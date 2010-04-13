@@ -1,0 +1,11 @@
+--- originals/tcsoft.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/tcsoft.vim	2010-04-12 21:07:49.000000000 -0700
+@@ -10,7 +10,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let colors_name = "TCSoft"
++let colors_name = "tcsoft"
+ 
+ if version >= 700
+   hi CursorLine                 guibg=#FFFF33  gui=NONE  "hellgelb
