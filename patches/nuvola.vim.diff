@@ -1,0 +1,25 @@
+--- originals/nuvola.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/nuvola.vim	2010-04-13 11:10:47.000000000 -0700
+@@ -104,4 +104,22 @@
+ hi htmlUnderline            gui=UNDERLINE
+ hi htmlUnderlineItalic      gui=UNDERLINE,ITALIC
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi Ignore guifg=bg
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi Underlined guifg=slateblue
++hi lCursor guibg=fg guifg=bg
++
+ " vim600:foldmethod=marker

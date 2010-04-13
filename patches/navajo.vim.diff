@@ -1,0 +1,32 @@
+--- originals/navajo.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/navajo.vim	2010-04-13 10:59:39.000000000 -0700
+@@ -39,7 +39,7 @@
+ hi VisualNOS term=bold,underline cterm=bold,underline gui=reverse guifg=Grey guibg=white
+ hi WarningMsg term=standout ctermfg=DarkRed gui=bold guifg=Red
+ hi WildMenu term=standout ctermfg=Black ctermbg=DarkYellow guifg=Black guibg=Yellow
+-hi Folded term=standout ctermfg=DarkBlue ctermbg=Gray guifg=Black guibg=NONE guifg=#907050
++hi Folded term=standout ctermfg=DarkBlue ctermbg=Gray guibg=NONE guifg=#907050
+ hi FoldColumn term=standout ctermfg=DarkBlue ctermbg=Gray guifg=DarkBlue guibg=#c0c0c0
+ hi DiffAdd term=bold ctermbg=DarkBlue guibg=White
+ hi DiffChange term=bold ctermbg=DarkMagenta guibg=#edb5cd
+@@ -62,4 +62,20 @@
+ hi Error term=reverse ctermfg=Gray ctermbg=DarkRed cterm=bold gui=bold guifg=White guibg=Red
+ hi Todo term=standout ctermfg=DarkBlue ctermbg=Yellow guifg=Blue guibg=Yellow
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi Ignore gui=NONE
++hi MatchParen guibg=cyan
++hi Pmenu guibg=lightmagenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=grey
++hi Search gui=NONE guifg=NONE
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi Underlined guifg=slateblue
++
+ " vim:set list et:

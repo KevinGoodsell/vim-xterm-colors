@@ -1,0 +1,18 @@
+--- originals/habiLight.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/habiLight.vim	2010-04-13 10:37:35.000000000 -0700
+@@ -134,5 +134,15 @@
+ 
+ highlight MatchParen  term=reverse ctermbg=11 gui=bold guibg=#B5EEB5 guifg=black
+ 
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi Ignore guifg=bg
++hi MoreMsg gui=bold
++hi SignColumn guibg=grey guifg=darkblue
++hi SpecialKey guifg=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi TabLine guifg=NONE
++hi Underlined guifg=slateblue
++hi lCursor guibg=fg guifg=bg
+ 
+ " vim600:foldmethod=marker

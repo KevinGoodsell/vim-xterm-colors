@@ -1,0 +1,12 @@
+--- originals/ironman.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/ironman.vim	2010-04-13 10:43:06.000000000 -0700
+@@ -131,3 +131,9 @@
+ highlight PmenuSel           guifg=Black   guibg=Orange
+ highlight PmenuSbar          guifg=#CCCCCC guibg=#CCCCCC
+ highlight PmenuThumb         gui=reverse guifg=Black   guibg=#AAAAAA
++
++hi Directory guifg=blue
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi TabLine guifg=NONE
++hi WildMenu guibg=yellow guifg=black

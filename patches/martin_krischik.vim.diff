@@ -1,0 +1,193 @@
+--- originals/martin_krischik.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/martin_krischik.vim	2010-04-13 10:53:39.000000000 -0700
+@@ -36,7 +36,7 @@
+    "
+    " }}}1
+    finish
+-elseif (&term == "builtin_gui")
++endif
+     " Section: Set GUI colors. {{{1
+     "
+     " Subsection: User-Interface Colors {{{2
+@@ -214,179 +214,9 @@
+    syntax enable
+ 
+    " }}}1
+-   finish
+-elseif	(&term == "xterm")  ||
+-      \ (&term == "vt320")  ||
+-      \ (&term == "linux")
+-    " Section: Only set colors for terminals we actualy know of {{{1
+-    "
+-    if &term=="vt320"
+-	set t_Co=8
+-    else
+-	set t_Co=16
+-    endif
+-
+-    " Subsection: User Interface Colors {{{2
+-    "
+-    " Group: Normal Text Colors {{{3
+-    "
+-    highlight Normal		term=none	    cterm=none		    ctermfg=Black	ctermbg=LightGray
+-    highlight Search		term=reverse							ctermbg=DarkYellow
+-    highlight SpecialKey	term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Title		term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight LineNr		term=underline				    ctermfg=DarkRed	ctermbg=DarkGray
+-    highlight NonText		term=bold				    ctermfg=LightBlue	ctermbg=LightGray
+-    highlight MatchParen	term=reverse				    ctermbg=DarkYellow
+-    highlight IncSearch		term=reverse	    cterm=reverse
+-    "
+-    " Group: Messages {{{3
+-    "
+-    highlight WarningMsg	term=standout				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight ErrorMsg		term=standout				    ctermfg=White	ctermbg=DarkRed
+-    highlight ModeMsg		term=bold	    cterm=bold					ctermbg=LightGray
+-    highlight MoreMsg		term=bold				    ctermfg=DarkGreen	ctermbg=LightGray
+-    highlight Question		term=standout				    ctermfg=DarkGreen	ctermbg=LightGray
+-    "
+-    " Group: Spell Checker {{{3
+-    "
+-    highlight SpellBad		term=reverse							ctermbg=LightRed
+-    highlight SpellCap		term=reverse							ctermbg=LightBlue
+-    highlight SpellLocal	term=underline							ctermbg=LightCyan
+-    highlight SpellRare		term=reverse							ctermbg=LightMagenta
+-    "
+-    " Group: Status line {{{3
+-    "
+-    highlight StatusLine	term=bold,reverse   cterm=bold,reverse
+-    highlight StatusLineNC	term=reverse	    cterm=reverse
+-    highlight VertSplit		term=reverse	    cterm=reverse
+-    "
+-    " Group: Visual selektion {{{3
+-    "
+-    highlight Visual		term=reverse	    cterm=reverse	    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight VisualNOS		term=bold,underline cterm=bold,underline
+-    "
+-    " Group: tab pages line {{{3
+-    "
+-    highlight TabLine		term=reverse	    cterm=reverse
+-    highlight TabLineFill	term=reverse	    cterm=reverse
+-    highlight TabLineSel	term=bold,reverse   cterm=bold,reverse
+-    "
+-    " Group: Menu colors {{{3
+-    "
+-    highlight Pmenu										ctermbg=Grey
+-    highlight PmenuSel							    ctermfg=White	ctermbg=Red
+-    highlight PmenuSbar							    ctermfg=LightGrey	ctermbg=DarkGray
+-    highlight PmenuThumb			    cterm=reverse
+-    highlight WildMenu		term=standout				    ctermfg=White	ctermbg=Red
+-    "
+-    " Group: Diff colors {{{3
+-    "
+-    highlight DiffAdd		term=bold							ctermbg=LightBlue
+-    highlight DiffChange	term=bold							ctermbg=LightMagenta
+-    highlight DiffDelete	term=bold				    ctermfg=LightBlue	ctermbg=LightCyan
+-    highlight DiffText		term=reverse	    cterm=bold					ctermbg=LightRed
+-    "
+-    " Group: Fold colors {{{3
+-    "
+-    highlight FoldColumn	term=standout				    ctermfg=DarkBlue	ctermbg=DarkGray
+-    highlight Folded		term=standout				    ctermfg=DarkBlue	ctermbg=DarkGray
+-    "
+-    " Group: Other Syntax Highlight Colors {{{3
+-    "
+-    highlight Directory		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight SignColumn	term=standout				    ctermfg=DarkBlue	ctermbg=DarkGray
+-
+-    " Subsection: Syntax Colors {{{2
+-    "
+-    " Group: Comment colors syntax-group {{{3
+-    "
+-    highlight Comment		term=bold				    ctermfg=DarkGray	ctermbg=LightGray
+-    "
+-    " Group: Constant colors group {{{3
+-    "
+-    highlight Boolean		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight Character		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight Constant		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight Float		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight Number		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    highlight String		term=underline				    ctermfg=DarkRed	ctermbg=LightGray
+-    "
+-    " Group: Identifier colors group {{{3
+-    "
+-    highlight Function		term=underline				    ctermfg=DarkCyan	ctermbg=LightGray
+-    highlight Identifier	term=underline				    ctermfg=DarkCyan	ctermbg=LightGray
+-    "
+-    " Group: Statement colors group {{{3
+-    "
+-    highlight Conditional	term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Exception		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Keyword		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Label		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Operator		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Repeat		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    highlight Statement		term=bold				    ctermfg=DarkBlue	ctermbg=LightGray
+-    "
+-    " Group: Preprocessor colors group {{{3
+-    "
+-    highlight Define		term=underline				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight Include		term=underline				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight Macro		term=underline				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight PreCondit		term=underline				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight PreProc		term=underline				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    "
+-    " Group: type group {{{3
+-    "
+-    highlight StorageClass	term=underline				    ctermfg=DarkGreen	ctermbg=LightGray
+-    highlight Structure		term=underline				    ctermfg=DarkGreen	ctermbg=LightGray
+-    highlight Type		term=underline				    ctermfg=DarkGreen	ctermbg=LightGray
+-    highlight Typedef		term=underline				    ctermfg=DarkGreen	ctermbg=LightGray
+-    "
+-    " Group: special symbol group {{{3
+-    "
+-    highlight Special		term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight SpecialChar	term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight Tag		term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight Delimiter		term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight SpecialComment	term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    highlight Debug		term=bold				    ctermfg=DarkMagenta	ctermbg=LightGray
+-    "
+-    " Group: text that stands out {{{3
+-    "
+-    highlight Underlined	term=underline	    cterm=underline	    ctermfg=DarkMagenta	ctermbg=LightGray
+-    "
+-    " Group: left blank, hidden {{{3
+-    "
+-    highlight Ignore							    ctermfg=White	ctermbg=grey
+-    "
+-    " Group: any erroneous construct {{{3
+-    "
+-    highlight Error		term=reverse				    ctermfg=White	ctermbg=LightRed
+-    "
+-    " Group: anything that needs extra attention {{{3
+-    "
+-    highlight Todo		term=standout				    ctermfg=Black	ctermbg=Yellow
+-
+-    " Subsection: Cursor Colors {{{2
+-    "
+-    " Group: Mouse Cursor {{{3
+-    "
+-    highlight Cursor				    ctermfg=bg		    ctermbg=DarkGreen
+-    highlight CursorColumn	term=reverse				    ctermbg=LightGray
+-    highlight CursorIM				    ctermfg=bg		    ctermbg=DarkGrey
+-    highlight CursorLine	term=reverse				    ctermbg=LightGray
+-
+-    syntax enable
+-
+-   " }}}1
+-    finish
+-else
+-   " Section: terminal is completely unknown - fallback to system default {{{1
+-   "
+-   set t_Co=8
+ 
+-   " }}}1
+-   finish
+-endif
++hi CursorLine gui=NONE
++hi PmenuSbar guibg=darkgrey
+ 
+ "------------------------------------------------------------------------------
+ "   Copyright (C) 2006  Martin Krischik
