@@ -1,5 +1,5 @@
---- originals/darkspectrum.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/darkspectrum.vim	2010-04-11 11:05:21.000000000 -0700
+--- originals/darkspectrum.vim	2010-01-20 22:44:56.000000000 -0800
++++ patched/darkspectrum.vim	2010-04-14 13:15:23.000000000 -0700
 @@ -51,7 +51,7 @@
  hi LineNr		guifg=#535353 guibg=#202020
  hi NonText		guifg=#535353 guibg=#202020
@@ -9,53 +9,27 @@
  "hi VertSplit	guibg=#ffffff guifg=#ffffff gui=none
  
  hi VertSplit	guibg=#3C3C3C guifg=#3C3C3C gui=none
-@@ -101,30 +101,43 @@
- hi spellRare    guisp=#ad7fa8
+@@ -102,16 +102,16 @@
  hi spellLocal   guisp=#729fcf
  
--hi link cppSTL          Function
+ hi link cppSTL          Function
 -hi link Error			Todo
--hi link Character		Number
--hi link rubySymbol		Number
--hi link htmlTag			htmlEndTag
--"hi link htmlTagName     htmlTag
--hi link htmlLink		Underlined
--hi link pythonFunction	Identifier
--hi link Question		Type
--hi link CursorIM		Cursor
--hi link VisualNOS		Visual
--hi link xmlTag			Identifier
--hi link xmlTagName		Identifier
--hi link shDeref			Identifier
--hi link shVariable		Function
--hi link rubySharpBang	Special
--hi link perlSharpBang	Special
--hi link schemeFunc      Statement
--"hi link shSpecialVariables Constant
--"hi link bashSpecialVariables Constant
-+hi! link cppSTL          Function
 +hi! link Error			Todo
-+hi! link Character		Number
-+hi! link rubySymbol		Number
-+hi! link htmlTag			htmlEndTag
-+"hi! link htmlTagName     htmlTag
-+hi! link htmlLink		Underlined
-+hi! link pythonFunction	Identifier
+ hi link Character		Number
+ hi link rubySymbol		Number
+ hi link htmlTag			htmlEndTag
+ "hi link htmlTagName     htmlTag
+ hi link htmlLink		Underlined
+ hi link pythonFunction	Identifier
+-hi link Question		Type
 +hi! link Question		Type
-+hi! link CursorIM		Cursor
-+hi! link VisualNOS		Visual
-+hi! link xmlTag			Identifier
-+hi! link xmlTagName		Identifier
-+hi! link shDeref			Identifier
-+hi! link shVariable		Function
-+hi! link rubySharpBang	Special
-+hi! link perlSharpBang	Special
-+hi! link schemeFunc      Statement
-+"hi! link shSpecialVariables Constant
-+"hi! link bashSpecialVariables Constant
- 
- " tabs (non gui)
- hi TabLine		guifg=#A3A3A3 guibg=#202020 gui=none
+ hi link CursorIM		Cursor
+-hi link VisualNOS		Visual
++"hi! link VisualNOS		Visual
+ hi link xmlTag			Identifier
+ hi link xmlTagName		Identifier
+ hi link shDeref			Identifier
+@@ -127,4 +127,17 @@
  hi TabLineFill	guifg=#535353 guibg=#202020 gui=none
  hi TabLineSel	guifg=#FFFFFF gui=bold
  "hi TabLineSel	guifg=#FFFFFF guibg=#000000 gui=bold
