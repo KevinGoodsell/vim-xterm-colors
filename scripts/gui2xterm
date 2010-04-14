@@ -262,21 +262,29 @@ class LineProducer(object):
 
     _line_matcher = re.compile(r'.*\n?')
 
+    _contline_matcher = re.compile(r'[^\n]*(\n[ \t]*\\[^\n]*)*\n?')
     _continue_matcher = re.compile(r'\n[ \t]*\\')
 
     def __init__(self, data):
-        self._data = self._continue_matcher.sub('', data)
+        self._data = data
+
+    def _joined_line(self):
+        lines = self._contline_matcher.match(self._data).group()
+        joined = self._continue_matcher.sub('', lines)
+        return (joined, len(lines))
 
     def __iter__(self):
         while self._data:
-            m = self._hi_matcher.match(self._data)
+            (joined, i) = self._joined_line()
+            m = self._hi_matcher.match(joined)
             if m:
                 yield HighlightLine(m)
             else:
                 m = self._line_matcher.match(self._data)
-                yield m.group()
+                line = m.group()
+                i = len(line)
+                yield line
 
-            i = len(m.group())
             self._data = self._data[i:]
 
 class HighlightLine(object):
