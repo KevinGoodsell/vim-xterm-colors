@@ -154,7 +154,6 @@ patch_only = [
     'lettuce.vim',
     'summerfruit256.vim',
     'wombat256.vim',
-    #'impact.vim', # Terminal only
 ]
 
 def mkdir(path):
