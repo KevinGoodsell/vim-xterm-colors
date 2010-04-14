@@ -260,6 +260,23 @@ class LineProducer(object):
         )
     ''', re.VERBOSE | re.IGNORECASE)
 
+    _bad_link_matcher = re.compile(r'''
+        [ \t]*
+        hi(g(h(l(i(g(ht?)?)?)?)?)?)?
+        [ \t]+
+        (def(a(u(lt?)?)?)?[ \t]+)?
+        link
+        [ \t]+
+        (SpecialKey|NonText|Directory|ErrorMsg|IncSearch|Search|MoreMsg
+        |ModeMsg|LineNr|Question|StatusLine|StatusLineNC|VertSplit|Title
+        |Visual|VisualNOS|WarningMsg|WildMenu|Folded|FoldColumn|DiffAdd
+        |DiffChange|DiffDelete|DiffText|SignColumn|SpellBad|SpellCap|SpellRare
+        |SpellLocal|Pmenu|PmenuSel|PmenuSbar|PmenuThumb|TabLine|TabLineSel
+        |TabLineFill|CursorColumn|CursorLine|Cursor|lCursor|MatchParen|Comment
+        |Constant|Special|Identifier|Statement|PreProc|Type|Underlined|Ignore
+        |Error|Todo)\b
+    ''', re.VERBOSE | re.IGNORECASE)
+
     _line_matcher = re.compile(r'.*\n?')
 
     _contline_matcher = re.compile(r'[^\n]*(\n[ \t]*\\[^\n]*)*\n?')
@@ -282,6 +299,9 @@ class LineProducer(object):
             else:
                 m = self._line_matcher.match(self._data)
                 line = m.group()
+                if self._bad_link_matcher.match(line):
+                    print >> sys.stderr, 'Warning: likely bad link.'
+                    print >> sys.stderr, line.strip()
                 i = len(line)
                 yield line
 
