@@ -1,0 +1,54 @@
+--- originals/jellybeans.vim	2010-01-20 22:48:48.000000000 -0800
++++ patched/jellybeans.vim	2010-04-15 15:59:16.000000000 -0700
+@@ -218,7 +218,7 @@
+ 	let l:y = s:rgb_number(a:g)
+ 	let l:z = s:rgb_number(a:b)
+ 
+-	if l:gx == l:gy && l:gy == l:gz
++	if abs(l:gx - l:gy) < 2 && abs(l:gy - l:gz) < 2
+ 		" there are two possibilities
+ 		let l:dgr = s:grey_level(l:gx) - a:r
+ 		let l:dgg = s:grey_level(l:gy) - a:g
+@@ -269,9 +269,9 @@
+ 		if !l:fge && !l:bge
+ 			exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
+ 		elseif !l:fge && l:bge
+-			exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)
++			exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)." ctermbg=NONE"
+ 		elseif l:fge && !l:bge
+-			exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermbg=".s:rgb(a:bg)
++			exec "hi ".a:group." guifg=NONE guibg=#".a:bg." ctermfg=NONE ctermbg=".s:rgb(a:bg)
+ 		endif
+ 	endif
+ 
+@@ -294,7 +294,7 @@
+ 
+   call s:X("TabLine","000000","b0b8c0","italic","","Black")
+   call s:X("TabLineFill","9098a0","","","","")
+-  call s:X("TabLineSel","000000","f0f0f0","italic,bold","","")
++  call s:X("TabLineSel","000000","f0f0f0","bold","","")
+ 
+   " Auto-completion
+   call s:X("Pmenu","ffffff","000000","","","")
+@@ -343,7 +343,7 @@
+ 
+ call s:X("Directory","dad085","","","","")
+ call s:X("ErrorMsg","","902020","","","")
+-hi link Error ErrorMsg
++hi! link Error ErrorMsg
+ 
+ " Diff
+ 
+@@ -397,6 +397,12 @@
+ " Tag list
+ hi link TagListFileName Directory
+ 
++" Originally missing
++call s:X("MoreMsg", "2e8b57", "", "bold", "", "")
++call s:X("WarningMsg", "ff0000", "", "", "", "")
++call s:X("Question", "00ff00", "", "bold", "", "")
++call s:X("Underlined", "80a0ff", "", "underline", "", "")
++
+ " delete functions {{{
+ delf s:X
+ delf s:rgb
