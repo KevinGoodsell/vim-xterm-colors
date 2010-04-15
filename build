@@ -106,8 +106,8 @@ dark_schemes = [
     'baycomb.vim',
     'earendel.vim',
     'moria.vim',
-    #'peaksea.vim',
-    #'sienna.vim',
+    'peaksea.vim',
+    'sienna.vim',
 ]
 
 light_schemes = [

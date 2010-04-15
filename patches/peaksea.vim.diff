@@ -1,0 +1,369 @@
+--- originals/peaksea.vim	2010-01-20 22:44:10.000000000 -0800
++++ patched/peaksea.vim	2010-04-14 22:02:44.000000000 -0700
+@@ -45,6 +45,7 @@
+   " LIGHT COLOR DEFINE START
+ 
+   hi Normal		guifg=#000000	guibg=#e0e0e0	gui=NONE
++  set background=light " Normal might change this
+   hi Search		guifg=NONE	guibg=#f8f8f8	gui=NONE
+   hi Visual		guifg=NONE	guibg=#a6caf0	gui=NONE
+   hi Cursor		guifg=#f0f0f0	guibg=#008000	gui=NONE
+@@ -149,113 +150,19 @@
+ 
+   " gui define for background=light end here
+ 
+-  if &t_Co==256
+-    " 256color light terminal support here
++  hi SpellBad gui=undercurl guisp=#c03000
++  hi SpellCap gui=undercurl guisp=#2060a8
++  hi SpellLocal gui=undercurl guisp=#007068
++  hi SpellRare gui=undercurl guisp=#a030a0
++  hi lCursor guibg=fg guifg=bg
+ 
+-    hi Normal		ctermfg=16	ctermbg=254	cterm=NONE
+-    " Comment/Uncomment the following line to disable/enable transparency
+-    "hi Normal		ctermfg=16	ctermbg=NONE	cterm=NONE
+-    hi Search		ctermfg=NONE	ctermbg=231	cterm=NONE
+-    hi Visual		ctermfg=NONE	ctermbg=153	cterm=NONE
+-    hi Cursor		ctermfg=255	ctermbg=28	cterm=NONE
+-    " hi CursorIM	ctermfg=255	ctermbg=90
+-    hi Special		ctermfg=94	ctermbg=NONE	cterm=NONE
+-    hi Comment		ctermfg=58	ctermbg=NONE	cterm=NONE
+-    hi Number		ctermfg=94	ctermbg=NONE	cterm=NONE
+-    hi Constant		ctermfg=23	ctermbg=NONE	cterm=NONE
+-    hi StatusLine	ctermfg=fg	ctermbg=153	cterm=NONE
+-    hi LineNr		ctermfg=242	ctermbg=NONE	cterm=NONE
+-    hi Question		ctermfg=fg	ctermbg=186	cterm=NONE
+-    hi PreProc		ctermfg=29	ctermbg=NONE	cterm=NONE
+-    hi Statement	ctermfg=25	ctermbg=NONE	cterm=NONE
+-    hi Type		ctermfg=25	ctermbg=NONE	cterm=NONE
+-    hi Todo		ctermfg=88	ctermbg=186	cterm=NONE
+-    " NOTE THIS IS IN THE WARM SECTION
+-    hi Error		ctermfg=130	ctermbg=NONE	cterm=NONE
+-    hi Identifier	ctermfg=133	ctermbg=NONE	cterm=NONE
+-    hi ModeMsg		ctermfg=fg	ctermbg=146	cterm=NONE
+-    hi VisualNOS	ctermfg=fg	ctermbg=146	cterm=NONE
+-    hi SpecialKey	ctermfg=25	ctermbg=NONE	cterm=NONE
+-    hi NonText		ctermfg=18	ctermbg=252	cterm=NONE
+-    " Comment/Uncomment the following line to disable/enable transparency
+-    "hi NonText		ctermfg=18	ctermbg=NONE	cterm=NONE
+-    hi Directory	ctermfg=133	ctermbg=NONE	cterm=NONE
+-    hi ErrorMsg		ctermfg=fg	ctermbg=216	cterm=NONE
+-    hi MoreMsg		ctermfg=64	ctermbg=NONE	cterm=NONE
+-    hi Title		ctermfg=133	ctermbg=NONE	cterm=NONE
+-    hi WarningMsg	ctermfg=124	ctermbg=NONE	cterm=NONE
+-    hi WildMenu		ctermfg=fg	ctermbg=186	cterm=NONE
+-    hi Folded		ctermfg=NONE	ctermbg=151	cterm=NONE
+-    hi FoldColumn	ctermfg=fg	ctermbg=114	cterm=NONE
+-    hi DiffAdd		ctermfg=NONE	ctermbg=146	cterm=NONE
+-    hi DiffChange	ctermfg=NONE	ctermbg=182	cterm=NONE
+-    hi DiffDelete	ctermfg=18	ctermbg=252	cterm=NONE
+-    hi DiffText		ctermfg=NONE	ctermbg=150	cterm=NONE
+-    hi SignColumn	ctermfg=fg	ctermbg=114	cterm=NONE
+-
+-    hi IncSearch	ctermfg=255	ctermbg=95	cterm=NONE
+-    hi StatusLineNC	ctermfg=fg	ctermbg=250	cterm=NONE
+-    hi VertSplit	ctermfg=fg	ctermbg=250	cterm=NONE
+-    hi Underlined	ctermfg=62	ctermbg=NONE	cterm=underline
+-    hi Ignore		ctermfg=bg	ctermbg=NONE
+-    " NOTE THIS IS IN THE WARM SECTION
+-    if v:version >= 700
+-      if has('spell')
+-        if 0
+-          " ctermsp is not supported in Vim7, we ignore it.
+-          hi SpellBad	cterm=undercurl	ctermbg=NONE	ctermfg=130
+-          hi SpellCap	cterm=undercurl	ctermbg=NONE	ctermfg=25
+-          hi SpellRare	cterm=undercurl	ctermbg=NONE	ctermfg=133
+-          hi SpellLocal	cterm=undercurl	ctermbg=NONE	ctermfg=23
+-        else
+-          hi SpellBad	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellCap	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellRare	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellLocal	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-        endif
+-      endif
+-      hi Pmenu		ctermfg=fg	ctermbg=182
+-      hi PmenuSel	ctermfg=255	ctermbg=95	cterm=NONE
+-      hi PmenuSbar	ctermfg=fg	ctermbg=250	cterm=NONE
+-      hi PmenuThumb	ctermfg=fg	ctermbg=150	cterm=NONE
+-      hi TabLine	ctermfg=fg	ctermbg=250	cterm=NONE
+-      hi TabLineFill	ctermfg=fg	ctermbg=250	cterm=NONE
+-      hi TabLineSel	ctermfg=fg	ctermbg=NONE	cterm=NONE
+-      hi CursorColumn	ctermfg=NONE	ctermbg=216
+-      hi CursorLine	ctermfg=NONE	ctermbg=NONE	cterm=underline
+-      hi MatchParen	ctermfg=NONE	ctermbg=150
+-    endif
+-
+-    hi TabLine		cterm=underline
+-    hi TabLineFill	cterm=underline
+-    hi CursorLine	cterm=underline
+-
+-    " For reversed stuffs, clear the reversed prop and set the bold prop again
+-    hi IncSearch	cterm=bold
+-    hi StatusLine	cterm=bold
+-    hi StatusLineNC	cterm=bold
+-    hi VertSplit	cterm=bold
+-    hi Visual		cterm=bold
+-
+-    hi NonText		cterm=bold
+-    hi Question		cterm=bold
+-    hi Title		cterm=bold
+-    hi DiffDelete	cterm=bold
+-    hi DiffText		cterm=bold
+-    hi Statement	cterm=bold
+-    hi Type		cterm=bold
+-    hi MoreMsg		cterm=bold
+-    hi ModeMsg		cterm=bold
+-    hi TabLineSel	cterm=bold
+-
+-    hi lCursor		ctermfg=bg	ctermbg=fg	cterm=NONE
+-  endif " t_Co==256
+   " }}}2
+ elseif &background=='dark' 
+   " for background=dark {{{2
+   " DARK COLOR DEFINE START
+ 
+   hi Normal		guifg=#d0d0d0	guibg=#202020	gui=NONE
++  set background=dark " Normal might change this
+   hi Comment		guifg=#d0d090	guibg=NONE	gui=NONE
+   hi Constant		guifg=#80c0e0	guibg=NONE	gui=NONE
+   hi Number		guifg=#e0c060	guibg=NONE	gui=NONE
+@@ -338,233 +245,11 @@
+ 
+   " gui define for background=dark end here
+ 
+-  if &t_Co==8 || &t_Co==16
+-    " for 8-color and 16-color term
+-    hi Normal		ctermfg=LightGrey   ctermbg=Black
+-    hi Special		ctermfg=Yellow	    ctermbg=bg
+-    hi Comment		ctermfg=DarkYellow  ctermbg=bg
+-    hi Constant		ctermfg=Blue	    ctermbg=bg
+-    hi Number		ctermfg=Yellow	    ctermbg=bg
+-    hi LineNr		ctermfg=DarkGrey    ctermbg=bg
+-    hi PreProc		ctermfg=Green	    ctermbg=bg
+-    hi Statement	ctermfg=Cyan	    ctermbg=bg
+-    hi Type		ctermfg=Cyan	    ctermbg=bg
+-    hi Error		ctermfg=Red	    ctermbg=bg
+-    hi Identifier	ctermfg=Magenta     ctermbg=bg
+-    hi SpecialKey	ctermfg=Cyan	    ctermbg=bg
+-    hi NonText		ctermfg=Blue	    ctermbg=bg
+-    hi Directory	ctermfg=Blue	    ctermbg=bg
+-    hi MoreMsg		ctermfg=Green	    ctermbg=bg
+-    hi Title		ctermfg=Magenta     ctermbg=bg
+-    hi WarningMsg	ctermfg=Red	    ctermbg=bg
+-    hi DiffDelete	ctermfg=Blue	    ctermbg=bg
+-
+-    hi Search		ctermfg=NONE	    ctermbg=DarkRed
+-    hi Visual		ctermfg=Black	    ctermbg=DarkCyan
+-    hi Cursor		ctermfg=Black	    ctermbg=Green
+-    hi StatusLine	ctermfg=Black	    ctermbg=DarkCyan
+-    hi Question		ctermfg=Black	    ctermbg=DarkYellow
+-    hi Todo		ctermfg=DarkRed     ctermbg=DarkYellow
+-    hi Folded		ctermfg=White	    ctermbg=DarkGreen
+-    hi ModeMsg		ctermfg=Grey	    ctermbg=DarkBlue
+-    hi VisualNOS	ctermfg=Grey	    ctermbg=DarkBlue
+-    hi ErrorMsg		ctermfg=DarkYellow  ctermbg=DarkRed
+-    hi WildMenu		ctermfg=Black	    ctermbg=DarkYellow
+-    hi FoldColumn	ctermfg=White	    ctermbg=DarkGreen
+-    hi SignColumn	ctermfg=White	    ctermbg=DarkGreen
+-    hi DiffText		ctermfg=Black	    ctermbg=DarkYellow
+-
+-    if v:version >= 700
+-      if has('spell')
+-        hi SpellBad	ctermfg=NONE	ctermbg=DarkRed
+-        hi SpellCap	ctermfg=NONE	ctermbg=DarkBlue
+-        hi SpellRare	ctermfg=NONE	ctermbg=DarkMagenta
+-        hi SpellLocal	ctermfg=NONE	ctermbg=DarkGreen
+-      endif
+-      hi Pmenu		ctermfg=fg	ctermbg=DarkMagenta
+-      hi PmenuSel	ctermfg=Black	ctermbg=fg
+-      hi PmenuSbar	ctermfg=fg	ctermbg=DarkBlue
+-      hi PmenuThumb	ctermfg=fg	ctermbg=DarkGreen
+-      hi TabLine	ctermfg=fg	ctermbg=DarkGreen	cterm=underline
+-      hi TabLineFill	ctermfg=fg	ctermbg=DarkGreen	cterm=underline
+-      hi CursorColumn	ctermfg=NONE	ctermbg=DarkRed
+-
+-      hi TabLineSel	ctermfg=fg	ctermbg=bg
+-      hi CursorLine	ctermfg=NONE	ctermbg=bg		cterm=underline
+-
+-      hi MatchParen	ctermfg=NONE	ctermbg=DarkMagenta
+-    endif
+-    if &t_Co==8
+-      " 8 colour terminal support, this assumes 16 colour is available through
+-      " setting the 'bold' attribute, will get bright foreground colour.
+-      " However, the bright background color is not available for 8-color terms.
+-      "
+-      " You can manually set t_Co=16 in your .vimrc to see if your terminal
+-      " supports 16 colours, 
+-      hi DiffText	cterm=none  
+-      hi Visual		cterm=none  
+-      hi Cursor		cterm=none  
+-      hi Comment	cterm=none  
+-      hi Todo		cterm=none  
+-      hi StatusLine	cterm=none  
+-      hi Question	cterm=none  
+-      hi DiffChange	cterm=none  
+-      hi ModeMsg	cterm=none  
+-      hi VisualNOS	cterm=none  
+-      hi ErrorMsg	cterm=none  
+-      hi WildMenu	cterm=none  
+-      hi DiffAdd	cterm=none  
+-      hi Folded		cterm=none  
+-      hi DiffDelete	cterm=none  
+-      hi Normal		cterm=none  
+-      hi PmenuThumb	cterm=none 
+-      hi Search		cterm=bold  
+-      hi Special	cterm=bold  
+-      hi Constant	cterm=bold  
+-      hi Number		cterm=bold  
+-      hi LineNr		cterm=bold  
+-      hi PreProc	cterm=bold  
+-      hi Statement	cterm=bold  
+-      hi Type		cterm=bold  
+-      hi Error		cterm=bold  
+-      hi Identifier	cterm=bold  
+-      hi SpecialKey	cterm=bold  
+-      hi NonText	cterm=bold  
+-      hi MoreMsg	cterm=bold  
+-      hi Title		cterm=bold  
+-      hi WarningMsg	cterm=bold  
+-      hi FoldColumn	cterm=bold  
+-      hi SignColumn	cterm=bold  
+-      hi Directory	cterm=bold  
+-      hi DiffDelete	cterm=bold 
+-    else
+-      " Background > 7 is only available with 16 or more colors
+-
+-      hi WarningMsg	cterm=none  
+-      hi Search		cterm=none  
+-      hi Visual		cterm=none  
+-      hi Cursor		cterm=none  
+-      hi Special	cterm=none  
+-      hi Comment	cterm=none  
+-      hi Constant	cterm=none  
+-      hi Number		cterm=none  
+-      hi LineNr		cterm=none  
+-      hi PreProc	cterm=none  
+-      hi Todo		cterm=none  
+-      hi Error		cterm=none  
+-      hi Identifier	cterm=none  
+-      hi Folded		cterm=none  
+-      hi SpecialKey	cterm=none  
+-      hi Directory	cterm=none  
+-      hi ErrorMsg	cterm=none  
+-      hi Normal		cterm=none  
+-      hi PmenuThumb	cterm=none 
+-      hi WildMenu	cterm=none  
+-      hi FoldColumn	cterm=none  
+-      hi SignColumn	cterm=none  
+-      hi DiffAdd	cterm=none  
+-      hi DiffChange	cterm=none  
+-      hi Question	cterm=none  
+-      hi StatusLine	cterm=none  
+-      hi DiffText	cterm=none 
+-      hi IncSearch	cterm=reverse  
+-      hi StatusLineNC	cterm=reverse  
+-      hi VertSplit	cterm=reverse 
+-
+-      " Well, well, bold font with color 0-7 is not possible.
+-      " So, the Question, StatusLine, DiffText cannot act as expected.
+-
+-      hi Statement	cterm=none  
+-      hi Type		cterm=none  
+-      hi MoreMsg	cterm=none  
+-      hi ModeMsg	cterm=none  
+-      hi NonText	cterm=none  
+-      hi Title		cterm=none  
+-      hi VisualNOS	cterm=none  
+-      hi DiffDelete	cterm=none  
+-      hi TabLineSel	cterm=none 
+-
+-    endif
+-  elseif &t_Co==256
+-    " 256color dark terminal support here
+-    hi Normal		ctermfg=252	ctermbg=234	cterm=NONE
+-    " Comment/Uncomment the following line to disable/enable transparency
+-    "hi Normal		ctermfg=252	ctermbg=NONE	cterm=NONE
+-    hi Comment		ctermfg=186	ctermbg=NONE	cterm=NONE
+-    hi Constant		ctermfg=110	ctermbg=NONE	cterm=NONE
+-    hi Number		ctermfg=179	ctermbg=NONE	cterm=NONE
+-    hi Identifier	ctermfg=219	ctermbg=NONE	cterm=NONE
+-    hi Statement	ctermfg=153	ctermbg=NONE	cterm=NONE
+-    hi PreProc		ctermfg=84	ctermbg=NONE	cterm=NONE
+-    hi Type		ctermfg=153	ctermbg=NONE	cterm=NONE
+-    hi Special		ctermfg=179	ctermbg=NONE	cterm=NONE
+-    hi Error		ctermfg=209	ctermbg=NONE	cterm=NONE
+-    hi Todo		ctermfg=88	ctermbg=186	cterm=NONE
+-    hi Search		ctermfg=NONE	ctermbg=88	cterm=NONE
+-    hi Visual		ctermfg=16	ctermbg=153	cterm=NONE
+-    hi Cursor		ctermfg=16	ctermbg=46	cterm=NONE
+-    " NOTE THIS IS IN THE COOL SECTION
+-    " hi CursorIM	ctermfg=16	ctermbg=201	cterm=NONE
+-    hi StatusLine	ctermfg=16	ctermbg=153	cterm=NONE
+-    hi LineNr		ctermfg=249	ctermbg=NONE	cterm=NONE
+-    hi Question		ctermfg=16	ctermbg=186	cterm=NONE
+-    hi ModeMsg		ctermfg=fg	ctermbg=18	cterm=NONE
+-    hi VisualNOS	ctermfg=fg	ctermbg=18	cterm=NONE
+-    hi SpecialKey	ctermfg=153	ctermbg=NONE	cterm=NONE
+-    hi NonText		ctermfg=69	ctermbg=233	cterm=NONE
+-    " Comment/Uncomment the following line to disable/enable transparency
+-    "hi NonText		ctermfg=69	ctermbg=NONE	cterm=NONE
+-    hi Directory	ctermfg=110	ctermbg=NONE	cterm=NONE
+-    hi ErrorMsg		ctermfg=186	ctermbg=88	cterm=NONE
+-    hi MoreMsg		ctermfg=150	ctermbg=NONE	cterm=NONE
+-    hi Title		ctermfg=219	ctermbg=NONE	cterm=NONE
+-    hi WarningMsg	ctermfg=209	ctermbg=NONE	cterm=NONE
+-    hi WildMenu		ctermfg=16	ctermbg=186	cterm=NONE
+-    hi Folded		ctermfg=NONE	ctermbg=22	cterm=NONE
+-    hi FoldColumn	ctermfg=254	ctermbg=28	cterm=NONE
+-    hi DiffAdd		ctermfg=NONE	ctermbg=18	cterm=NONE
+-    hi DiffChange	ctermfg=NONE	ctermbg=90	cterm=NONE
+-    hi DiffDelete	ctermfg=69	ctermbg=234	cterm=NONE
+-    hi DiffText		ctermfg=16	ctermbg=150	cterm=NONE
+-    hi SignColumn	ctermfg=254	ctermbg=28	cterm=NONE
+-    hi IncSearch	ctermfg=16	ctermbg=252	cterm=NONE
+-    hi StatusLineNC	ctermfg=16	ctermbg=250	cterm=NONE
+-    hi VertSplit	ctermfg=16	ctermbg=250	cterm=NONE
+-    hi Underlined	ctermfg=111	ctermbg=NONE	cterm=underline 
+-    hi Ignore		ctermfg=16	ctermbg=NONE
+-    " NOTE THIS IS IN THE COOL SECTION
+-    if v:version >= 700
+-      if has('spell')
+-        " the ctermsp= is not supported in Vim 7 we simply ignored
+-        if 0
+-          hi SpellBad	cterm=undercurl	ctermbg=NONE	ctermfg=209
+-          hi SpellCap	cterm=undercurl	ctermbg=NONE	ctermfg=69
+-          hi SpellRare	cterm=undercurl	ctermbg=NONE	ctermfg=219
+-          hi SpellLocal	cterm=undercurl	ctermbg=NONE	ctermfg=153
+-        else
+-          hi SpellBad	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellCap	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellRare	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-          hi SpellLocal	cterm=undercurl	ctermbg=NONE	ctermfg=NONE
+-        endif
+-      endif
+-      hi Pmenu		ctermfg=fg	ctermbg=90
+-      hi PmenuSel	ctermfg=16	ctermbg=252	cterm=NONE
+-      hi PmenuSbar	ctermfg=fg	ctermbg=18	cterm=NONE
+-      hi PmenuThumb	ctermfg=fg	ctermbg=28	cterm=NONE
+-      hi TabLine	ctermfg=fg	ctermbg=28	cterm=NONE
+-      hi TabLineFill	ctermfg=fg	ctermbg=28	cterm=NONE
+-      hi TabLineSel	ctermfg=fg	ctermbg=NONE	cterm=NONE
+-      hi CursorColumn	ctermfg=NONE	ctermbg=88	cterm=NONE
+-      hi CursorLine	ctermfg=NONE	ctermbg=NONE	cterm=underline
+-      hi MatchParen	ctermfg=NONE	ctermbg=90
+-      hi TabLine	cterm=underline  
+-      hi TabLineFill	cterm=underline  
+-      hi Underlined	cterm=underline  
+-      hi CursorLine	cterm=underline 
+-    endif
+-
+-  endif " t_Co
++  hi SpellBad gui=undercurl guisp=#f08060
++  hi SpellCap gui=undercurl guisp=#6080f0
++  hi SpellLocal gui=undercurl guisp=#c0d8f8
++  hi SpellRare gui=undercurl guisp=#f0c0f0
++  hi lCursor guibg=fg guifg=bg
+ 
+   " }}}2
+ endif
