@@ -1,0 +1,194 @@
+--- originals/baycomb.vim	2010-01-20 22:46:06.000000000 -0800
++++ patched/baycomb.vim	2010-04-14 20:33:48.000000000 -0700
+@@ -25,6 +25,7 @@
+ 
+ if &background == "dark"
+ hi Normal       guifg=#a0b4e0 guibg=#11121a   "1a1823
++set background=dark " Normal might change this
+ hi NonText      guifg=#382920 guibg=bg
+ 
+ hi Folded       guibg=#232235 guifg=grey
+@@ -105,84 +106,28 @@
+ hi Pmenu        guibg=#3a6595 guifg=#9aadd5
+ hi PmenuSel     guibg=#4a85ba guifg=#b0d0f0                    
+ 
+-
+-
+-
+-
+-" color terminal definitions
+-hi Cursor ctermfg=black ctermbg=white
+-hi Normal ctermfg=grey ctermbg=black
+-hi Number ctermfg=darkgreen
+-highlight Operator ctermfg=yellow
+-highlight Conditional ctermfg=darkred
+-highlight Repeat ctermfg=darkred
+-hi Exception ctermfg=darkred
+-hi SpecialKey	ctermfg=darkgreen
+-hi NonText	cterm=bold ctermfg=darkgrey
+-hi Directory	ctermfg=darkcyan
+-hi ErrorMsg	cterm=bold ctermfg=7 ctermbg=1
+-hi IncSearch	ctermfg=yellow ctermbg=darkyellow cterm=NONE
+-hi Search	ctermfg=black ctermbg=darkyellow cterm=NONE
+-hi MoreMsg	ctermfg=darkgreen
+-hi ModeMsg	cterm=NONE ctermfg=brown
+-hi LineNr	ctermfg=darkcyan ctermbg=black
+-hi Question	ctermfg=green
+-hi StatusLine	ctermfg=yellow ctermbg=darkblue cterm=NONE
+-hi StatusLineNC ctermfg=grey ctermbg=darkblue cterm=NONE
+-hi VertSplit	ctermfg=black ctermbg=darkgrey cterm=NONE
+-hi Title	ctermfg=yellow cterm=NONE
+-hi Visual	ctermbg=grey ctermfg=blue cterm=NONE
+-hi VisualNOS	ctermbg=grey ctermfg=blue cterm=NONE
+-hi WarningMsg	ctermfg=1
+-hi WildMenu	ctermfg=0 ctermbg=3
+-hi Folded	ctermfg=darkgreen ctermbg=darkblue cterm=NONE
+-hi FoldColumn	ctermfg=yellow ctermbg=black
+-hi DiffAdd	ctermbg=4
+-hi DiffChange	ctermbg=5
+-hi DiffDelete	cterm=bold ctermfg=4 ctermbg=6
+-hi DiffText	cterm=bold ctermbg=1
+-hi Comment		ctermfg=darkgreen ctermbg=black
+-hi Identifier   ctermfg=cyan
+-
+-"set comments to grey on non-Windows OS's to make sure
+-"it is readable
+-if &term == "builtin_gui" || &term == "win32"
+-	hi function ctermfg=grey
+-	hi Type		ctermfg=darkyellow ctermbg=darkblue
+-	hi IncSearch	ctermfg=black ctermbg=grey cterm=NONE
+-	hi Search	ctermfg=black ctermbg=darkgrey cterm=NONE
+-else
+-	hi function ctermfg=white
+-	hi Type		ctermfg=grey
+-	hi IncSearch	ctermfg=yellow ctermbg=darkyellow cterm=NONE
+-	hi Search	ctermfg=black ctermbg=darkyellow cterm=NONE
+-endif
+-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-
+-hi Constant	ctermfg=darkcyan
+-hi Special	ctermfg=white
+-hi Statement	ctermfg=yellow
+-hi PreProc	ctermfg=darkred
+-hi Underlined	ctermfg=cyan cterm=NONE
+-hi Ignore	cterm=bold ctermfg=7
+-hi Ignore	ctermfg=darkgrey
+-hi Error	cterm=bold ctermfg=7 ctermbg=1
+-
+-" new Vim 7.0 items
+-hi Pmenu        ctermbg=darkblue ctermfg=lightgrey
+-hi PmenuSel     ctermbg=lightblue ctermfg=white                    
+-
+-hi tablinesel   ctermfg=cyan ctermbg=blue
+-hi tabline      ctermfg=black ctermbg=blue
+-hi tablinefill  ctermfg=green ctermbg=darkblue
+-"vim: sw=4
+-"
+-hi MatchParen	ctermfg=black ctermbg=green
+-
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffDelete gui=bold
++hi Error guifg=white
++hi ErrorMsg guifg=white
++hi Identifier gui=NONE
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi PmenuSbar guibg=grey
++hi Question gui=bold
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
+ 
+ elseif &background == "light"
+ 
+ hi Normal       guifg=#003255 guibg=#e8ebf0 "greyish blue2
++set background=light " Normal might change this
+ hi NonText      guifg=#382920 guibg=#152555
+ 
+ " syntax highlighting """"""""""""""""""""""""""""""""""""""""
+@@ -260,59 +205,27 @@
+ hi Pmenu        guibg=#3a6595 guifg=#9aadd5
+ hi PmenuSel     guibg=#4a85ba guifg=#b0d0f0                    
+ 
+-
+-
+-
+-
+-" color terminal definitions
+-hi Normal ctermfg=black ctermbg=white
+-hi Number ctermfg=blue
+-highlight Operator ctermfg=yellow
+-highlight Conditional ctermfg=magenta
+-highlight Repeat ctermfg=magenta
+-hi Exception ctermfg=red
+-hi function ctermfg=darkyellow
+-hi SpecialKey	ctermfg=darkgreen
+-hi NonText	cterm=bold ctermfg=darkgrey ctermbg=grey
+-hi Directory	ctermfg=darkcyan
+-hi ErrorMsg	cterm=bold ctermfg=7 ctermbg=1
+-hi IncSearch	ctermfg=yellow ctermbg=darkyellow cterm=NONE
+-hi Search	ctermfg=white ctermbg=darkyellow cterm=NONE
+-hi MoreMsg	ctermfg=darkgreen
+-hi ModeMsg	cterm=NONE ctermfg=brown
+-hi LineNr	ctermfg=black ctermbg=blue
+-hi Question	ctermfg=green
+-hi StatusLine	ctermfg=cyan ctermbg=blue cterm=NONE
+-hi StatusLineNC ctermfg=grey ctermbg=darkblue cterm=NONE
+-hi VertSplit	ctermfg=black ctermbg=black cterm=NONE
+-hi Title	ctermfg=darkyellow ctermbg=white
+-hi Visual	ctermbg=darkcyan ctermfg=cyan cterm=NONE
+-hi VisualNOS	ctermbg=darkcyan ctermfg=white cterm=NONE
+-hi WarningMsg	ctermfg=1
+-hi WildMenu	ctermfg=0 ctermbg=3
+-hi Folded	ctermfg=black ctermbg=white cterm=NONE
+-hi FoldColumn	ctermfg=green ctermbg=blue
+-hi DiffAdd	ctermbg=4
+-hi DiffChange	ctermbg=5
+-hi DiffDelete	cterm=bold ctermfg=4 ctermbg=6
+-hi DiffText	cterm=bold ctermbg=1
+-
+-hi Comment		ctermfg=grey  ctermbg=blue
+-
+-hi Constant	ctermfg=darkblue
+-hi Special	ctermfg=darkmagenta
+-hi Identifier	ctermfg=darkyellow cterm=NONE
+-hi Statement	ctermfg=red
+-hi PreProc	ctermfg=magenta
+-hi Type		ctermfg=darkcyan "or darkcyan
+-hi Underlined	ctermfg=black ctermbg=white
+-hi Ignore	cterm=bold ctermfg=7
+-hi Ignore	ctermfg=darkgrey
+-hi Error	cterm=bold ctermfg=7 ctermbg=1
+-
+-" new Vim 7.0 items
+-hi Pmenu        ctermbg=darkblue ctermfg=lightgrey
+-hi PmenuSel     ctermbg=lightblue ctermfg=white                    
++hi CursorColumn guibg=grey90
++hi CursorLine gui=NONE guibg=grey90
++hi DiffAdd guibg=lightblue
++hi DiffChange guibg=lightmagenta
++hi DiffDelete gui=bold guibg=lightcyan guifg=blue
++hi DiffText guibg=red
++hi Error guifg=white
++hi ErrorMsg guifg=white
++hi MatchParen guibg=cyan
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi PmenuSbar guibg=grey
++hi Question gui=bold
++hi SignColumn guibg=grey guifg=darkblue
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellRare gui=undercurl guisp=magenta
++hi TabLine guibg=lightgrey guifg=NONE
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
+ 
+ "vim: sw=4
+ 

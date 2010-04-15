@@ -5,15 +5,6 @@ import os
 
 import fabricate
 
-# These are weird about the background option:
-#
-# These observe background:
-# baycomb.vim
-# earendel.vim
-# moria.vim
-# peaksea.vim
-# sienna.vim (actually uses its own variable, but same principle)
-#
 # These use exec:
 # astronaut.vim (variable expansion)
 # marklar.vim (variable expansion)
@@ -109,6 +100,14 @@ dark_schemes = [
     'xoria256.vim',
     'zenburn.vim',
     'zmrok.vim',
+
+    # These ones use existing 'background' setting rather than setting it
+    # explicitly:
+    'baycomb.vim',
+    'earendel.vim',
+    'moria.vim',
+    #'peaksea.vim',
+    #'sienna.vim',
 ]
 
 light_schemes = [

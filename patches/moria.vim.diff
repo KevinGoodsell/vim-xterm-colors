@@ -1,0 +1,65 @@
+--- originals/moria.vim	2010-01-20 22:44:28.000000000 -0800
++++ patched/moria.vim	2010-04-14 21:17:08.000000000 -0700
+@@ -46,6 +46,7 @@
+         hi CursorColumn ctermbg=DarkGray ctermfg=White guibg=#3a3a3a gui=none
+         hi CursorLine ctermbg=DarkGray ctermfg=White guibg=#3a3a3a gui=none
+     endif
++    set background=dark " Normal might change this
+     if s:moria_monochrome == 1
+         hi FoldColumn ctermbg=bg guibg=bg guifg=#a0a0a0 gui=none
+         hi LineNr guifg=#a0a0a0 gui=none
+@@ -106,11 +107,7 @@
+     endif
+     hi TabLineSel guibg=bg guifg=fg gui=bold
+     hi Title ctermbg=Black ctermfg=White guifg=fg gui=bold
+-    if version >= 700
+-        hi Visual ctermbg=LightGray ctermfg=Black guibg=#606060 gui=none
+-    else
+-        hi Visual ctermbg=LightGray ctermfg=Black guibg=#606060 guifg=fg gui=none
+-    endif
++    hi Visual ctermbg=LightGray ctermfg=Black guibg=#606060 guifg=fg gui=none
+     hi VisualNOS ctermbg=DarkGray ctermfg=Black guibg=bg guifg=#a0a0a0 gui=bold,underline
+     hi WarningMsg guibg=bg guifg=#ee2c2c gui=bold
+     hi WildMenu guibg=#e0e000 guifg=#000000 gui=bold
+@@ -142,6 +139,10 @@
+     hi htmlItalic ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=italic
+     hi htmlUnderline ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=underline
+     hi htmlUnderlineItalic ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=underline,italic
++
++    hi CursorColumn guifg=NONE
++    hi CursorLine guifg=NONE
++    hi Title guibg=NONE
+ elseif &background == "light"
+     if s:moria_style == "light"
+         hi Normal ctermbg=White ctermfg=Black guibg=#f0f0f0 guifg=#000000 gui=none
+@@ -154,6 +155,7 @@
+         hi CursorColumn ctermbg=LightGray ctermfg=Black guibg=#dfdfdf gui=none
+         hi CursorLine ctermbg=LightGray ctermfg=Black guibg=#dfdfdf gui=none
+     endif
++    set background=light " Normal might change this
+     if s:moria_monochrome == 1
+         hi FoldColumn ctermbg=bg guibg=bg guifg=#7a7a7a gui=none
+         hi Folded guibg=#cfcfcf guifg=#404040 gui=bold
+@@ -206,11 +208,7 @@
+     endif
+     hi TabLineSel guibg=bg guifg=fg gui=bold
+     hi Title guifg=fg gui=bold
+-    if version >= 700
+-        hi Visual ctermbg=LightGray ctermfg=Black guibg=#c4c4c4 gui=none
+-    else
+-        hi Visual ctermbg=LightGray ctermfg=Black guibg=#c4c4c4 guifg=fg gui=none
+-    endif    
++    hi Visual ctermbg=LightGray ctermfg=Black guibg=#c4c4c4 guifg=fg gui=none
+     hi VisualNOS ctermbg=DarkGray ctermfg=Black guibg=bg guifg=#a0a0a0 gui=bold,underline
+     hi WarningMsg guibg=bg guifg=#ee2c2c gui=bold
+     hi WildMenu guibg=#ffff00 guifg=fg gui=bold
+@@ -236,6 +234,9 @@
+     hi htmlItalic ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=italic
+     hi htmlUnderline ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=underline
+     hi htmlUnderlineItalic ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=underline,italic
++
++    hi CursorColumn guifg=NONE
++    hi CursorLine guifg=NONE
+ endif
+ 
+ hi! default link bbcodeBold htmlBold
