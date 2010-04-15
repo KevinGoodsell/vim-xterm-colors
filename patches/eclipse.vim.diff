@@ -1,43 +1,47 @@
---- originals/eclipse.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/eclipse.vim	2010-04-13 00:20:57.000000000 -0700
-@@ -45,12 +45,6 @@
- highlight Folded     gui=none guifg=#804030 guibg=#fff0d0 ctermbg=black ctermfg=black cterm=bold
+--- originals/eclipse.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/eclipse.vim	2010-04-15 11:30:05.000000000 -0700
+@@ -46,10 +46,10 @@
  highlight FoldColumn gui=none guifg=#6b6b6b guibg=#e7e7e7 ctermfg=black ctermbg=white
  
--" Popup Menu
+ " Popup Menu
 -highlight PMenu      ctermbg=green ctermfg=white
 -highlight PMenuSel   ctermbg=white ctermfg=black
 -highlight PMenuSBar  ctermbg=red   ctermfg=white
 -highlight PMenuThumb ctermbg=white ctermfg=red
--
++highlight PMenu      guibg=green guifg=white
++highlight PMenuSel   guibg=white guifg=black
++highlight PMenuSBar  guibg=red   guifg=white
++highlight PMenuThumb guibg=white guifg=red
+ 
  " Other
  highlight Directory  gui=none guifg=#7050ff guibg=bg
- highlight LineNr     gui=none guifg=#6b6b6b guibg=#eeeeee
-@@ -74,7 +68,6 @@
+@@ -74,19 +74,15 @@
  highlight String     gui=none guifg=#8010a0 guibg=bg      ctermfg=Yellow
  highlight Number     gui=none guifg=#0000ff guibg=bg      ctermfg=White
  
 -if !has("gui_running")
-     hi link Float          Number
-     hi link Conditional    Repeat
-     hi link Include        PreProc
-@@ -87,6 +80,18 @@
-     hi link Delimiter      Normal
-     hi link SpecialComment Special
-     hi link Debug          Special
+-    hi link Float          Number
+-    hi link Conditional    Repeat
+-    hi link Include        PreProc
+-    hi link Macro          PreProc
+-    hi link PreCondit      PreProc
+-    hi link StorageClass   Type
+-    hi link Structure      Type
+-    hi link Typedef        Type
+-    hi link Tag            Special
+-    hi link Delimiter      Normal
+-    hi link SpecialComment Special
+-    hi link Debug          Special
 -endif
 +
-+hi CursorColumn guibg=grey90
-+hi CursorLine gui=NONE guibg=grey90
-+hi MatchParen guibg=cyan
-+hi Pmenu guibg=lightmagenta
-+hi PmenuSbar guibg=grey
-+hi PmenuSel guibg=grey
-+hi SignColumn guibg=grey guifg=darkblue
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi MatchParen guibg=darkcyan
++hi SignColumn guibg=grey guifg=cyan
 +hi SpellBad gui=undercurl guisp=red
 +hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
++hi SpellLocal gui=undercurl guisp=cyan
 +hi SpellRare gui=undercurl guisp=magenta
-+hi TabLine guibg=lightgrey guifg=NONE
++hi TabLine guibg=darkgrey guifg=NONE
  
  " vim:ff=unix:
