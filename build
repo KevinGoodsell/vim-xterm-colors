@@ -6,7 +6,6 @@ import os
 import fabricate
 
 # These are weird about the background option:
-# satori.vim (never sets background or any group background)
 #
 # These observe background:
 # baycomb.vim
@@ -17,38 +16,36 @@ import fabricate
 #
 # These use exec:
 # astronaut.vim (variable expansion)
-# calmar256-dark.vim (crazy table stuff)
-# calmar256-light.vim (crazy table stuff)
 # marklar.vim (variable expansion)
 # twilight.vim (variable expansion)
 # two2tango.vim (variable expansion)
 #
 
 dark_schemes = [
+    'BlackSea.vim',
+    'ChocolateLiquor.vim',
     'adaryn.vim',
     'adrian.vim',
     'aiseered.vim',
     'anotherdark.vim',
     'aqua.vim',
     'asu1dark.vim',
-    'BlackSea.vim',
     'bluegreen.vim',
     'borland.vim',
     'breeze.vim',
     'brookstream.vim',
     'camo.vim',
-    'candycode.vim',
     'candy.vim',
-    'ChocolateLiquor.vim',
+    'candycode.vim',
     'clarity.vim',
     'cleanphp.vim',
     'colorer.vim',
     'dante.vim',
+    'darkZ.vim',
     'darkblue2.vim',
     'darkbone.vim',
     'darkslategray.vim',
     'darkspectrum.vim',
-    'darkZ.vim',
     'denim.vim',
     'desertEx.vim',
     'dusk.vim',
@@ -82,8 +79,8 @@ dark_schemes = [
     'navajo-night.vim',
     'neon.vim',
     'neverness.vim',
-    'nightshimmer.vim',
     'night.vim',
+    'nightshimmer.vim',
     'no_quarter.vim',
     'northland.vim',
     'oceanblack.vim',
@@ -99,8 +96,8 @@ dark_schemes = [
     'softblue.vim',
     'synic.vim',
     'tabula.vim',
-    'tango2.vim',
     'tango.vim',
+    'tango2.vim',
     'tir_black.vim',
     'torte.vim',
     'vibrantink.vim',
@@ -115,9 +112,10 @@ dark_schemes = [
 ]
 
 light_schemes = [
+    'PapayaWhip.vim',
+    'autumn.vim',
     'autumn2.vim',
     'autumnleaf.vim',
-    'autumn.vim',
     'bclear.vim',
     'biogoo.vim',
     'buttercream.vim',
@@ -133,9 +131,9 @@ light_schemes = [
     'navajo.vim',
     'nuvola.vim',
     'oceanlight.vim',
-    'PapayaWhip.vim',
     'print_bw.vim',
     'pyte.vim',
+    'satori.vim',
     'silent.vim',
     'simpleandfriendly.vim',
     'soso.vim',
@@ -149,11 +147,17 @@ light_schemes = [
 ]
 
 patch_only = [
+    'lettuce.vim', # separate gui & cterm sections with non-convertible bits
+
+    # These calculate the terminal color from the gui color:
     'desert256.vim',
     'jellybeans.vim',
-    'lettuce.vim',
     'summerfruit256.vim',
     'wombat256.vim',
+
+    # These calculate the gui color from the terminal color:
+    'calmar256-dark.vim',
+    'calmar256-light.vim',
 ]
 
 def mkdir(path):
