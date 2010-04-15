@@ -1,50 +1,50 @@
---- originals/BlackSea.vim	2010-04-12 17:13:29.000000000 -0700
-+++ patched/BlackSea.vim	2010-04-12 17:36:08.000000000 -0700
+--- originals/BlackSea.vim	2010-04-12 18:25:11.000000000 -0700
++++ patched/BlackSea.vim	2010-04-15 10:26:56.000000000 -0700
 @@ -35,3 +35,47 @@
  " Original values:
  "hi Constant guifg=DeepPink
  "hi PreProc guifg=Magenta ctermfg=Magenta
 +
-+hi FoldColumn guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi Question gui=bold guifg=green
-+hi Pmenu guibg=magenta
-+hi MoreMsg gui=bold guifg=seagreen
-+hi Statement gui=bold
-+hi Type guifg=#60ff60
-+hi PmenuSel guibg=darkgrey
-+hi NonText gui=bold
-+hi LineNr guifg=yellow
-+hi StatusLine gui=bold,reverse
-+hi Title gui=bold guifg=magenta
-+hi Visual guibg=darkgrey
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi Underlined guifg=#80a0ff
-+hi Todo guibg=yellow guifg=blue
-+hi DiffDelete gui=bold
-+hi SpellRare gui=undercurl guisp=magenta
-+hi TabLine guibg=darkgrey guifg=NONE
-+hi PmenuSbar guibg=grey
-+hi Search guifg=black
-+hi PreProc guifg=#ff80ff
-+hi Folded guifg=cyan
++hi Constant guifg=#ffa0a0
 +hi Cursor guibg=fg guifg=bg
-+hi WildMenu guibg=yellow guifg=black
-+hi SignColumn guibg=grey guifg=cyan
-+hi lCursor guibg=fg guifg=bg
-+hi Error guibg=red guifg=white
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guifg=NONE
++hi DiffChange guifg=NONE
++hi DiffDelete gui=bold
++hi DiffText guifg=NONE
 +hi Directory guifg=cyan
-+hi CursorLine guibg=grey40 gui=NONE
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi FoldColumn guifg=cyan
++hi Folded guifg=cyan
 +hi Identifier gui=NONE
 +hi Ignore guifg=bg
-+hi Constant guifg=#ffa0a0
-+hi DiffText guifg=NONE
-+hi SpecialKey guifg=cyan
-+hi DiffChange guifg=NONE
-+hi WarningMsg guifg=red
++hi LineNr guifg=yellow
 +hi MatchParen guibg=darkcyan
-+hi DiffAdd guifg=NONE
-+hi ErrorMsg guibg=red guifg=white
-+hi SpellCap gui=undercurl guisp=blue
-+hi CursorColumn guibg=grey40
++hi MoreMsg gui=bold guifg=seagreen
++hi NonText gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi PreProc guifg=#ff80ff
++hi Question gui=bold guifg=green
++hi Search guifg=black
++hi SignColumn guibg=grey guifg=cyan
 +hi Special guifg=orange
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi StatusLine gui=bold,reverse
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title gui=bold guifg=magenta
++hi Todo guibg=yellow guifg=blue
++hi Type guifg=#60ff60
++hi Underlined guifg=#80a0ff
++hi Visual guibg=darkgrey
++hi WarningMsg guifg=red
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg

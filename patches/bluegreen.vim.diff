@@ -1,5 +1,5 @@
---- originals/bluegreen.vim	2009-06-04 21:52:52.000000000 -0700
-+++ patched/bluegreen.vim	2010-04-12 16:45:31.000000000 -0700
+--- originals/bluegreen.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/bluegreen.vim	2010-04-15 11:15:54.000000000 -0700
 @@ -14,7 +14,7 @@
  if exists("syntax_on")
      syntax reset
@@ -13,35 +13,35 @@
  hi Ignore       guifg=grey60
  hi Todo guibg=#9C8C84 guifg=#244C0A
  
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellBad gui=undercurl guisp=red
-+hi Question gui=bold
-+hi Pmenu guibg=magenta
-+hi MoreMsg gui=bold
-+hi Statement gui=bold
-+hi Type gui=bold
-+hi PmenuSel guibg=darkgrey
-+hi NonText gui=bold
-+hi LineNr guifg=yellow
-+hi Title gui=bold
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi Underlined guifg=#80a0ff
-+hi DiffDelete guibg=darkcyan gui=bold guifg=blue
-+hi SpellRare gui=undercurl guisp=magenta
-+hi TabLine guibg=darkgrey guifg=NONE
-+hi PmenuSbar guibg=grey
-+hi WildMenu guibg=yellow guifg=black
-+hi SignColumn guibg=grey guifg=cyan
-+hi lCursor guibg=fg guifg=bg
-+hi Error guibg=red guifg=white
-+hi Directory guifg=cyan
-+hi CursorLine guibg=grey40 gui=NONE
-+hi Identifier gui=NONE
-+hi DiffText guibg=red
-+hi ErrorMsg guibg=red guifg=white
-+hi DiffChange guibg=darkmagenta
-+hi MatchParen guibg=darkcyan
-+hi DiffAdd guibg=darkblue
 +hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi Directory guifg=cyan
++hi Error guibg=red guifg=white
++hi ErrorMsg guibg=red guifg=white
++hi Identifier gui=NONE
++hi LineNr guifg=yellow
++hi MatchParen guibg=darkcyan
++hi MoreMsg gui=bold
++hi NonText gui=bold
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
++hi PmenuSel guibg=darkgrey
++hi Question gui=bold
++hi SignColumn guibg=grey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
++hi SpellLocal gui=undercurl guisp=cyan
++hi SpellRare gui=undercurl guisp=magenta
++hi Statement gui=bold
++hi TabLine guibg=darkgrey guifg=NONE
++hi Title gui=bold
++hi Type gui=bold
++hi Underlined guifg=#80a0ff
++hi WildMenu guibg=yellow guifg=black
++hi lCursor guibg=fg guifg=bg
 +
  "vim: ts=4

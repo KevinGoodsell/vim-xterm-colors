@@ -1,35 +1,35 @@
---- originals/asu1dark.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/asu1dark.vim	2010-04-10 22:54:00.000000000 -0700
+--- originals/asu1dark.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/asu1dark.vim	2010-04-15 11:04:53.000000000 -0700
 @@ -57,3 +57,32 @@
  hi LineNr       gui=NONE     guifg=#cccccc guibg=#334444
  hi ModeMsg      gui=NONE     guifg=Blue    guibg=White
  hi Question     gui=NONE     guifg=#66ff99 guibg=#110022
 +
++hi CursorColumn guibg=grey40
++hi CursorLine gui=NONE guibg=grey40
++hi DiffAdd guibg=darkblue
++hi DiffChange guibg=darkmagenta
++hi DiffDelete gui=bold guibg=darkcyan guifg=blue
++hi DiffText guibg=red
++hi ErrorMsg guibg=red guifg=white
 +hi FoldColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpecialChar guibg=NONE guifg=NONE
 +hi Folded guibg=darkgrey guifg=cyan
++hi Ignore guifg=bg
++hi MatchParen guibg=darkcyan
 +hi MoreMsg gui=bold guifg=seagreen
-+hi SpellCap gui=undercurl guisp=blue
++hi Pmenu guibg=magenta
++hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
-+hi Title gui=bold guifg=magenta
++hi SignColumn guibg=grey guifg=cyan
++hi SpecialChar guibg=NONE guifg=NONE
++hi SpecialKey guifg=cyan
++hi SpellBad gui=undercurl guisp=red
++hi SpellCap gui=undercurl guisp=blue
 +hi SpellLocal gui=undercurl guisp=cyan
-+hi Underlined guifg=#80a0ff
-+hi Todo guibg=yellow guifg=blue
-+hi DiffDelete guibg=darkcyan gui=bold guifg=blue
 +hi SpellRare gui=undercurl guisp=magenta
 +hi TabLine guibg=darkgrey guifg=NONE
-+hi PmenuSbar guibg=grey
-+hi Ignore guifg=bg
++hi Title gui=bold guifg=magenta
++hi Todo guibg=yellow guifg=blue
++hi Underlined guifg=#80a0ff
 +hi WildMenu guibg=yellow guifg=black
-+hi SignColumn guibg=grey guifg=cyan
 +hi lCursor guibg=fg guifg=bg
-+hi Pmenu guibg=magenta
-+hi CursorLine guibg=grey40 gui=NONE
-+hi DiffText guibg=red
-+hi CursorColumn guibg=grey40
-+hi DiffChange guibg=darkmagenta
-+hi MatchParen guibg=darkcyan
-+hi DiffAdd guibg=darkblue
-+hi ErrorMsg guibg=red guifg=white
-+hi SpecialKey guifg=cyan
