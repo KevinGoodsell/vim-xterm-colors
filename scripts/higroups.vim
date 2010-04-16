@@ -30,6 +30,7 @@ endif
 
 " edit temporary file
 exec 'edit ' . g:colors_name . '\ Highlight\ groups'
+set noswapfile
 
 if exists('g:keeplinks')
     let s:keeplinks = g:keeplinks
