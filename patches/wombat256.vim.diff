@@ -1,0 +1,32 @@
+--- originals/wombat256.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/wombat256.vim	2010-04-15 20:23:59.000000000 -0700
+@@ -278,7 +278,7 @@
+ call <SID>X("PreProc",		"e5786d",	"",			"none")
+ call <SID>X("Type",			"caeb82",	"",			"none")
+ call <SID>X("Special",		"ffdead",	"",			"none")
+-call <SID>X("Todo",			"857b6f",	"",			"italic")
++call <SID>X("Todo",			"857b6f",	"ffff00",	"italic")
+ 			"Underlined
+ 			"Error
+ 			"Ignore
+@@ -287,6 +287,20 @@
+ hi! link NonText	LineNr
+ hi! link FoldColumn	Folded
+ 
++" Originally missing
++call <SID>X("Directory", "00ffff", "", "")
++call <SID>X("MoreMsg", "2e8b57", "", "bold")
++call <SID>X("Question", "00ff00", "", "bold")
++call <SID>X("DiffAdd", "", "00008b", "")
++call <SID>X("DiffChange", "", "8b008b", "")
++call <SID>X("DiffDelete", "0000ff", "008b8b", "bold")
++call <SID>X("DiffText", "", "ff0000", "bold")
++call <SID>X("SignColumn", "00ffff", "bebebe", "")
++call <SID>X("TabLine", "cccccc", "a9a9a9", "")
++call <SID>X("Underlined", "80a0ff", "", "")
++call <SID>X("Ignore", "242424", "", "")
++call <SID>X("Error", "ffffff", "ff0000", "")
++
+ " delete functions {{{
+ delf <SID>X
+ delf <SID>rgb
