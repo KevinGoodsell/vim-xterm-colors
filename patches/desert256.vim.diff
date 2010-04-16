@@ -1,0 +1,23 @@
+--- originals/desert256.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/desert256.vim	2010-04-15 21:21:43.000000000 -0700
+@@ -286,6 +286,20 @@
+     "Error
+     call <SID>X("Todo", "ff4500", "eeee00", "")
+ 
++    " Originally missing
++    call <SID>X("ErrorMsg", "ffffff", "ff0000", "")
++    call <SID>X("LineNr", "ffff00", "", "")
++    call <SID>X("WildMenu", "000000", "ffff00", "")
++    call <SID>X("DiffAdd", "", "00008b", "")
++    call <SID>X("DiffChange", "", "8b008b", "")
++    call <SID>X("DiffDelete", "0000ff", "008b8b", "bold")
++    call <SID>X("DiffText", "", "ff0000", "bold")
++    call <SID>X("SignColumn", "00ffff", "bebebe", "")
++    call <SID>X("Pmenu", "", "ff00ff", "")
++    call <SID>X("TabLine", "cccccc", "a9a9a9", "")
++    call <SID>X("MatchParen", "", "008b8b", "")
++    call <SID>X("Error", "ffffff", "ff0000", "")
++
+     " delete functions {{{
+     delf <SID>X
+     delf <SID>rgb
