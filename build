@@ -165,6 +165,48 @@ def mkdir(path):
     except OSError:
         pass
 
+background_variations = ['set background=dark', 'set background=light']
+
+test_variations = {
+    # {'colorscheme.vim' : ['extra_cmds1', ...]}
+    'baycomb.vim' : background_variations,
+    'earendel.vim' : background_variations,
+    'moria.vim' : background_variations, # Needs more
+    'peaksea.vim' : background_variations,
+    'sienna.vim' : ['let sienna_style="dark"', 'let sienna_style="light"'],
+}
+
+def make_test_file(schemefile, extra_cmds=None, variation=None):
+    if extra_cmds is None:
+        extra_cmds = 'echo'
+
+    (scheme, ext) = os.path.splitext(schemefile)
+
+    if variation is None:
+        outname = scheme
+    else:
+        outname = '%s-%02d' % (scheme, variation)
+
+    fabricate.run('vim', '-u', 'NONE', '-c',
+                  r'set runtimepath^=runtime|set t_Co=256|set nocompatible|%s|'
+                  r'colorscheme %s|redir! > test/%s.hi|silent hi|echo "\n"|q' %
+                  (extra_cmds, scheme, outname))
+    fabricate.run('sh', '-c',
+                  r"sed -r -n -e 's/^(\w+)\s+xxx\s+(.*)/hi \1 \2/p' "
+                  r"test/%s.hi > test/%s.vim" % (outname, outname))
+
+def test_files():
+    build()
+    mkdir('test')
+
+    for scheme in light_schemes + dark_schemes + patch_only:
+        variations = test_variations.get(scheme)
+        if variations:
+            for (i, v) in enumerate(variations):
+                make_test_file(scheme, v, i+1)
+        else:
+            make_test_file(scheme)
+
 def patch(scheme):
     patch_file = os.path.join('patches', scheme + '.diff')
     if os.path.exists(patch_file):
@@ -179,17 +221,17 @@ def build():
     for scheme in dark_schemes + light_schemes + patch_only:
         patch(scheme)
 
-    mkdir('term')
+    mkdir('runtime/colors')
     for scheme in dark_schemes:
         fabricate.run('sh', '-c', './scripts/gui2xterm patched/' +
-                                  scheme + ' > term/' + scheme)
+                                  scheme + ' > runtime/colors/' + scheme)
 
     for scheme in light_schemes:
         fabricate.run('sh', '-c', './scripts/gui2xterm --light patched/' +
-                                  scheme + ' > term/' + scheme)
+                                  scheme + ' > runtime/colors/' + scheme)
 
     for scheme in patch_only:
-        fabricate.run('cp', 'patched/' + scheme, 'term/')
+        fabricate.run('cp', 'patched/' + scheme, 'runtime/colors/')
 
 if __name__ == '__main__':
     fabricate.main()
