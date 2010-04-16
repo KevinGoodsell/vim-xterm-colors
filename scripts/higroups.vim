@@ -29,7 +29,7 @@ if line("$") != 1 || getline(1) != ""
 endif
 
 " edit temporary file
-edit Highlight\ groups
+exec 'edit ' . g:colors_name . '\ Highlight\ groups'
 
 if exists('g:keeplinks')
     let s:keeplinks = g:keeplinks
