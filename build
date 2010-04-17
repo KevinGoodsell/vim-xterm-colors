@@ -170,10 +170,35 @@ background_variations = ['set background=dark', 'set background=light']
 test_variations = {
     # {'colorscheme.vim' : ['extra_cmds1', ...]}
     'baycomb.vim' : background_variations,
+    'biogoo.vim' : ['let biogoo_normal_cursor=1', None],
     'earendel.vim' : background_variations,
-    'moria.vim' : background_variations, # Needs more
+    'inkpot.vim' : ['let inkpot_black_background=1', None],
+    'molokai.vim' : ['let molokai_original=1', None],
+    'moria.vim' : [
+        'let moria_style="dark"|let moria_monochrome=1|let moria_fontface="mixed"',
+        'let moria_style="black"|let moria_monochrome=1',
+        'let moria_style="black"|let moria_fontface="mixed"',
+        'let moria_style="black"',
+        'let moria_style="light"|let moria_monochrome=1',
+        'let moria_style="white"',
+    ],
     'peaksea.vim' : background_variations,
     'sienna.vim' : ['let sienna_style="dark"', 'let sienna_style="light"'],
+    'tabula.vim' : [
+        'let Tabula_CurColor="blue"',
+        'let Tabula_CurColor="red"|let Tabula_BoldStatement=1',
+        'let Tabula_CurColor="yellow"|let Tabula_FlatConstants=0',
+        'let Tabula_CurColor="white"|let Tabula_InvisibleIgnore=0',
+        'let Tabula_DarkError=1|let Tabula_LNumUnderline=1',
+        'let Tabula_ColorPre="blue"|let Tabula_SearchStandOut=1',
+        'let Tabula_ColorPre="red"|let Tabula_SearchStandOut=2',
+        'let Tabula_ColorPre="yellow"|let Tabula_TodoUnderline=0',
+    ],
+    'zenburn' : [
+        'let zenburn_high_Contrast=1|let zenburn_alternate_Include=1',
+        'let zenburn_alternate_Visual=1|let zenburn_color_also_Ignore=1',
+        'let zenburn_alternate_Error=1',
+    ]
 }
 
 def make_test_file(schemefile, extra_cmds=None, variation=None):
@@ -187,10 +212,14 @@ def make_test_file(schemefile, extra_cmds=None, variation=None):
     else:
         outname = '%s-%02d' % (scheme, variation)
 
+    # Using the full here works around a fabricate problem. Vim uses fchdir,
+    # which fabricate doesn't know about, so fabricate gets the cwd wrong
+    # and comes up with the wrong file path.
+    hipath = '%s/test/%s.hi' % (os.path.abspath(os.getcwd()), outname)
     fabricate.run('vim', '-u', 'NONE', '-c',
-                  r'set runtimepath^=runtime|set t_Co=256|set nocompatible|%s|'
-                  r'colorscheme %s|redir! > test/%s.hi|silent hi|echo "\n"|q' %
-                  (extra_cmds, scheme, outname))
+                  r'set runtimepath^=runtime|set t_Co=256|set nocompatible|'
+                  r'%s|colorscheme %s|redir! > %s|silent hi|echo "\n"|q' %
+                  (extra_cmds, scheme, hipath))
     fabricate.run('sh', '-c',
                   r"sed -r -n -e 's/^(\w+)\s+xxx\s+(.*)/hi \1 \2/p' "
                   r"test/%s.hi > test/%s.vim" % (outname, outname))
