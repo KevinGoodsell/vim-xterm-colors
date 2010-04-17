@@ -15,6 +15,7 @@ class Color(object):
 
     _color_names = None
     _nearest_cache = {} # {Color(), cterm_color_num}
+    _xterm_overrides = {}
 
     @classmethod
     def from_string(cls, s):
@@ -55,18 +56,28 @@ class Color(object):
 
             return cls(level, level, level)
 
+    @classmethod
+    def add_xterm_overrides(cls, overrides):
+        for (gui, xterm) in overrides.items():
+            c = cls(gui)
+            cls._xterm_overrides[c] = int(xterm)
+
     def as_hex(self):
         return '%02X%02X%02X' % (self.red, self.green, self.blue)
 
     def nearest_xterm(self):
         if self in self._nearest_cache:
             return self._nearest_cache[self]
-        # Brute-force search, could be better
-        distances = [(color_distance(self, x), x)
-                     for x in self._color_map.keys()]
-        (dist, c) = min(distances)
 
-        xterm = self._color_map[c]
+        if self in self._xterm_overrides:
+            xterm = self._xterm_overrides[self]
+        else:
+            # Brute-force search, could be better
+            distances = [(color_distance(self, x), x)
+                         for x in self._color_map.keys()]
+            (dist, c) = min(distances)
+            xterm = self._color_map[c]
+
         self._nearest_cache[self] = xterm
         return xterm
 

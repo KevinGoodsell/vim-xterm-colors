@@ -521,6 +521,14 @@ def parse_args(args):
 
     parser.add_option('-l', '--light', action='store_true',
         help='use light background defaults')
+    parser.add_option('-c', '--color', nargs=2, action='append',
+        metavar='GUI-COLOR XTERM-COLOR', help='override color')
+    parser.add_option('-f', '--foreground', nargs=2, action='append',
+        metavar='GROUP XTERM-COLOR', help='override group foreground')
+    parser.add_option('-b', '--background', nargs=2, action='append',
+        metavar='GROUP XTERM-COLOR', help='override group background')
+
+    parser.set_defaults(color=[], foreground=[], background=[])
 
     (opts, arguments) = parser.parse_args(args)
     return (opts, arguments)
@@ -536,6 +544,12 @@ def main(args=None):
     filename = arguments[0]
 
     dark = not opts.light
+    color_overrides = dict(opts.color)
+    group_overrides = ColorSchemeSettings()
+    for (group, color) in opts.foreground:
+        group_overrides.add(group, 'ctermfg', color)
+    for (group, color) in opts.background:
+        group_overrides.add(group, 'ctermbg', color)
 
     lines = LineProducer(open(filename).read())
     settings = ColorSchemeSettings()
@@ -543,6 +557,8 @@ def main(args=None):
     for line in lines:
         if isinstance(line, HighlightLine):
             params = find_params(line)
+            # Update with overrides for group
+            params.update(group_overrides.get_group(line.group, {}))
             sys.stdout.write(line.updated(params))
             if not line.comment:
                 settings.update(line.settings())
