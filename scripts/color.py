@@ -58,8 +58,11 @@ class Color(object):
 
     @classmethod
     def add_xterm_overrides(cls, overrides):
-        for (gui, xterm) in overrides.items():
-            c = cls(gui)
+        if isinstance(overrides, dict):
+            overrides = overrides.items()
+
+        for (gui, xterm) in overrides:
+            c = cls.from_string(gui)
             cls._xterm_overrides[c] = int(xterm)
 
     def as_hex(self):
@@ -81,8 +84,14 @@ class Color(object):
         self._nearest_cache[self] = xterm
         return xterm
 
+    def _tuple(self):
+        return (self.__class__, self.red, self.green, self.blue)
+
     def __hash__(self):
-        return hash((self.__class__, self.red, self.green, self.blue))
+        return hash(self._tuple())
+
+    def __eq__(self, other):
+        return self._tuple() == other._tuple()
 
     def __repr__(self):
         return '%s(0x%02x, 0x%02x, 0x%02x)' % (self.__class__.__name__,

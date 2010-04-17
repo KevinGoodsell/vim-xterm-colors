@@ -544,12 +544,13 @@ def main(args=None):
     filename = arguments[0]
 
     dark = not opts.light
-    color_overrides = dict(opts.color)
+    color.Color.add_xterm_overrides(opts.color)
+
     group_overrides = ColorSchemeSettings()
-    for (group, color) in opts.foreground:
-        group_overrides.add(group, 'ctermfg', color)
-    for (group, color) in opts.background:
-        group_overrides.add(group, 'ctermbg', color)
+    for (group, fg) in opts.foreground:
+        group_overrides.add(group, 'ctermfg', fg)
+    for (group, bg) in opts.background:
+        group_overrides.add(group, 'ctermbg', bg)
 
     lines = LineProducer(open(filename).read())
     settings = ColorSchemeSettings()
