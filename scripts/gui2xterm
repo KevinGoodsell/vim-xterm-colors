@@ -14,19 +14,25 @@ class ColorSchemeSettings(object):
         group = self.normalize_group(group)
         param = param.lower()
         value = self.normalize_value(value)
+
         params = self._settings.setdefault(group, {})
         params[param] = value
 
     def remove(self, group, param=None):
+        group = self.normalize_group(group)
+
         if param is None:
             self._settings.pop(group, None)
         else:
             params = self._settings.get(group)
             if params is None:
                 return
-            params.pop(param, None)
+            params.pop(param.lower(), None)
 
     def get(self, group, param, default=None):
+        group = self.normalize_group(group)
+        param = param.lower()
+
         params = self._settings.get(group)
         if params is None:
             return default
@@ -34,6 +40,8 @@ class ColorSchemeSettings(object):
             return params.get(param, default)
 
     def get_group(self, group, default=None):
+        group = self.normalize_group(group)
+
         return self._settings.get(group, default)
 
     def update(self, other):
