@@ -517,10 +517,12 @@ def parse_args(args):
         metavar='GROUP XTERM-COLOR', help='override group foreground')
     parser.add_option('-b', '--background', nargs=2, action='append',
         metavar='GROUP XTERM-COLOR', help='override group background')
+    parser.add_option('-a', '--attr', nargs=2, action='append',
+        metavar='GROUP XTERM-ATTR', help='override group attributes')
     parser.add_option('-s', '--spell', action='store',
-        help='background colors for Spell groups:dark, light, or none')
+        help='background colors for Spell groups: dark, light, or none')
 
-    parser.set_defaults(color=[], foreground=[], background=[])
+    parser.set_defaults(color=[], foreground=[], background=[], attr=[])
 
     (opts, arguments) = parser.parse_args(args)
     return (opts, arguments)
@@ -556,6 +558,8 @@ def main(args=None):
         group_overrides.add(group, 'ctermfg', fg)
     for (group, bg) in opts.background:
         group_overrides.add(group, 'ctermbg', bg)
+    for (group, attr) in opts.attr:
+        group_overrides.add(group, 'cterm', attr)
 
     lines = LineProducer(open(filename).read())
     settings = ColorSchemeSettings()
