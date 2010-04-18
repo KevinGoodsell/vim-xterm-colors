@@ -423,26 +423,17 @@ def find_params(hl):
     '''
     result = {}
 
-    undercurl = None
     gui = hl.get_param('gui')
     if gui:
         result['cterm'] = cterm_attrs(gui)
-
-        if 'undercurl' in gui:
-            undercurl = hl.get_param('guisp')
 
     guifg = hl.get_param('guifg')
     if guifg:
         result['ctermfg'] = cterm_color(guifg)
 
     guibg = hl.get_param('guibg')
-    if guibg and guibg.lower() not in ['none', 'bg']:
+    if guibg:
         result['ctermbg'] = cterm_color(guibg)
-    elif undercurl:
-        # Fall back on undercurl color
-        result['ctermbg'] = cterm_color(undercurl)
-    elif guibg:
-        result['ctermbg'] = guibg
 
     return result
 
@@ -510,17 +501,8 @@ class SettingsValidator(object):
         result = {}
         gui = params['guibg']
         cterm = params['ctermbg']
-        use_undercurl = False
-        if gui in ['NONE', 'bg'] and 'undercurl' in params['gui']:
-            gui = params['guisp']
-            use_undercurl = True
-
         if cterm_color(gui) != cterm:
-            if use_undercurl:
-                result['gui'] = params['gui']
-                result['guisp'] = params['guisp']
-            else:
-                result['guibg'] = params['guibg']
+            result['guibg'] = gui
 
         return result
 
