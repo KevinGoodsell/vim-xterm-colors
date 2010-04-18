@@ -14,8 +14,8 @@ import fabricate
 
 schemes = [
     # Dark background schemes
-    ('BlackSea.vim',        []),
-    ('ChocolateLiquor.vim', []),
+    ('BlackSea.vim',        ['--darkspell']),
+    ('ChocolateLiquor.vim', ['--darkspell', '-f', 'StatusLine', '95']),
     ('adaryn.vim',          ['--darkspell']),
     ('adrian.vim',          ['--darkspell']),
     ('aiseered.vim',        ['--darkspell']),
@@ -28,13 +28,19 @@ schemes = [
     ('brookstream.vim',     ['--darkspell', '-b', 'StatusLine', '23']),
     ('camo.vim',            ['--darkspell']),
     ('candy.vim',           ['--darkspell']),
-    ('candycode.vim',       []),
-    ('clarity.vim',         []),
-    ('cleanphp.vim',        []),
-    ('colorer.vim',         []),
-    ('dante.vim',           []),
-    ('darkZ.vim',           []),
-    ('darkblue2.vim',       []),
+    ('candycode.vim',       ['--darkspell']),
+    ('clarity.vim',         ['--darkspell']),
+    # In spite of declaring itself dark (and therefore requiring dark defaults
+    # for matching), cleanphp is light and --darkspell is illegible.
+    ('cleanphp.vim',        ['--lightspell']),
+    ('colorer.vim',         ['--darkspell']),
+    ('dante.vim',           ['--darkspell', '-b', 'DiffChange', '125']),
+    ('darkZ.vim',           ['--darkspell']),
+    ('darkblue2.vim',       [
+        '--darkspell',
+        '-c', '233b5a', '24',
+        '-b', 'LineNr', '18',
+    ]),
     ('darkbone.vim',        []),
     ('darkslategray.vim',   []),
     ('darkspectrum.vim',    []),
@@ -132,7 +138,13 @@ schemes = [
     ('bclear.vim',            ['--light']),
     ('biogoo.vim',            ['--light']),
     ('buttercream.vim',       ['--light', '--lightspell']),
-    ('chela_light.vim',       ['--light']),
+    ('chela_light.vim',       [
+        '--light',
+        '-b', 'SpellBad', '217',
+        '-b', 'SpellCap', '217',
+        '-b', 'SpellRare', '120',
+        '-b', 'SpellLocal', '217',
+    ]),
     ('dawn.vim',              ['--light']),
     ('eclipse.vim',           ['--light']),
     ('fine_blue.vim',         ['--light']),
