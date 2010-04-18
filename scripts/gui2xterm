@@ -517,10 +517,8 @@ def parse_args(args):
         metavar='GROUP XTERM-COLOR', help='override group foreground')
     parser.add_option('-b', '--background', nargs=2, action='append',
         metavar='GROUP XTERM-COLOR', help='override group background')
-    parser.add_option('-d', '--darkspell', action='store_true',
-        help='use dark-background defaults for spelling groups')
-    parser.add_option('-s', '--lightspell', action='store_true',
-        help='use light-background defaults for spelling groups')
+    parser.add_option('-s', '--spell', action='store',
+        help='background colors for Spell groups:dark, light, or none')
 
     parser.set_defaults(color=[], foreground=[], background=[])
 
@@ -539,14 +537,17 @@ def main(args=None):
 
     dark = not opts.light
     color.Color.add_xterm_overrides(opts.color)
+    if opts.spell is None:
+        opts.spell = 'light' if opts.light else 'dark'
+    opts.spell = opts.spell.lower()
 
     group_overrides = ColorSchemeSettings()
-    if opts.darkspell:
+    if opts.spell == 'dark':
         group_overrides.add('SpellBad', 'ctermbg', '88') # Red
         group_overrides.add('SpellCap', 'ctermbg', '19') # Blue
         group_overrides.add('SpellRare', 'ctermbg', '90') # Magenta
         group_overrides.add('SpellLocal', 'ctermbg', '30') # Cyan
-    if opts.lightspell:
+    if opts.spell == 'light':
         group_overrides.add('SpellBad', 'ctermbg', '217') # Red
         group_overrides.add('SpellCap', 'ctermbg', '153') # Blue
         group_overrides.add('SpellRare', 'ctermbg', '219') # Magenta
