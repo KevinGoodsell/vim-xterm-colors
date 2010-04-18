@@ -1,6 +1,6 @@
 --- originals/desert256.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/desert256.vim	2010-04-15 21:21:43.000000000 -0700
-@@ -286,6 +286,20 @@
++++ patched/desert256.vim	2010-04-18 12:22:28.000000000 -0700
+@@ -286,6 +286,24 @@
      "Error
      call <SID>X("Todo", "ff4500", "eeee00", "")
  
@@ -17,6 +17,10 @@
 +    call <SID>X("TabLine", "cccccc", "a9a9a9", "")
 +    call <SID>X("MatchParen", "", "008b8b", "")
 +    call <SID>X("Error", "ffffff", "ff0000", "")
++    hi SpellBad ctermbg=88
++    hi SpellCap ctermbg=19
++    hi SpellRare ctermbg=90
++    hi SpellLocal ctermbg=30
 +
      " delete functions {{{
      delf <SID>X
