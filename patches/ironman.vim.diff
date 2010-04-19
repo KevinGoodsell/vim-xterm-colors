@@ -1,12 +1,19 @@
---- originals/ironman.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/ironman.vim	2010-04-13 10:43:06.000000000 -0700
-@@ -131,3 +131,9 @@
+--- originals/ironman.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/ironman.vim	2010-04-18 22:19:43.000000000 -0700
+@@ -124,10 +124,15 @@
+ highlight SpellBad           gui=undercurl guisp=Red
+ highlight SpellCap           gui=undercurl guisp=Blue
+ highlight SpellRare          gui=undercurl guisp=Magenta
+-highlight SpellLocale        gui=undercurl guisp=DarkCyan
++highlight SpellLocal         gui=undercurl guisp=DarkCyan
+ 
+ " Completion {{{1
+ highlight Pmenu              guifg=Black   guibg=#BDDFFF
  highlight PmenuSel           guifg=Black   guibg=Orange
  highlight PmenuSbar          guifg=#CCCCCC guibg=#CCCCCC
  highlight PmenuThumb         gui=reverse guifg=Black   guibg=#AAAAAA
 +
 +hi Directory guifg=blue
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellLocal gui=undercurl guisp=darkcyan
 +hi TabLine guifg=NONE
 +hi WildMenu guibg=yellow guifg=black

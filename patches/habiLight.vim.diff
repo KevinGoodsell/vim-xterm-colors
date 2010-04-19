@@ -1,5 +1,5 @@
 --- originals/habiLight.vim	2010-04-12 21:24:23.000000000 -0700
-+++ patched/habiLight.vim	2010-04-18 20:56:01.000000000 -0700
++++ patched/habiLight.vim	2010-04-18 22:21:35.000000000 -0700
 @@ -118,7 +118,7 @@
      highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
      highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
@@ -9,7 +9,7 @@
  endif 
  
  " Completion {{{1
-@@ -134,5 +134,15 @@
+@@ -134,5 +134,14 @@
  
  highlight MatchParen  term=reverse ctermbg=11 gui=bold guibg=#B5EEB5 guifg=black
  
@@ -19,7 +19,6 @@
 +hi MoreMsg gui=bold
 +hi SignColumn guibg=grey guifg=darkblue
 +hi SpecialKey guifg=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
 +hi TabLine guifg=NONE
 +hi Underlined guifg=slateblue
 +hi lCursor guibg=fg guifg=bg
