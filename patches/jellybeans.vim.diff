@@ -1,14 +1,5 @@
 --- originals/jellybeans.vim	2010-01-20 22:48:48.000000000 -0800
-+++ patched/jellybeans.vim	2010-04-15 15:59:16.000000000 -0700
-@@ -218,7 +218,7 @@
- 	let l:y = s:rgb_number(a:g)
- 	let l:z = s:rgb_number(a:b)
- 
--	if l:gx == l:gy && l:gy == l:gz
-+	if abs(l:gx - l:gy) < 2 && abs(l:gy - l:gz) < 2
- 		" there are two possibilities
- 		let l:dgr = s:grey_level(l:gx) - a:r
- 		let l:dgg = s:grey_level(l:gy) - a:g
++++ patched/jellybeans.vim	2010-04-18 23:00:30.000000000 -0700
 @@ -269,9 +269,9 @@
  		if !l:fge && !l:bge
  			exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
@@ -39,7 +30,7 @@
  
  " Diff
  
-@@ -397,6 +397,12 @@
+@@ -397,6 +397,23 @@
  " Tag list
  hi link TagListFileName Directory
  
@@ -48,6 +39,17 @@
 +call s:X("WarningMsg", "ff0000", "", "", "", "")
 +call s:X("Question", "00ff00", "", "bold", "", "")
 +call s:X("Underlined", "80a0ff", "", "underline", "", "")
++hi SpellBad ctermbg=88
++hi SpellCap ctermbg=19
++hi SpellRare ctermbg=90
++hi SpellLocal ctermbg=30
++" These don't work well with the auto-conversion
++hi Folded ctermbg=238
++hi FoldColumn ctermbg=238
++hi SignColumn ctermbg=238
++hi DiffAdd ctermbg=22
++hi DiffDelete ctermbg=52
++hi DiffText ctermbg=17
 +
  " delete functions {{{
  delf s:X
