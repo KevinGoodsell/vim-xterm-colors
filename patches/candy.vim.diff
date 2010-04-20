@@ -1,5 +1,5 @@
---- originals/candy.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/candy.vim	2010-04-11 00:36:01.000000000 -0700
+--- originals/candy.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/candy.vim	2010-04-20 09:16:10.000000000 -0700
 @@ -76,3 +76,16 @@
  hi htmlItalic               gui=ITALIC
  hi htmlUnderline            gui=UNDERLINE
@@ -12,8 +12,8 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE

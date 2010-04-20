@@ -1,5 +1,5 @@
 --- originals/desertEx.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/desertEx.vim	2010-04-11 11:22:23.000000000 -0700
++++ patched/desertEx.vim	2010-04-20 09:55:47.000000000 -0700
 @@ -61,38 +61,16 @@
  hi Ignore       guifg=grey40         gui=none
  hi Todo         guifg=orangered      guibg=yellow2 gui=none
@@ -45,10 +45,10 @@
 +hi Error guibg=red guifg=white
 +hi PmenuSbar guibg=grey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff
 +hi lCursor guibg=fg guifg=bg

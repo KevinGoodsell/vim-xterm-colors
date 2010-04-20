@@ -1,5 +1,5 @@
 --- originals/colorer.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/colorer.vim	2010-04-12 19:58:15.000000000 -0700
++++ patched/colorer.vim	2010-04-20 09:34:52.000000000 -0700
 @@ -17,7 +17,7 @@
  hi Comment	        ctermfg=Brown guifg=#B46918	gui=NONE
  hi PerlPOD	        ctermfg=Brown guifg=#B86A18	gui=NONE
@@ -36,10 +36,10 @@
 +hi Search guibg=yellow guifg=black
 +hi SignColumn guibg=grey guifg=cyan
 +hi SpecialKey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title guifg=magenta
 +hi Underlined guifg=#80a0ff

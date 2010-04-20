@@ -1,6 +1,6 @@
---- originals/camo.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/camo.vim	2010-04-10 23:52:44.000000000 -0700
-@@ -74,3 +74,25 @@
+--- originals/camo.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/camo.vim	2010-04-20 09:13:37.000000000 -0700
+@@ -74,3 +74,24 @@
  hi Error        guifg=bisque    guibg=red
  hi Todo         guifg=red       guibg=bisque
  
@@ -16,13 +16,12 @@
 +hi PmenuSel guibg=darkgrey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold
 +hi Type gui=bold
 +hi lCursor guibg=fg guifg=bg
-+

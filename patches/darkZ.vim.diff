@@ -1,5 +1,5 @@
 --- originals/darkZ.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/darkZ.vim	2010-04-11 11:12:37.000000000 -0700
++++ patched/darkZ.vim	2010-04-20 09:46:23.000000000 -0700
 @@ -53,39 +53,17 @@
  hi Ignore       guifg=red            gui=none
  hi Todo         guifg=red            guibg=yellow2     gui=none
@@ -46,10 +46,10 @@
 +hi Error guibg=red guifg=white
 +hi PmenuSbar guibg=grey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold
 +hi Underlined guifg=#80a0ff

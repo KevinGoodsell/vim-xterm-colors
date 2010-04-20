@@ -1,5 +1,5 @@
 --- originals/darkslategray.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/darkslategray.vim	2010-04-11 10:42:28.000000000 -0700
++++ patched/darkslategray.vim	2010-04-20 09:42:10.000000000 -0700
 @@ -29,6 +29,7 @@
  
  " GUI colors
@@ -27,10 +27,10 @@
 +hi Pmenu guibg=magenta
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff
 +hi lCursor guibg=fg guifg=bg

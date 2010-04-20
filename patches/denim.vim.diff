@@ -1,5 +1,5 @@
 --- originals/denim.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/denim.vim	2010-04-11 11:16:29.000000000 -0700
++++ patched/denim.vim	2010-04-20 09:53:51.000000000 -0700
 @@ -36,35 +36,6 @@
  hi WildMenu		guifg=#000038 guibg=#999999
  " }}}
@@ -88,10 +88,10 @@
 +hi PmenuSel guibg=darkgrey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold
