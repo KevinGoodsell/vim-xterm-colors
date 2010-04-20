@@ -1,5 +1,15 @@
 --- originals/golden.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/golden.vim	2010-04-20 10:25:31.000000000 -0700
++++ patched/golden.vim	2010-04-20 11:50:12.000000000 -0700
+@@ -7,8 +7,8 @@
+ "     URL: http://www.trolocsis.com/vim/golden.vim
+ "
+ 
+-hi clear
+ set background=dark
++hi clear
+ if exists("syntax_on")
+   syntax reset
+ endif
 @@ -43,7 +43,7 @@
  hi VertSplit      guifg=#2E2E2E guibg=#978345 ctermfg=black ctermbg=darkgrey
  hi Folded		  guifg=orange  guibg=#2E2E2E ctermfg=yellow

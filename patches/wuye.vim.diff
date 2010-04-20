@@ -1,5 +1,15 @@
 --- originals/wuye.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/wuye.vim	2010-04-12 12:23:18.000000000 -0700
++++ patched/wuye.vim	2010-04-20 11:54:06.000000000 -0700
+@@ -6,8 +6,8 @@
+ " URL:         http://www.vim.org/scripts/script.php?script_id=2088
+ 
+ " Init
+-highlight clear
+ set background=dark
++highlight clear
+ if exists("syntax_on")
+    syntax reset
+ endif
 @@ -80,3 +80,19 @@
  hi Error        guifg=Khaki guibg=VioletRed   ctermfg=Yellow ctermbg=LightMagenta
  hi Todo         guifg=Yellow guibg=NavyBlue   ctermfg=Yellow ctermbg=DarkBlue

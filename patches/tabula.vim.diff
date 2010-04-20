@@ -1,5 +1,15 @@
---- originals/tabula.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/tabula.vim	2010-04-11 23:25:14.000000000 -0700
+--- originals/tabula.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/tabula.vim	2010-04-20 11:53:18.000000000 -0700
+@@ -24,8 +24,8 @@
+ "   such that text files be displayed other than e.g. c sources
+ " =============================================================================
+ 
+-hi clear
+ set background=dark
++hi clear
+ if exists("syntax_on")
+     syntax reset
+ endif
 @@ -165,6 +165,8 @@
  "                             Color Definitions                            {{{1
  "==============================================================================

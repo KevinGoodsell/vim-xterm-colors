@@ -1,5 +1,15 @@
---- originals/adrian.vim	2010-04-05 14:44:38.000000000 -0700
-+++ patched/adrian.vim	2010-04-19 21:54:47.000000000 -0700
+--- originals/adrian.vim	2010-04-09 12:15:29.000000000 -0700
++++ patched/adrian.vim	2010-04-20 11:45:34.000000000 -0700
+@@ -28,8 +28,8 @@
+ 
+ 
+ 
+-hi clear
+ set background=dark
++hi clear
+ if exists("syntax_on")
+   syntax reset
+ endif
 @@ -95,3 +95,34 @@
  "highlight link SpecialComment  Special
  highlight link Debug           Special

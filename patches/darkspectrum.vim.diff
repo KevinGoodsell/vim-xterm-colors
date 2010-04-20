@@ -1,5 +1,16 @@
 --- originals/darkspectrum.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/darkspectrum.vim	2010-04-20 09:44:05.000000000 -0700
++++ patched/darkspectrum.vim	2010-04-20 11:48:39.000000000 -0700
+@@ -9,9 +9,9 @@
+ " :he highlight-groups
+ " :he cterm-colors
+ 
++set background=dark
+ hi clear
+ 
+-set background=dark
+ if version > 580
+     " no guarantees for version 5.8 and below, but this makes it stop
+     " complaining
 @@ -51,7 +51,7 @@
  hi LineNr		guifg=#535353 guibg=#202020
  hi NonText		guifg=#535353 guibg=#202020

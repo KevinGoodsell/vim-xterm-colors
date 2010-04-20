@@ -1,0 +1,12 @@
+--- originals/bclear.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/bclear.vim	2010-04-20 11:46:34.000000000 -0700
+@@ -3,8 +3,8 @@
+ " Maintainer:   Ricky Cintron 'borosai' [borosai at gmail dot com]
+ " Last Change:  2009-08-04
+ 
+-hi clear
+ set background=light
++hi clear
+ if exists("syntax_on")
+   syntax reset
+ endif
