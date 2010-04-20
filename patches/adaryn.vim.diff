@@ -1,5 +1,5 @@
---- originals/adaryn.vim	2010-04-11 09:37:40.000000000 -0700
-+++ patched/adaryn.vim	2010-04-15 10:50:13.000000000 -0700
+--- originals/adaryn.vim	2010-04-10 21:40:16.000000000 -0700
++++ patched/adaryn.vim	2010-04-19 21:52:55.000000000 -0700
 @@ -70,3 +70,22 @@
  hi Ignore	guifg=bg ctermfg=bg
  
@@ -17,9 +17,9 @@
 +hi PmenuSel guibg=darkgrey
 +hi Search gui=NONE
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff

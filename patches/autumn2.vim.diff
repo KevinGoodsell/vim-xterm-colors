@@ -1,5 +1,5 @@
 --- originals/autumn2.vim	2009-06-04 21:52:32.000000000 -0700
-+++ patched/autumn2.vim	2010-04-12 23:20:00.000000000 -0700
++++ patched/autumn2.vim	2010-04-19 22:07:41.000000000 -0700
 @@ -8,7 +8,7 @@
          syntax reset
  endif
@@ -39,10 +39,10 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=grey
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE
 +
  " vim: set ts=8 sw=8 et sts=8 tw=72 fo-=t ff=unix :

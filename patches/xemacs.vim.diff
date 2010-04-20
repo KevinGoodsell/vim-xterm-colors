@@ -1,5 +1,5 @@
---- originals/xemacs.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/xemacs.vim	2010-04-12 13:04:18.000000000 -0700
+--- originals/xemacs.vim	2009-06-04 20:53:30.000000000 -0700
++++ patched/xemacs.vim	2010-04-19 21:32:31.000000000 -0700
 @@ -42,5 +42,34 @@
  hi Type                                 guifg=#4a81b4 gui=NONE
  hi Ignore                               guifg=grey29
@@ -26,10 +26,10 @@
 +hi Question gui=bold
 +hi Search guifg=black
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold

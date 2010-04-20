@@ -1,5 +1,5 @@
---- originals/bluegreen.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/bluegreen.vim	2010-04-15 11:15:54.000000000 -0700
+--- originals/bluegreen.vim	2009-06-04 21:52:52.000000000 -0700
++++ patched/bluegreen.vim	2010-04-19 22:52:02.000000000 -0700
 @@ -14,7 +14,7 @@
  if exists("syntax_on")
      syntax reset
@@ -32,10 +32,10 @@
 +hi PmenuSel guibg=darkgrey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold

@@ -1,5 +1,5 @@
---- originals/BlackSea.vim	2010-04-12 18:25:11.000000000 -0700
-+++ patched/BlackSea.vim	2010-04-15 10:26:56.000000000 -0700
+--- originals/BlackSea.vim	2010-04-12 17:13:29.000000000 -0700
++++ patched/BlackSea.vim	2010-04-19 21:51:19.000000000 -0700
 @@ -35,3 +35,47 @@
  " Original values:
  "hi Constant guifg=DeepPink
@@ -33,10 +33,10 @@
 +hi SignColumn guibg=grey guifg=cyan
 +hi Special guifg=orange
 +hi SpecialKey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi StatusLine gui=bold,reverse
 +hi TabLine guibg=darkgrey guifg=NONE
