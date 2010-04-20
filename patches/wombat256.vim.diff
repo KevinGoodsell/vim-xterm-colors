@@ -1,5 +1,5 @@
---- originals/wombat256.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/wombat256.vim	2010-04-15 20:23:59.000000000 -0700
+--- originals/wombat256.vim	2009-06-04 20:54:10.000000000 -0700
++++ patched/wombat256.vim	2010-04-19 20:50:20.000000000 -0700
 @@ -278,7 +278,7 @@
  call <SID>X("PreProc",		"e5786d",	"",			"none")
  call <SID>X("Type",			"caeb82",	"",			"none")
@@ -9,7 +9,7 @@
  			"Underlined
  			"Error
  			"Ignore
-@@ -287,6 +287,20 @@
+@@ -287,6 +287,24 @@
  hi! link NonText	LineNr
  hi! link FoldColumn	Folded
  
@@ -26,6 +26,10 @@
 +call <SID>X("Underlined", "80a0ff", "", "")
 +call <SID>X("Ignore", "242424", "", "")
 +call <SID>X("Error", "ffffff", "ff0000", "")
++hi SpellBad ctermbg=88
++hi SpellCap ctermbg=19
++hi SpellRare ctermbg=90
++hi SpellLocal ctermbg=30
 +
  " delete functions {{{
  delf <SID>X
