@@ -1,5 +1,5 @@
 --- originals/fine_blue.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fine_blue.vim	2010-04-13 10:15:14.000000000 -0700
++++ patched/fine_blue.vim	2010-04-20 10:19:14.000000000 -0700
 @@ -69,3 +69,16 @@
  hi Todo         gui=NONE guifg=#ff0070 guibg=#ffe0f4
  hi Type         gui=NONE guifg=#7040ff guibg=NONE
@@ -12,8 +12,8 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=grey
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE

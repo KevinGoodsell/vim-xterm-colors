@@ -1,6 +1,20 @@
---- originals/herald.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/herald.vim	2010-04-11 16:00:37.000000000 -0700
-@@ -17,8 +17,6 @@
+--- originals/herald.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/herald.vim	2010-04-20 10:29:41.000000000 -0700
+@@ -4,6 +4,8 @@
+ " Version:    0.2.0
+ " Notes:      Supports 8, 16, 256 and 16,777,216 (RGB) color modes
+ 
++set background=dark
++
+ hi clear
+ 
+ if exists("syntax_on")
+@@ -12,13 +14,9 @@
+ 
+ let colors_name = "herald"
+ 
+-set background=dark
+-
  " Set some syntax-related variables
  let ruby_operators = 1
  

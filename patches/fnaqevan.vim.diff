@@ -1,5 +1,5 @@
 --- originals/fnaqevan.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fnaqevan.vim	2010-04-11 12:30:26.000000000 -0700
++++ patched/fnaqevan.vim	2010-04-20 10:19:43.000000000 -0700
 @@ -65,3 +65,17 @@
  hi rcursor      guibg=#00CCFF guifg=#000000 gui=NONE
  hi lcursor      guibg=#40D040 guifg=#000000 gui=NONE
@@ -12,9 +12,9 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff

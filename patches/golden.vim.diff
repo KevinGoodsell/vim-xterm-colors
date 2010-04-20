@@ -1,5 +1,5 @@
 --- originals/golden.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/golden.vim	2010-04-11 13:18:57.000000000 -0700
++++ patched/golden.vim	2010-04-20 10:25:31.000000000 -0700
 @@ -43,7 +43,7 @@
  hi VertSplit      guifg=#2E2E2E guibg=#978345 ctermfg=black ctermbg=darkgrey
  hi Folded		  guifg=orange  guibg=#2E2E2E ctermfg=yellow
@@ -35,10 +35,10 @@
 +hi SignColumn guibg=grey guifg=cyan
 +hi Special gui=NONE
 +hi SpecialKey gui=NONE
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff
 +hi Visual guibg=darkgrey

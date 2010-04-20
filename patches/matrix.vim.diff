@@ -1,5 +1,5 @@
---- originals/matrix.vim	2009-06-04 20:53:28.000000000 -0700
-+++ patched/matrix.vim	2010-04-11 18:06:14.000000000 -0700
+--- originals/matrix.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/matrix.vim	2010-04-20 10:59:00.000000000 -0700
 @@ -78,3 +78,21 @@
  hi Underlined   guifg=#55ff55 guibg=#000000 gui=underline
  hi Error        guifg=#55ff55 guibg=#339933
@@ -17,8 +17,8 @@
 +hi PmenuSel guibg=darkgrey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE

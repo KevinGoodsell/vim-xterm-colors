@@ -1,5 +1,5 @@
 --- originals/fog.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fog.vim	2010-04-13 10:27:13.000000000 -0700
++++ patched/fog.vim	2010-04-20 10:20:36.000000000 -0700
 @@ -17,154 +17,132 @@
  
  let colors_name = "fog"
@@ -162,10 +162,10 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=grey
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE
 +hi Todo guibg=yellow guifg=blue
 +hi Type gui=bold

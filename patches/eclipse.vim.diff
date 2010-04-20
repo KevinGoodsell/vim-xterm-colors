@@ -1,5 +1,5 @@
 --- originals/eclipse.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/eclipse.vim	2010-04-15 11:30:05.000000000 -0700
++++ patched/eclipse.vim	2010-04-20 10:17:25.000000000 -0700
 @@ -46,10 +46,10 @@
  highlight FoldColumn gui=none guifg=#6b6b6b guibg=#e7e7e7 ctermfg=black ctermbg=white
  
@@ -15,7 +15,7 @@
  
  " Other
  highlight Directory  gui=none guifg=#7050ff guibg=bg
-@@ -74,19 +74,15 @@
+@@ -74,19 +74,14 @@
  highlight String     gui=none guifg=#8010a0 guibg=bg      ctermfg=Yellow
  highlight Number     gui=none guifg=#0000ff guibg=bg      ctermfg=White
  
@@ -33,15 +33,14 @@
 -    hi link SpecialComment Special
 -    hi link Debug          Special
 -endif
-+
 +hi CursorColumn guibg=grey40
 +hi CursorLine gui=NONE guibg=grey40
 +hi MatchParen guibg=darkcyan
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
  
  " vim:ff=unix:

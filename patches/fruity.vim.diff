@@ -1,5 +1,5 @@
 --- originals/fruity.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fruity.vim	2010-04-11 12:57:17.000000000 -0700
++++ patched/fruity.vim	2010-04-20 10:23:59.000000000 -0700
 @@ -145,3 +145,33 @@
  " ERuby Highlighting (for my eruby.vim)
  hi erubyRubyDelim   guifg=#2c8a16                   gui=bold
@@ -24,10 +24,10 @@
 +hi Question gui=bold guifg=green
 +hi SignColumn guifg=cyan
 +hi SpecialKey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Underlined guifg=#80a0ff
 +hi Visual guibg=darkgrey

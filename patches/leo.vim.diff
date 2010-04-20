@@ -1,5 +1,5 @@
---- originals/leo.vim	2010-04-05 19:44:07.000000000 -0700
-+++ patched/leo.vim	2010-04-12 17:06:04.000000000 -0700
+--- originals/leo.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/leo.vim	2010-04-20 10:50:08.000000000 -0700
 @@ -58,8 +58,6 @@
          end
  endif
@@ -38,10 +38,10 @@
 +hi PmenuThumb gui=reverse guibg=NONE
 +hi Question gui=bold guifg=green
 +hi SignColumn guifg=cyan
-+hi SpellBad guifg=NONE
-+hi SpellCap gui=undercurl guifg=NONE guisp=blue
-+hi SpellLocal gui=undercurl guifg=NONE guisp=cyan
-+hi SpellRare gui=undercurl guifg=NONE guisp=magenta
++hi SpellBad guibg=NONE guifg=NONE
++hi SpellCap guibg=NONE guifg=NONE
++hi SpellLocal guibg=NONE guifg=NONE
++hi SpellRare guibg=NONE guifg=NONE
 +hi StatusLine gui=bold,reverse
 +hi StatusLineNC gui=reverse
 +hi TabLine gui=underline guibg=darkgrey guifg=NONE
