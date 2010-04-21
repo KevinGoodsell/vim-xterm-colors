@@ -1,5 +1,5 @@
 --- originals/baycomb.vim	2010-01-20 22:46:06.000000000 -0800
-+++ patched/baycomb.vim	2010-04-19 22:20:48.000000000 -0700
++++ patched/baycomb.vim	2010-04-20 22:01:42.000000000 -0700
 @@ -25,6 +25,7 @@
  
  if &background == "dark"
@@ -8,7 +8,7 @@
  hi NonText      guifg=#382920 guibg=bg
  
  hi Folded       guibg=#232235 guifg=grey
-@@ -105,84 +106,28 @@
+@@ -105,84 +106,29 @@
  hi Pmenu        guibg=#3a6595 guifg=#9aadd5
  hi PmenuSel     guibg=#4a85ba guifg=#b0d0f0                    
  
@@ -86,6 +86,11 @@
 -"
 -hi MatchParen	ctermfg=black ctermbg=green
 -
++hi SpellBad ctermbg=88
++hi SpellCap ctermbg=19
++hi SpellRare ctermbg=90
++hi SpellLocal ctermbg=30
++
 +hi CursorColumn guibg=grey40
 +hi CursorLine gui=NONE guibg=grey40
 +hi DiffDelete gui=bold
@@ -97,10 +102,6 @@
 +hi PmenuSbar guibg=grey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad guibg=NONE
-+hi SpellCap guibg=NONE
-+hi SpellLocal guibg=NONE
-+hi SpellRare guibg=NONE
 +hi WildMenu guibg=yellow guifg=black
 +hi lCursor guibg=fg guifg=bg
  
@@ -111,7 +112,7 @@
  hi NonText      guifg=#382920 guibg=#152555
  
  " syntax highlighting """"""""""""""""""""""""""""""""""""""""
-@@ -260,59 +205,27 @@
+@@ -260,59 +206,28 @@
  hi Pmenu        guibg=#3a6595 guifg=#9aadd5
  hi PmenuSel     guibg=#4a85ba guifg=#b0d0f0                    
  
@@ -168,6 +169,11 @@
 -" new Vim 7.0 items
 -hi Pmenu        ctermbg=darkblue ctermfg=lightgrey
 -hi PmenuSel     ctermbg=lightblue ctermfg=white                    
++hi SpellBad ctermbg=217
++hi SpellCap ctermbg=153
++hi SpellRare ctermbg=219
++hi SpellLocal ctermbg=159
++
 +hi CursorColumn guibg=grey90
 +hi CursorLine gui=NONE guibg=grey90
 +hi DiffAdd guibg=lightblue
@@ -182,10 +188,6 @@
 +hi PmenuSbar guibg=grey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad guibg=NONE
-+hi SpellCap guibg=NONE
-+hi SpellLocal guibg=NONE
-+hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE
 +hi WildMenu guibg=yellow guifg=black
 +hi lCursor guibg=fg guifg=bg

@@ -191,7 +191,12 @@ schemes = [
 
     # These ones use existing 'background' setting rather than setting it
     # explicitly:
-    ('baycomb.vim',         []),
+    ('baycomb.vim',         [
+        '--spell=none',
+        '-c', '354070', '60',
+        '-c', '6880ea', '110',
+        '-c', '004335', '23',
+    ]),
     ('earendel.vim',        ['--spell=none']),
     ('moria.vim',           ['--spell=none']),
     ('peaksea.vim',         ['--spell=none']),
