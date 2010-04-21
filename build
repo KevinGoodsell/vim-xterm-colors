@@ -344,24 +344,29 @@ def test_files():
 def patch(scheme):
     patch_file = os.path.join('patches', scheme + '.diff')
     if os.path.exists(patch_file):
-        fabricate.run('patch', '-p0', '-o', 'patched/%s' % scheme,
-                      'originals/%s' % scheme, patch_file)
+        fabricate.run('patch', '-p0', '-o', 'patched/' +  scheme,
+                      'originals/' + scheme, patch_file)
     else:
-        fabricate.run('cp', 'originals/' + scheme, 'patched/%s' % scheme)
+        fabricate.run('cp', 'originals/' + scheme, 'patched/' + scheme)
+
+def tag(scheme):
+    fabricate.run('./scripts/tag', 'patched/' + scheme, 'tagged/' + scheme)
 
 def build():
     mkdir('patched')
+    mkdir('tagged')
     for scheme in scheme_names:
         patch(scheme)
+        tag(scheme)
 
     mkdir('runtime/colors')
     for (scheme, args) in schemes:
-        cmd = './scripts/gui2xterm %s patched/%s > runtime/colors/%s' % \
+        cmd = './scripts/gui2xterm %s tagged/%s > runtime/colors/%s' % \
               (' '.join(args), scheme, scheme)
         fabricate.run('sh', '-c', cmd)
 
     for scheme in patch_only:
-        fabricate.run('cp', 'patched/' + scheme, 'runtime/colors/')
+        fabricate.run('cp', 'tagged/' + scheme, 'runtime/colors/')
 
 if __name__ == '__main__':
     fabricate.main()
