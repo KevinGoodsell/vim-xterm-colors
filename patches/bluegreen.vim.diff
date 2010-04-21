@@ -1,6 +1,15 @@
 --- originals/bluegreen.vim	2009-06-04 21:52:52.000000000 -0700
-+++ patched/bluegreen.vim	2010-04-19 22:52:02.000000000 -0700
-@@ -14,7 +14,7 @@
++++ patched/bluegreen.vim	2010-04-21 12:31:02.000000000 -0700
+@@ -3,6 +3,8 @@
+ " Last Change:  
+ " URL:                   
+ 
++" VIM-XTERM-TAG
++
+ 
+ " cool help screens
+ " :he group-name
+@@ -14,7 +16,7 @@
  if exists("syntax_on")
      syntax reset
  endif
@@ -9,7 +18,7 @@
  
  hi Normal       guifg=White guibg=#061A3E
  
-@@ -47,4 +47,35 @@
+@@ -47,4 +49,35 @@
  hi Ignore       guifg=grey60
  hi Todo guibg=#9C8C84 guifg=#244C0A
  

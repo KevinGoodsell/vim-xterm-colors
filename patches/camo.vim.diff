@@ -1,6 +1,15 @@
---- originals/camo.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/camo.vim	2010-04-20 09:13:37.000000000 -0700
-@@ -74,3 +74,24 @@
+--- originals/camo.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/camo.vim	2010-04-21 12:34:12.000000000 -0700
+@@ -2,6 +2,8 @@
+ " Maintainer:   Tim Aldrich <aldy0169@yahoo.com>
+ " Last Change:  19 January 2002
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -74,3 +76,24 @@
  hi Error        guifg=bisque    guibg=red
  hi Todo         guifg=red       guibg=bisque
  

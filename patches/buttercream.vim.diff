@@ -1,6 +1,15 @@
---- originals/buttercream.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/buttercream.vim	2010-04-20 09:10:41.000000000 -0700
-@@ -57,3 +57,21 @@
+--- originals/buttercream.vim	2009-06-04 20:53:28.000000000 -0700
++++ patched/buttercream.vim	2010-04-21 12:32:41.000000000 -0700
+@@ -7,6 +7,8 @@
+ " As of now only gui is supported
+ " Based on the theme fog theme by Thomas R. Kimpton <tomk@emcity.net>
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
+@@ -57,3 +59,21 @@
  hi Visual               guifg=LightGrey                                         gui=reverse
  hi VisualNOS                                                                    gui=underline,bold
  hi Todo                                         guibg=#ccaa22                   gui=bold,underline

@@ -1,6 +1,15 @@
---- originals/breeze.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/breeze.vim	2010-04-20 09:06:08.000000000 -0700
-@@ -68,3 +68,16 @@
+--- originals/breeze.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/breeze.vim	2010-04-21 12:31:53.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 1.0
+ " This color scheme uses a dark background.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -68,3 +70,16 @@
  hi Todo         gui=BOLD,UNDERLINE guifg=#ffb0b0 guibg=NONE
  hi Type         gui=NONE guifg=#80ffa0 guibg=NONE
  hi Underlined   gui=UNDERLINE guifg=#ffffff guibg=NONE

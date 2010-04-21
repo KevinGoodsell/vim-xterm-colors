@@ -1,6 +1,15 @@
 --- originals/BlackSea.vim	2010-04-12 17:13:29.000000000 -0700
-+++ patched/BlackSea.vim	2010-04-19 21:51:19.000000000 -0700
-@@ -35,3 +35,47 @@
++++ patched/BlackSea.vim	2010-04-21 12:30:19.000000000 -0700
+@@ -7,6 +7,8 @@
+ "
+ " Only values that differ from defaults are specified.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -35,3 +37,47 @@
  " Original values:
  "hi Constant guifg=DeepPink
  "hi PreProc guifg=Magenta ctermfg=Magenta

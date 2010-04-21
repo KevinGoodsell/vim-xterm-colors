@@ -1,6 +1,15 @@
---- originals/candy.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/candy.vim	2010-04-20 09:16:10.000000000 -0700
-@@ -76,3 +76,16 @@
+--- originals/candy.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/candy.vim	2010-04-21 12:35:17.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 1.0
+ " This color scheme uses a dark background.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -76,3 +78,16 @@
  hi htmlItalic               gui=ITALIC
  hi htmlUnderline            gui=UNDERLINE
  hi htmlUnderlineItalic      gui=UNDERLINE,ITALIC

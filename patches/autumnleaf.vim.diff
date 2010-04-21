@@ -1,14 +1,14 @@
---- originals/autumnleaf.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/autumnleaf.vim	2010-04-21 11:58:33.000000000 -0700
-@@ -2,6 +2,8 @@
- " Maintainer: Anders Korte
- " Last Change: 17 Oct 2004
+--- originals/autumnleaf.vim	2010-01-20 22:48:50.000000000 -0800
++++ patched/autumnleaf.vim	2010-04-21 12:40:30.000000000 -0700
+@@ -4,6 +4,8 @@
+ 
+ " AutumnLeaf color scheme 1.0
  
 +" VIM-XTERM-TAG
 +
- " AutumnLeaf color scheme 1.0
- 
  set background=light
+ 
+ hi clear
 @@ -12,7 +14,7 @@
      syntax reset
  endif
