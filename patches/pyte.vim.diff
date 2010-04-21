@@ -1,5 +1,5 @@
---- originals/pyte.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/pyte.vim	2010-04-13 11:36:30.000000000 -0700
+--- originals/pyte.vim	2009-06-04 20:37:46.000000000 -0700
++++ patched/pyte.vim	2010-04-20 20:16:20.000000000 -0700
 @@ -90,3 +90,22 @@
  hi DiffDelete guifg=NONE guibg=#f0e0b0 gui=italic,bold
  
@@ -16,10 +16,10 @@
 +hi Question gui=bold guifg=seagreen
 +hi Search guibg=yellow
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Visual guibg=lightgrey
 +hi WarningMsg guifg=red
 +hi WildMenu guibg=yellow guifg=black

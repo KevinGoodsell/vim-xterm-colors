@@ -1,5 +1,5 @@
---- originals/torte.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/torte.vim	2010-04-12 11:52:22.000000000 -0700
+--- originals/torte.vim	2010-01-21 00:00:16.000000000 -0800
++++ patched/torte.vim	2010-04-20 20:36:14.000000000 -0700
 @@ -27,17 +27,6 @@
  highlight Statement  guifg=Yellow                       gui=NONE
  highlight Type                                          gui=NONE
@@ -47,10 +47,10 @@
 +hi Question gui=bold guifg=green
 +hi SignColumn guibg=grey guifg=cyan
 +hi SpecialKey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold guifg=magenta
 +hi Todo guibg=yellow guifg=blue

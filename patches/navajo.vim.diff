@@ -1,5 +1,5 @@
---- originals/navajo.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/navajo.vim	2010-04-13 10:59:39.000000000 -0700
+--- originals/navajo.vim	2009-06-04 20:44:08.000000000 -0700
++++ patched/navajo.vim	2010-04-20 19:49:40.000000000 -0700
 @@ -39,7 +39,7 @@
  hi VisualNOS term=bold,underline cterm=bold,underline gui=reverse guifg=Grey guibg=white
  hi WarningMsg term=standout ctermfg=DarkRed gui=bold guifg=Red
@@ -22,10 +22,10 @@
 +hi PmenuSel guibg=grey
 +hi Search gui=NONE guifg=NONE
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE
 +hi Underlined guifg=slateblue
 +

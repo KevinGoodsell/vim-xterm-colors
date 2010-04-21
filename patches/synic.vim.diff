@@ -1,5 +1,5 @@
 --- originals/synic.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/synic.vim	2010-04-11 23:12:02.000000000 -0700
++++ patched/synic.vim	2010-04-20 20:29:23.000000000 -0700
 @@ -78,4 +78,16 @@
  hi Type         gui=NONE guifg=NavajoWhite guibg=bg
  hi Underlined   gui=underline guifg=fg guibg=bg
@@ -11,9 +11,9 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +
  " vim: sw=2

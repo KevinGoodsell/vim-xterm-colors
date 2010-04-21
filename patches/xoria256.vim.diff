@@ -1,5 +1,5 @@
 --- originals/xoria256.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/xoria256.vim	2010-04-12 13:54:56.000000000 -0700
++++ patched/xoria256.vim	2010-04-20 20:41:09.000000000 -0700
 @@ -91,4 +91,18 @@
  hi diffChange   ctermfg=bg  guifg=bg      ctermbg=181 guibg=#dfafaf
  hi diffText     ctermfg=bg  guifg=bg      ctermbg=174 guibg=#df8787 cterm=none gui=none
@@ -10,10 +10,10 @@
 +hi MoreMsg gui=bold guifg=seagreen
 +hi Question gui=bold guifg=green
 +hi SignColumn guibg=grey
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Title gui=bold guifg=magenta
 +hi WarningMsg guifg=red
 +hi lCursor guibg=fg guifg=bg

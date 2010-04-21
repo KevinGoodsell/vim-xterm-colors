@@ -1,5 +1,5 @@
 --- originals/olive.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/olive.vim	2010-04-11 21:35:51.000000000 -0700
++++ patched/olive.vim	2010-04-20 20:07:55.000000000 -0700
 @@ -117,3 +117,27 @@
  hi texMatcher           guifg=yellowgreen                       gui=none
  hi texMath                                                      gui=none
@@ -19,10 +19,10 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=darkgrey
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Type gui=bold
 +hi Underlined guifg=#80a0ff

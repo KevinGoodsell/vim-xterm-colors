@@ -1,5 +1,5 @@
---- originals/PapayaWhip.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/PapayaWhip.vim	2010-04-13 11:25:11.000000000 -0700
+--- originals/PapayaWhip.vim	2010-04-12 21:24:23.000000000 -0700
++++ patched/PapayaWhip.vim	2010-04-20 20:08:37.000000000 -0700
 @@ -29,3 +29,44 @@
  hi VertSplit gui=None guibg=Gray
  hi Identifier guifg=#005f5f
@@ -30,10 +30,10 @@
 +hi SignColumn guibg=grey guifg=darkblue
 +hi Special guifg=slateblue
 +hi SpecialKey guifg=blue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold guifg=brown
 +hi StatusLine gui=bold,reverse
 +hi TabLine guibg=lightgrey guifg=NONE

@@ -1,5 +1,5 @@
---- originals/wood.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/wood.vim	2010-04-12 12:11:23.000000000 -0700
+--- originals/wood.vim	2010-01-20 22:55:34.000000000 -0800
++++ patched/wood.vim	2010-04-20 20:40:04.000000000 -0700
 @@ -37,3 +37,32 @@
  hi Todo				guibg=black guifg=white
  hi WildMenu			guibg=brown
@@ -22,10 +22,10 @@
 +hi PmenuSel guibg=darkgrey
 +hi Question gui=bold
 +hi SignColumn guibg=grey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold

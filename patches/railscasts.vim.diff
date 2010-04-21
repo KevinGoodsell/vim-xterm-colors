@@ -1,5 +1,5 @@
 --- originals/railscasts.vim	2010-01-20 22:49:20.000000000 -0800
-+++ patched/railscasts.vim	2010-04-11 21:58:05.000000000 -0700
++++ patched/railscasts.vim	2010-04-20 20:16:47.000000000 -0700
 @@ -122,3 +122,31 @@
  hi xmlTag                    guifg=#E8BF6A
  hi xmlTagName                guifg=#E8BF6A
@@ -22,10 +22,10 @@
 +hi SignColumn guibg=grey guifg=cyan
 +hi Special guifg=orange
 +hi SpecialKey guifg=cyan
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=cyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=darkgrey guifg=NONE
 +hi Title gui=bold
 +hi Underlined guifg=#80a0ff

@@ -1,5 +1,5 @@
---- originals/tabula.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/tabula.vim	2010-04-20 11:53:18.000000000 -0700
+--- originals/tabula.vim	2009-06-04 20:53:30.000000000 -0700
++++ patched/tabula.vim	2010-04-20 20:30:20.000000000 -0700
 @@ -24,8 +24,8 @@
  "   such that text files be displayed other than e.g. c sources
  " =============================================================================
@@ -28,17 +28,13 @@
  "------------------------------------------------------------------------------
  " Preprocessor Variants:
  "------------------------------------------------------------------------------
-@@ -455,6 +455,17 @@
+@@ -455,6 +455,13 @@
  hi BadWord              guifg=#E4E300                   gui=underline   ctermfg=11                      cterm=underline
  
  
 +hi CursorLine gui=NONE
 +hi DiffDelete gui=bold
 +hi NonText gui=bold
-+hi SpellBad gui=undercurl guisp=#ff0000
-+hi SpellCap gui=undercurl guisp=#afaf00
-+hi SpellLocal gui=undercurl guisp=#00afaf
-+hi SpellRare gui=undercurl guisp=#bf4040
 +hi Underlined guifg=#80a0ff
 +hi lCursor guibg=fg guifg=bg
 +hi pythonPreCondit guifg=NONE

@@ -1,5 +1,5 @@
---- originals/oceanlight.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/oceanlight.vim	2010-04-13 11:20:01.000000000 -0700
+--- originals/oceanlight.vim	2009-06-04 20:44:22.000000000 -0700
++++ patched/oceanlight.vim	2010-04-20 20:07:23.000000000 -0700
 @@ -20,6 +20,7 @@
  
  """" GUI Colors
@@ -34,9 +34,9 @@
 +hi PmenuSbar guibg=grey
 +hi PmenuSel guibg=grey
 +hi SignColumn guibg=grey guifg=darkblue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi TabLine guibg=lightgrey guifg=NONE
 +hi lCursor guibg=fg guifg=bg

@@ -1,5 +1,5 @@
---- originals/print_bw.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/print_bw.vim	2010-04-13 11:31:15.000000000 -0700
+--- originals/print_bw.vim	2009-06-04 20:53:30.000000000 -0700
++++ patched/print_bw.vim	2010-04-20 20:09:41.000000000 -0700
 @@ -61,5 +61,40 @@
  " Ideally, the bg color would be white but VIM cannot print white on black!
  highlight Error         cterm=bold,reverse ctermfg=black ctermbg=grey gui=bold,reverse guifg=black guibg=grey
@@ -26,10 +26,10 @@
 +hi Search guibg=yellow
 +hi SignColumn guibg=grey guifg=darkblue
 +hi SpecialKey guifg=blue
-+hi SpellBad gui=undercurl guisp=red
-+hi SpellCap gui=undercurl guisp=blue
-+hi SpellLocal gui=undercurl guisp=darkcyan
-+hi SpellRare gui=undercurl guisp=magenta
++hi SpellBad guibg=NONE
++hi SpellCap guibg=NONE
++hi SpellLocal guibg=NONE
++hi SpellRare guibg=NONE
 +hi Statement gui=bold
 +hi TabLine guibg=lightgrey guifg=NONE
 +hi Title gui=bold guifg=magenta
