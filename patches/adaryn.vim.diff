@@ -1,6 +1,15 @@
---- originals/adaryn.vim	2010-04-10 21:40:16.000000000 -0700
-+++ patched/adaryn.vim	2010-04-19 21:52:55.000000000 -0700
-@@ -70,3 +70,22 @@
+--- originals/adaryn.vim	2010-04-11 09:37:40.000000000 -0700
++++ patched/adaryn.vim	2010-04-21 10:08:54.000000000 -0700
+@@ -8,6 +8,8 @@
+ " The cterm background is black since the dark blue was just too light.
+ " Also the cterm colors are very close to an old Borland C++ color setup.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -70,3 +72,22 @@
  hi Ignore	guifg=bg ctermfg=bg
  
  

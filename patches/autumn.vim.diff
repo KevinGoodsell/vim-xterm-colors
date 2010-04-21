@@ -1,6 +1,15 @@
---- originals/autumn.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/autumn.vim	2010-04-19 22:15:28.000000000 -0700
-@@ -67,3 +67,16 @@
+--- originals/autumn.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/autumn.vim	2010-04-21 11:58:59.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 1.0
+ " This color scheme uses a light background.
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
+@@ -67,3 +69,16 @@
  hi Todo         gui=BOLD,UNDERLINE guifg=#0080f0 guibg=NONE
  hi Type         gui=BOLD guifg=#b06c58 guibg=NONE
  hi Underlined   gui=UNDERLINE guifg=blue guibg=NONE

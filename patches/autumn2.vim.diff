@@ -1,6 +1,14 @@
---- originals/autumn2.vim	2009-06-04 21:52:32.000000000 -0700
-+++ patched/autumn2.vim	2010-04-19 22:07:41.000000000 -0700
-@@ -8,7 +8,7 @@
+--- originals/autumn2.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/autumn2.vim	2010-04-21 11:58:06.000000000 -0700
+@@ -2,13 +2,15 @@
+ " Maintainer:   Antony Scriven <ad_scriven@postmaster.co.uk>
+ " Last Change:  2003-06-12
+ "
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
          syntax reset
  endif
  
@@ -9,7 +17,7 @@
  
  hi Normal       term=none      cterm=none ctermfg=black         ctermbg=White           gui=none guifg=Black            guibg=#f0f2f0
  hi Cursor       term=none      cterm=none ctermfg=white         ctermbg=darkgrey        gui=none guifg=black            guibg=red
-@@ -32,17 +32,10 @@
+@@ -32,17 +34,10 @@
  hi NonText      term=bold      cterm=none ctermfg=lightgrey     ctermbg=white           gui=none guifg=#c6c6c6          guibg=bg
  hi StatusLine   term=reverse   cterm=none ctermfg=white         ctermbg=black           gui=none guifg=#80624d          guibg=#ddd9b8
  hi Title        term=bold      cterm=none ctermfg=DarkMagenta   ctermbg=white           gui=none guifg=DarkMagenta      guibg=bg
@@ -27,7 +35,7 @@
  hi VisualNOS    term=bold      cterm=none ctermfg=grey         ctermbg=black        gui=none guifg=grey         guibg=black
  hi WarningMsg   term=standout  cterm=none ctermfg=Red          ctermbg=white        gui=none guifg=Red          guibg=bg
  hi WildMenu     term=bold      cterm=none ctermfg=darkblue     ctermbg=yellow       gui=none guifg=black        guibg=lightyellow
-@@ -85,4 +78,18 @@
+@@ -85,4 +80,18 @@
  hi link vimfunction     function
  
  
