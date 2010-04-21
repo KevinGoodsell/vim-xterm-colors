@@ -344,11 +344,10 @@ def test_files():
 def patch(scheme):
     patch_file = os.path.join('patches', scheme + '.diff')
     if os.path.exists(patch_file):
-        fabricate.run('sh', '-c',
-                      'patch -p0 -o patched/%s originals/%s < %s' %
-                      (scheme, scheme, patch_file))
+        fabricate.run('patch', '-p0', '-o', 'patched/%s' % scheme,
+                      'originals/%s' % scheme, patch_file)
     else:
-        fabricate.run('cp', os.path.join('originals', scheme), 'patched/')
+        fabricate.run('cp', 'originals/' + scheme, 'patched/%s' % scheme)
 
 def build():
     mkdir('patched')
