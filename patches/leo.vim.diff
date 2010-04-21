@@ -1,5 +1,5 @@
---- originals/leo.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/leo.vim	2010-04-20 10:50:08.000000000 -0700
+--- originals/leo.vim	2010-04-05 19:44:07.000000000 -0700
++++ patched/leo.vim	2010-04-20 21:07:16.000000000 -0700
 @@ -58,8 +58,6 @@
          end
  endif
@@ -18,7 +18,7 @@
  " Normal should come first
  hi Normal                               cterm=none              ctermfg=255             ctermbg=16 guibg=#000000 guifg=#ffffff
  hi CursorLine           cterm=none              ctermbg=16              guibg=#101010
-@@ -148,3 +148,34 @@
+@@ -148,3 +148,30 @@
  
  " ADDITIONNAL
  hi Repeat               cterm=none              ctermfg=142             guifg=#afaf00
@@ -38,10 +38,6 @@
 +hi PmenuThumb gui=reverse guibg=NONE
 +hi Question gui=bold guifg=green
 +hi SignColumn guifg=cyan
-+hi SpellBad guibg=NONE guifg=NONE
-+hi SpellCap guibg=NONE guifg=NONE
-+hi SpellLocal guibg=NONE guifg=NONE
-+hi SpellRare guibg=NONE guifg=NONE
 +hi StatusLine gui=bold,reverse
 +hi StatusLineNC gui=reverse
 +hi TabLine gui=underline guibg=darkgrey guifg=NONE
