@@ -1,15 +1,17 @@
---- originals/herald.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/herald.vim	2010-04-20 10:29:41.000000000 -0700
-@@ -4,6 +4,8 @@
+--- originals/herald.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/herald.vim	2010-04-21 15:23:40.000000000 -0700
+@@ -4,6 +4,10 @@
  " Version:    0.2.0
  " Notes:      Supports 8, 16, 256 and 16,777,216 (RGB) color modes
  
++" VIM-XTERM-TAG
++
 +set background=dark
 +
  hi clear
  
  if exists("syntax_on")
-@@ -12,13 +14,9 @@
+@@ -12,13 +16,9 @@
  
  let colors_name = "herald"
  
@@ -23,7 +25,7 @@
  	" -> Text; Miscellaneous
  	hi Normal         guibg=#1F1F1F guifg=#D0D0D0 gui=none
  	hi SpecialKey     guibg=#1F1F1F guifg=#E783E9 gui=none
-@@ -104,270 +102,6 @@
+@@ -104,270 +104,6 @@
  	hi htmlUnderline            guibg=#1F1F1F guifg=#D0D0D0 gui=underline
  	hi htmlUnderlineItalic      guibg=#1F1F1F guifg=#D0D0D0 gui=underline,italic
  
@@ -294,7 +296,7 @@
  hi! default link bbcodeBold htmlBold
  hi! default link bbcodeBoldItalic htmlBoldItalic
  hi! default link bbcodeBoldItalicUnderline htmlBoldUnderlineItalic
-@@ -383,3 +117,6 @@
+@@ -383,3 +119,6 @@
  	hi SpellLocal guisp=#FFEE68 gui=undercurl
  	hi SpellRare  guisp=#6DF584 gui=undercurl
  endif

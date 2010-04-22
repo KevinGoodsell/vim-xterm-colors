@@ -1,6 +1,15 @@
 --- originals/night.vim	2010-01-20 23:43:38.000000000 -0800
-+++ patched/night.vim	2010-04-20 20:00:46.000000000 -0700
-@@ -68,3 +68,16 @@
++++ patched/night.vim	2010-04-21 21:13:31.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 2.2
+ " This color scheme uses a dark background.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -68,3 +70,16 @@
  hi Todo         gui=BOLD guifg=#00ffe0 guibg=#0080a0
  hi Type         gui=BOLD guifg=#bbaaff guibg=NONE
  hi Underlined   gui=UNDERLINE,BOLD guifg=#f0f0f8 guibg=NONE

@@ -1,6 +1,14 @@
 --- originals/navajo.vim	2009-06-04 20:44:08.000000000 -0700
-+++ patched/navajo.vim	2010-04-20 19:49:40.000000000 -0700
-@@ -39,7 +39,7 @@
++++ patched/navajo.vim	2010-04-21 18:47:19.000000000 -0700
+@@ -5,6 +5,7 @@
+ "
+ " This color scheme uses a "navajo-white" background
+ "
++" VIM-XTERM-TAG
+ 
+ set background=light
+ hi clear
+@@ -39,7 +40,7 @@
  hi VisualNOS term=bold,underline cterm=bold,underline gui=reverse guifg=Grey guibg=white
  hi WarningMsg term=standout ctermfg=DarkRed gui=bold guifg=Red
  hi WildMenu term=standout ctermfg=Black ctermbg=DarkYellow guifg=Black guibg=Yellow
@@ -9,7 +17,7 @@
  hi FoldColumn term=standout ctermfg=DarkBlue ctermbg=Gray guifg=DarkBlue guibg=#c0c0c0
  hi DiffAdd term=bold ctermbg=DarkBlue guibg=White
  hi DiffChange term=bold ctermbg=DarkMagenta guibg=#edb5cd
-@@ -62,4 +62,20 @@
+@@ -62,4 +63,20 @@
  hi Error term=reverse ctermfg=Gray ctermbg=DarkRed cterm=bold gui=bold guifg=White guibg=Red
  hi Todo term=standout ctermfg=DarkBlue ctermbg=Yellow guifg=Blue guibg=Yellow
  

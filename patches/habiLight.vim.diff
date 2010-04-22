@@ -1,6 +1,15 @@
 --- originals/habiLight.vim	2010-04-12 21:24:23.000000000 -0700
-+++ patched/habiLight.vim	2010-04-18 22:21:35.000000000 -0700
-@@ -118,7 +118,7 @@
++++ patched/habiLight.vim	2010-04-21 15:23:12.000000000 -0700
+@@ -10,6 +10,8 @@
+ "              1.1: Vim 7 support added (completion, spell checker, paren, tabs)
+ "              1.0: initial version
+ "
++" VIM-XTERM-TAG
++
+ " Intro {{{1
+ set background=light
+ hi clear
+@@ -118,7 +120,7 @@
      highlight SpellBad    term=reverse   ctermbg=12 gui=undercurl guisp=Red
      highlight SpellCap    term=reverse   ctermbg=9  gui=undercurl guisp=Blue
      highlight SpellRare   term=reverse   ctermbg=13 gui=undercurl guisp=Magenta
@@ -9,7 +18,7 @@
  endif 
  
  " Completion {{{1
-@@ -134,5 +134,14 @@
+@@ -134,5 +136,14 @@
  
  highlight MatchParen  term=reverse ctermbg=11 gui=bold guibg=#B5EEB5 guifg=black
  

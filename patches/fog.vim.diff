@@ -1,6 +1,15 @@
---- originals/fog.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fog.vim	2010-04-20 10:20:36.000000000 -0700
-@@ -17,154 +17,132 @@
+--- originals/fog.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/fog.vim	2010-04-21 13:16:48.000000000 -0700
+@@ -7,6 +7,8 @@
+ " help pick things out in the files they edit, but doesn't want
+ " **C**O**N**T**R**A**S**T**!
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ 
+ hi clear
+@@ -17,154 +19,132 @@
  
  let colors_name = "fog"
  

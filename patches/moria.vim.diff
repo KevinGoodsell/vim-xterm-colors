@@ -1,6 +1,12 @@
---- originals/moria.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/moria.vim	2010-04-19 10:27:09.000000000 -0700
-@@ -46,6 +46,7 @@
+--- originals/moria.vim	2010-01-20 22:44:28.000000000 -0800
++++ patched/moria.vim	2010-04-21 18:43:41.000000000 -0700
+@@ -1,3 +1,5 @@
++" VIM-XTERM-TAG
++
+ if exists("g:moria_style")
+     let s:moria_style = g:moria_style
+ else
+@@ -46,6 +48,7 @@
          hi CursorColumn ctermbg=DarkGray ctermfg=White guibg=#3a3a3a gui=none
          hi CursorLine ctermbg=DarkGray ctermfg=White guibg=#3a3a3a gui=none
      endif
@@ -8,7 +14,7 @@
      if s:moria_monochrome == 1
          hi FoldColumn ctermbg=bg guibg=bg guifg=#a0a0a0 gui=none
          hi LineNr guifg=#a0a0a0 gui=none
-@@ -103,11 +104,15 @@
+@@ -103,11 +106,15 @@
          hi SpellCap guisp=#2c2cee gui=undercurl
          hi SpellLocal guisp=#2ceeee gui=undercurl
          hi SpellRare guisp=#ee2cee gui=undercurl
@@ -25,7 +31,7 @@
      else
          hi Visual ctermbg=LightGray ctermfg=Black guibg=#606060 guifg=fg gui=none
      endif
-@@ -142,6 +147,10 @@
+@@ -142,6 +149,10 @@
      hi htmlItalic ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=italic
      hi htmlUnderline ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=underline
      hi htmlUnderlineItalic ctermbg=Black ctermfg=White guibg=bg guifg=fg gui=underline,italic
@@ -36,7 +42,7 @@
  elseif &background == "light"
      if s:moria_style == "light"
          hi Normal ctermbg=White ctermfg=Black guibg=#f0f0f0 guifg=#000000 gui=none
-@@ -154,6 +163,7 @@
+@@ -154,6 +165,7 @@
          hi CursorColumn ctermbg=LightGray ctermfg=Black guibg=#dfdfdf gui=none
          hi CursorLine ctermbg=LightGray ctermfg=Black guibg=#dfdfdf gui=none
      endif
@@ -44,7 +50,7 @@
      if s:moria_monochrome == 1
          hi FoldColumn ctermbg=bg guibg=bg guifg=#7a7a7a gui=none
          hi Folded guibg=#cfcfcf guifg=#404040 gui=bold
-@@ -203,11 +213,15 @@
+@@ -203,11 +215,15 @@
          hi SpellCap guisp=#2c2cee gui=undercurl
          hi SpellLocal guisp=#008b8b gui=undercurl
          hi SpellRare guisp=#ee2cee gui=undercurl
@@ -61,7 +67,7 @@
      else
          hi Visual ctermbg=LightGray ctermfg=Black guibg=#c4c4c4 guifg=fg gui=none
      endif    
-@@ -236,6 +250,9 @@
+@@ -236,6 +252,9 @@
      hi htmlItalic ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=italic
      hi htmlUnderline ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=underline
      hi htmlUnderlineItalic ctermbg=White ctermfg=Black guibg=bg guifg=fg gui=underline,italic

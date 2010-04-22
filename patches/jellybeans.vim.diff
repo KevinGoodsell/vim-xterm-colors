@@ -1,6 +1,15 @@
 --- originals/jellybeans.vim	2010-01-20 22:48:48.000000000 -0800
-+++ patched/jellybeans.vim	2010-04-18 23:00:30.000000000 -0700
-@@ -269,9 +269,9 @@
++++ patched/jellybeans.vim	2010-04-21 15:27:19.000000000 -0700
+@@ -37,6 +37,8 @@
+ " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ " THE SOFTWARE.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ 
+ hi clear
+@@ -269,9 +271,9 @@
  		if !l:fge && !l:bge
  			exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
  		elseif !l:fge && l:bge
@@ -12,7 +21,7 @@
  		endif
  	endif
  
-@@ -294,7 +294,7 @@
+@@ -294,7 +296,7 @@
  
    call s:X("TabLine","000000","b0b8c0","italic","","Black")
    call s:X("TabLineFill","9098a0","","","","")
@@ -21,7 +30,7 @@
  
    " Auto-completion
    call s:X("Pmenu","ffffff","000000","","","")
-@@ -343,7 +343,7 @@
+@@ -343,7 +345,7 @@
  
  call s:X("Directory","dad085","","","","")
  call s:X("ErrorMsg","","902020","","","")
@@ -30,7 +39,7 @@
  
  " Diff
  
-@@ -397,6 +397,23 @@
+@@ -397,6 +399,23 @@
  " Tag list
  hi link TagListFileName Directory
  

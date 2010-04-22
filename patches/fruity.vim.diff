@@ -1,6 +1,15 @@
---- originals/fruity.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fruity.vim	2010-04-20 10:23:59.000000000 -0700
-@@ -145,3 +145,33 @@
+--- originals/fruity.vim	2009-06-04 20:53:28.000000000 -0700
++++ patched/fruity.vim	2010-04-21 13:19:42.000000000 -0700
+@@ -5,6 +5,8 @@
+ " Author:   Armin Ronacher <armin.ronacher@active-4.com>
+ " Version:  0.2
+ "
++" VIM-XTERM-TAG
++
+ set background=dark
+ 
+ hi clear
+@@ -145,3 +147,33 @@
  " ERuby Highlighting (for my eruby.vim)
  hi erubyRubyDelim   guifg=#2c8a16                   gui=bold
  hi erubyComment     guifg=#4d9b3a                   gui=italic

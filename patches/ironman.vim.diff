@@ -1,6 +1,15 @@
 --- originals/ironman.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/ironman.vim	2010-04-18 22:19:43.000000000 -0700
-@@ -124,10 +124,15 @@
++++ patched/ironman.vim	2010-04-21 15:25:37.000000000 -0700
+@@ -7,6 +7,8 @@
+ " GUI only
+ " inspired by colorsheme PYTE
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
+@@ -124,10 +126,15 @@
  highlight SpellBad           gui=undercurl guisp=Red
  highlight SpellCap           gui=undercurl guisp=Blue
  highlight SpellRare          gui=undercurl guisp=Magenta

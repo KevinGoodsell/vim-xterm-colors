@@ -1,6 +1,14 @@
 --- originals/northland.vim	2009-06-04 20:53:28.000000000 -0700
-+++ patched/northland.vim	2010-04-11 21:09:38.000000000 -0700
-@@ -147,3 +147,6 @@
++++ patched/northland.vim	2010-04-21 21:14:27.000000000 -0700
+@@ -5,6 +5,7 @@
+ " Version:      0.2
+ " Last Change:  24.11.2008. 19:13
+ " =====
++" VIM-XTERM-TAG
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -147,3 +148,6 @@
  
  "hi fortranTodo guifg=Black guibg=#507080
  "hi fortranContinueMark guifg=White guibg=DarkRed

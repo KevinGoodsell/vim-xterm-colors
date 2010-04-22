@@ -1,6 +1,15 @@
---- originals/fnaqevan.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fnaqevan.vim	2010-04-20 10:19:43.000000000 -0700
-@@ -65,3 +65,17 @@
+--- originals/fnaqevan.vim	2010-01-20 22:52:32.000000000 -0800
++++ patched/fnaqevan.vim	2010-04-21 13:16:19.000000000 -0700
+@@ -4,6 +4,8 @@
+ "
+ " This color scheme uses a black (dark) background.
+ 
++" VIM-XTERM-TAG
++
+ " First remove all existing highlighting.
+ set background=dark
+ hi clear
+@@ -65,3 +67,17 @@
  hi rcursor      guibg=#00CCFF guifg=#000000 gui=NONE
  hi lcursor      guibg=#40D040 guifg=#000000 gui=NONE
  

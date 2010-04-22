@@ -1,6 +1,14 @@
 --- originals/nightshimmer.vim	2010-01-20 22:53:46.000000000 -0800
-+++ patched/nightshimmer.vim	2010-04-20 19:58:00.000000000 -0700
-@@ -19,6 +19,7 @@
++++ patched/nightshimmer.vim	2010-04-21 21:13:09.000000000 -0700
+@@ -4,6 +4,7 @@
+ " Version: 0.3
+ " URI: http://localhost/
+ 
++" VIM-XTERM-TAG
+ 
+ """ Init
+ set background=dark
+@@ -19,6 +20,7 @@
  
  """" GUI Colors
  
@@ -8,7 +16,7 @@
  highlight Cursor        gui=None guibg=Green guifg=White
  highlight CursorIM gui=bold guifg=white guibg=Green1
  highlight Directory     guifg=LightSeaGreen guibg=bg
-@@ -43,7 +44,6 @@
+@@ -43,7 +45,6 @@
      " Bottom fill (use e.g. same as LineNr)
      highlight NonText       gui=None guibg=grey6 guifg=Purple
  endif
@@ -16,7 +24,7 @@
  highlight Question      gui=bold  guifg=SeaGreen2 guibg=bg
  highlight Search        gui=NONE guibg=Purple4 guifg=NONE
  highlight SpecialKey    guibg=#123A4A guifg=#426272
-@@ -81,9 +81,9 @@
+@@ -81,9 +82,9 @@
  
  highlight PreProc       guifg=MediumPurple1
      "hi Include gui=None guifg=MediumPurple1 guibg=bg
@@ -29,7 +37,7 @@
  
  highlight Type          gui=NONE guifg=LightBlue
      "hi StorageClass gui=None guifg=LightBlue guibg=bg
-@@ -109,3 +109,17 @@
+@@ -109,3 +110,17 @@
  
  
  

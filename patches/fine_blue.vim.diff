@@ -1,6 +1,15 @@
---- originals/fine_blue.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/fine_blue.vim	2010-04-20 10:19:14.000000000 -0700
-@@ -69,3 +69,16 @@
+--- originals/fine_blue.vim	2010-01-20 23:43:36.000000000 -0800
++++ patched/fine_blue.vim	2010-04-21 13:16:00.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 1.7
+ " This color scheme uses a light background.
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
+@@ -69,3 +71,16 @@
  hi Todo         gui=NONE guifg=#ff0070 guibg=#ffe0f4
  hi Type         gui=NONE guifg=#7040ff guibg=NONE
  hi Underlined   gui=UNDERLINE guifg=#0000ff guibg=NONE

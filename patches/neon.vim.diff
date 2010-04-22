@@ -1,6 +1,15 @@
 --- originals/neon.vim	2010-01-20 23:43:38.000000000 -0800
-+++ patched/neon.vim	2010-04-20 19:51:18.000000000 -0700
-@@ -68,3 +68,16 @@
++++ patched/neon.vim	2010-04-21 21:12:17.000000000 -0700
+@@ -4,6 +4,8 @@
+ "     version: 1.2
+ " This color scheme uses a dark background.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -68,3 +70,16 @@
  hi Todo         gui=BOLD,UNDERLINE guifg=#ff80d0 guibg=NONE
  hi Type         gui=NONE guifg=#60f0a8 guibg=NONE
  hi Underlined   gui=UNDERLINE guifg=fg guibg=NONE
