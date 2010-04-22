@@ -309,7 +309,9 @@ test_variations = {
 
 def make_test_file(schemefile, extra_cmds=None, variation=None):
     if extra_cmds is None:
-        extra_cmds = 'echo'
+        extra_cmds = []
+    if isinstance(extra_cmds, str):
+        extra_cmds = [extra_cmds]
 
     (scheme, ext) = os.path.splitext(schemefile)
 
@@ -322,10 +324,19 @@ def make_test_file(schemefile, extra_cmds=None, variation=None):
     # which fabricate doesn't know about, so fabricate gets the cwd wrong
     # and comes up with the wrong file path.
     hipath = '%s/test/%s.hi' % (os.path.abspath(os.getcwd()), outname)
-    fabricate.run('vim', '-u', 'NONE', '-c',
-                  r'set runtimepath^=runtime|set t_Co=256|set nocompatible|'
-                  r'%s|colorscheme %s|redir! > %s|silent hi|echo "\n"|q' %
-                  (extra_cmds, scheme, hipath))
+    vim_cmds = [
+        'set nocompatible',
+        'set runtimepath^=runtime',
+        'set t_Co=256',
+    ] + extra_cmds + [
+        'syntax on',
+        'colorscheme %s' % scheme,
+        'redir! > %s' % hipath,
+        'silent hi',
+        'echo "\\n"',
+        'q',
+    ]
+    fabricate.run('vim', '-u', 'NONE', '-c', '|'.join(vim_cmds))
     fabricate.run('sh', '-c',
                   r"sed -r -n -e 's/^(\w+)\s+xxx\s+(.*)/hi \1 \2/p' "
                   r"test/%s.hi > test/%s.vim" % (outname, outname))
