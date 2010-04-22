@@ -1,6 +1,15 @@
 --- originals/print_bw.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/print_bw.vim	2010-04-20 20:09:41.000000000 -0700
-@@ -61,5 +61,40 @@
++++ patched/print_bw.vim	2010-04-21 21:35:36.000000000 -0700
+@@ -3,6 +3,8 @@
+ " Last Change:  2nd June 2003
+ " Version:  1.1
+ 
++" VIM-XTERM-TAG
++
+ " Remove all existing highlighting.
+ set background=light
+ 
+@@ -61,5 +63,40 @@
  " Ideally, the bg color would be white but VIM cannot print white on black!
  highlight Error         cterm=bold,reverse ctermfg=black ctermbg=grey gui=bold,reverse guifg=black guibg=grey
  

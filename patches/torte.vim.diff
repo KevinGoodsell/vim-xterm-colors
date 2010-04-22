@@ -1,6 +1,15 @@
 --- originals/torte.vim	2010-01-21 00:00:16.000000000 -0800
-+++ patched/torte.vim	2010-04-20 20:36:14.000000000 -0700
-@@ -27,17 +27,6 @@
++++ patched/torte.vim	2010-04-21 22:15:49.000000000 -0700
+@@ -5,6 +5,8 @@
+ " optimized for TFT panels
+ " $Revision: 1.1 $
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -27,17 +29,6 @@
  highlight Statement  guifg=Yellow                       gui=NONE
  highlight Type                                          gui=NONE
  
@@ -18,7 +27,7 @@
  " only for vim 5
  if has("unix")
    if v:version<600
-@@ -49,3 +38,41 @@
+@@ -49,3 +40,41 @@
    endif
  endif
  

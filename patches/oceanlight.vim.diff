@@ -1,6 +1,14 @@
 --- originals/oceanlight.vim	2009-06-04 20:44:22.000000000 -0700
-+++ patched/oceanlight.vim	2010-04-20 20:07:23.000000000 -0700
-@@ -20,6 +20,7 @@
++++ patched/oceanlight.vim	2010-04-21 21:33:18.000000000 -0700
+@@ -5,6 +5,7 @@
+ " URL: 
+ " Originally based on oceandeep by Tom Regner (Vim script #368)
+ 
++" VIM-XTERM-TAG
+ 
+ """ Init
+ set background=light
+@@ -20,6 +21,7 @@
  
  """" GUI Colors
  
@@ -8,7 +16,7 @@
  highlight Cursor        gui=None guibg=PaleTurquoise3 guifg=White
  highlight CursorIM gui=none guifg=white guibg=PaleTurquoise3
  highlight Directory     guifg=SeaGreen guibg=bg
-@@ -37,12 +38,11 @@
+@@ -37,12 +39,11 @@
  highlight MoreMsg       gui=none  guifg=CadetBlue guibg=bg
  if version < 600
      " same as SpecialKey
@@ -22,7 +30,7 @@
  highlight Question      gui=none  guifg=SeaGreen2 guibg=bg
  highlight Search        gui=NONE guibg=SlateGray2 guifg=NONE
  highlight SpecialKey    guibg=LightGray guifg=CadetBlue
-@@ -103,3 +103,17 @@
+@@ -103,3 +104,17 @@
  highlight Error      guifg=FireBrick gui=Bold  guibg=bg
  
  highlight Todo          guifg=LightSkyBlue guibg=SlateGray

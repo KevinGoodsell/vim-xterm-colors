@@ -1,18 +1,21 @@
 --- originals/winter.vim	2009-06-04 20:44:44.000000000 -0700
-+++ patched/winter.vim	2010-04-20 20:38:56.000000000 -0700
-@@ -12,11 +12,6 @@
++++ patched/winter.vim	2010-04-21 22:19:47.000000000 -0700
+@@ -10,12 +10,9 @@
+ "                                                                              "
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  
- " Preprocess {{{
+-" Preprocess {{{
++" VIM-XTERM-TAG
  
 -if !has("gui_running")
 -    runtime! colors/default.vim
 -    finish
 -endif
--
++" Preprocess {{{
+ 
  set background=light
  
- hi clear
-@@ -79,6 +74,35 @@
+@@ -79,6 +76,35 @@
  
  " }}}
  

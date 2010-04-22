@@ -1,6 +1,13 @@
 --- originals/tcsoft.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/tcsoft.vim	2010-04-20 20:34:18.000000000 -0700
-@@ -10,7 +10,7 @@
++++ patched/tcsoft.vim	2010-04-21 22:14:41.000000000 -0700
+@@ -5,12 +5,14 @@
+ " Mein persönliches Farbschema. Es schont die Augen, da es keine grellen Farben verwendet.
+ " Am Besten geignet für PHP
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
  if exists("syntax_on")
    syntax reset
  endif
@@ -9,7 +16,7 @@
  
  if version >= 700
    hi CursorLine                 guibg=#FFFF33  gui=NONE  "hellgelb
-@@ -81,3 +81,28 @@
+@@ -81,3 +83,28 @@
  hi link   Delimiter	  Special
  hi link   SpecialComment Comment
  hi link   Debug		    Special

@@ -1,6 +1,6 @@
 --- originals/spring.vim	2009-06-04 20:43:32.000000000 -0700
-+++ patched/spring.vim	2010-04-20 20:27:38.000000000 -0700
-@@ -11,11 +11,6 @@
++++ patched/spring.vim	2010-04-21 21:46:53.000000000 -0700
+@@ -11,10 +11,7 @@
  
  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  
@@ -8,11 +8,11 @@
 -    runtime! colors/default.vim
 -    finish
 -endif
--
++" VIM-XTERM-TAG
+ 
  set background=light
  
- hi clear
-@@ -64,6 +59,34 @@
+@@ -64,6 +61,34 @@
  hi Special          guifg=#8B038D    guibg=NONE     gui=NONE
  hi SpecialKey       guifg=#d8a080    guibg=#e8e8e8  gui=NONE
  

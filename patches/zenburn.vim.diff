@@ -1,6 +1,15 @@
 --- originals/zenburn.vim	2010-01-20 22:44:02.000000000 -0800
-+++ patched/zenburn.vim	2010-04-20 20:41:48.000000000 -0700
-@@ -99,6 +99,38 @@
++++ patched/zenburn.vim	2010-04-21 22:24:03.000000000 -0700
+@@ -92,6 +92,8 @@
+ "   - Visual alternate color is broken? Try GVim >= 7.0.66 if you have trouble
+ "   - IME colouring (CursorIM)
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ hi clear
+ if exists("syntax_on")
+@@ -99,6 +101,38 @@
  endif
  let g:colors_name="zenburn"
  
@@ -39,7 +48,7 @@
  hi Boolean         guifg=#dca3a3
  hi Character       guifg=#dca3a3 gui=bold
  hi Comment         guifg=#7f9f7f gui=italic
-@@ -160,120 +192,6 @@
+@@ -160,120 +194,6 @@
  hi SpellRare  guisp=#bc6c9c guifg=#bc8cbc
  hi SpellLocal guisp=#7cac7c guifg=#9ccc9c
  
@@ -160,7 +169,7 @@
  if exists("g:zenburn_force_dark_Background")
      " Force dark background, because of a bug in VIM:  VIM sets background
      " automatically during "hi Normal ctermfg=X"; it misinterprets the high
-@@ -282,39 +200,6 @@
+@@ -282,39 +202,6 @@
      set background=dark
  endif
  
@@ -200,7 +209,7 @@
  if exists("g:zenburn_alternate_Visual")
      " Visual with more contrast, thanks to Steve Hall & Cream posse
      " gui=none fixes weird highlight problem in at least GVim 7.0.66, thanks to Kurt Maier
-@@ -346,6 +231,12 @@
+@@ -346,6 +233,12 @@
      " color the Ignore groups
      " note: if you get strange coloring for your files, turn this off (unlet)
      hi Ignore guifg=#545a4f

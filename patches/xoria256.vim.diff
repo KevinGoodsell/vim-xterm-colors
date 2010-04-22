@@ -1,6 +1,14 @@
 --- originals/xoria256.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/xoria256.vim	2010-04-20 20:41:09.000000000 -0700
-@@ -91,4 +91,18 @@
++++ patched/xoria256.vim	2010-04-21 22:23:30.000000000 -0700
+@@ -13,6 +13,7 @@
+ " Color numbers (0-255) see:
+ " http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+ 
++" VIM-XTERM-TAG
+ 
+ 
+ " Bla-bla ----------------------------------------------------------------------
+@@ -91,4 +92,18 @@
  hi diffChange   ctermfg=bg  guifg=bg      ctermbg=181 guibg=#dfafaf
  hi diffText     ctermfg=bg  guifg=bg      ctermbg=174 guibg=#df8787 cterm=none gui=none
  

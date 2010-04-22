@@ -1,6 +1,14 @@
 --- originals/simpleandfriendly.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/simpleandfriendly.vim	2010-04-20 20:23:18.000000000 -0700
-@@ -63,3 +63,34 @@
++++ patched/simpleandfriendly.vim	2010-04-21 21:45:52.000000000 -0700
+@@ -10,6 +10,7 @@
+ " *line number colors changed
+ " *current line highlighting
+ 
++" VIM-XTERM-TAG
+ 
+ " First remove all existing highlighting.
+ set background=light
+@@ -63,3 +64,34 @@
  hi Special 	guibg=grey90	guifg=Slateblue	gui=UNDERLINE
  
  hi operator guifg=gray25  ctermfg=Black   term=bold   cterm=bold  gui=bold

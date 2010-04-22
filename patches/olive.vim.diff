@@ -1,6 +1,15 @@
 --- originals/olive.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/olive.vim	2010-04-20 20:07:55.000000000 -0700
-@@ -117,3 +117,27 @@
++++ patched/olive.vim	2010-04-21 21:34:04.000000000 -0700
+@@ -3,6 +3,8 @@
+ " Last Change:  11 June 2004
+ " URL:          http://
+ 
++" VIM-XTERM-TAG
++
+ " cool help screens
+ " :he group-name
+ " :he highlight-groups
+@@ -117,3 +119,27 @@
  hi texMatcher           guifg=yellowgreen                       gui=none
  hi texMath                                                      gui=none
  

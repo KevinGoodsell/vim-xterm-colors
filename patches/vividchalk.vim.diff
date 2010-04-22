@@ -1,17 +1,19 @@
 --- originals/vividchalk.vim	2010-01-20 23:07:02.000000000 -0800
-+++ patched/vividchalk.vim	2010-04-20 20:38:03.000000000 -0700
-@@ -7,9 +7,7 @@
++++ patched/vividchalk.vim	2010-04-21 22:17:13.000000000 -0700
+@@ -7,9 +7,9 @@
  " Based on the Vibrank Ink theme for TextMate
  " Distributable under the same terms as Vim itself (see :help license)
  
 -if has("gui_running")
 -    set background=dark
 -endif
++" VIM-XTERM-TAG
++
 +set background=dark
  hi clear
  if exists("syntax_on")
     syntax reset
-@@ -17,60 +15,6 @@
+@@ -17,60 +17,6 @@
  
  let colors_name = "vividchalk"
  
@@ -72,7 +74,7 @@
  hi link railsMethod         PreProc
  hi link rubyDefine          Keyword
  hi link rubySymbol          Constant
-@@ -90,12 +34,8 @@
+@@ -90,12 +36,8 @@
  hi link javascriptNumber        Number
  hi link javascriptNull          Constant
  
@@ -87,7 +89,7 @@
  highlight StatusLine    guifg=Black   guibg=#aabbee gui=bold ctermfg=Black ctermbg=White  cterm=bold
  highlight StatusLineNC  guifg=#444444 guibg=#aaaaaa gui=none ctermfg=Black ctermbg=Grey   cterm=none
  "if &t_Co == 256
-@@ -113,36 +53,36 @@
+@@ -113,36 +55,36 @@
  high link Directory     Identifier
  highlight ErrorMsg      guibg=Red ctermbg=DarkRed guifg=NONE ctermfg=NONE
  highlight Search        guifg=NONE ctermfg=NONE gui=none cterm=none
@@ -136,7 +138,7 @@
  
  hi Type gui=none
  hi Statement gui=none
-@@ -155,18 +95,38 @@
+@@ -155,18 +97,38 @@
  hi Identifier cterm=none
  " Commented numbers at the end are *old* 256 color values
  "highlight PreProc       guifg=#EDF8F9

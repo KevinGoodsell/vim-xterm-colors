@@ -1,6 +1,15 @@
 --- originals/wombat256.vim	2009-06-04 20:54:10.000000000 -0700
-+++ patched/wombat256.vim	2010-04-19 20:50:20.000000000 -0700
-@@ -278,7 +278,7 @@
++++ patched/wombat256.vim	2010-04-21 22:20:40.000000000 -0700
+@@ -6,6 +6,8 @@
+ " works on xterms with 88 or 256 colors. The algorithm for approximating the
+ " GUI colors with the xterm palette is from desert256.vim by Henry So Jr.
+ 
++" VIM-XTERM-TAG
++
+ set background=dark
+ 
+ if version > 580
+@@ -278,7 +280,7 @@
  call <SID>X("PreProc",		"e5786d",	"",			"none")
  call <SID>X("Type",			"caeb82",	"",			"none")
  call <SID>X("Special",		"ffdead",	"",			"none")
@@ -9,7 +18,7 @@
  			"Underlined
  			"Error
  			"Ignore
-@@ -287,6 +287,24 @@
+@@ -287,6 +289,24 @@
  hi! link NonText	LineNr
  hi! link FoldColumn	Folded
  

@@ -1,9 +1,11 @@
---- originals/silent.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/silent.vim	2010-04-13 11:50:15.000000000 -0700
-@@ -1,14 +1,15 @@
+--- originals/silent.vim	2010-01-20 22:49:40.000000000 -0800
++++ patched/silent.vim	2010-04-21 21:45:34.000000000 -0700
+@@ -1,14 +1,17 @@
  " Vim color file
  " @Author: Pascal Vasilii <jabberroid@gmail.com>	
  
++" VIM-XTERM-TAG
++
 +set background=light
  hi clear
  if exists("syntax_on")
@@ -17,7 +19,7 @@
  hi Cursor           guibg=#0057ae	guifg=white		gui=NONE
  hi LineNr           guibg=#F1FFC1	guifg=DarkGray	gui=bold,italic 
  hi StatusLineNC     guibg=#bbbbbb	guifg=White		gui=bold,italic
-@@ -36,7 +37,6 @@
+@@ -36,7 +39,6 @@
  hi IncSearch        guibg=Black		guifg=White		gui=none
  hi Search           guibg=Yellow	guifg=Black		gui=none
  
@@ -25,7 +27,7 @@
  hi Visual	        guibg=#4485FF	guifg=white		gui=bold
  hi VisualNos	    guibg=#4485FF	guifg=white		gui=bold
  hi Comment	        guibg=white		guifg=#888786	gui=italic
-@@ -89,7 +89,7 @@
+@@ -89,7 +91,7 @@
  
  " -> 
  hi Structure		guibg=white 	guifg=black		gui=none
@@ -34,7 +36,7 @@
  " dark red #D80000
  hi Float			guibg=#CCFFCC	guifg=blue		gui=NONE
  hi Macro			guibg=white		guifg=black		gui=bold
-@@ -114,3 +114,8 @@
+@@ -114,3 +116,8 @@
  
  hi link SpecialComment 	Special
  hi link Debug		Special

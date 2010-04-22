@@ -1,6 +1,14 @@
 --- originals/tango.vim	2010-01-20 22:47:30.000000000 -0800
-+++ patched/tango.vim	2010-04-20 20:31:49.000000000 -0700
-@@ -20,59 +20,65 @@
++++ patched/tango.vim	2010-04-21 22:13:36.000000000 -0700
+@@ -8,6 +8,7 @@
+ "
+ " author:   Michele Campeotto <micampe@micampe.it>
+ "
++" VIM-XTERM-TAG
+ set background=dark
+ 
+ hi clear
+@@ -20,59 +21,65 @@
  " Default Colors
  hi Normal       guifg=#eeeeec guibg=#000000
  hi NonText      guifg=#555753 guibg=#000000 gui=none

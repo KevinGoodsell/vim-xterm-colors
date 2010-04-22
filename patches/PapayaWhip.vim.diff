@@ -1,6 +1,15 @@
 --- originals/PapayaWhip.vim	2010-04-12 21:24:23.000000000 -0700
-+++ patched/PapayaWhip.vim	2010-04-20 20:08:37.000000000 -0700
-@@ -29,3 +29,44 @@
++++ patched/PapayaWhip.vim	2010-04-21 21:34:25.000000000 -0700
+@@ -7,6 +7,8 @@
+ "
+ " Only values that differ from defaults are specified.
+ 
++" VIM-XTERM-TAG
++
+ set background=light
+ hi clear
+ if exists("syntax_on")
+@@ -29,3 +31,44 @@
  hi VertSplit gui=None guibg=Gray
  hi Identifier guifg=#005f5f
  hi Statement ctermfg=DarkRed
