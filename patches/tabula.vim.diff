@@ -1,5 +1,5 @@
 --- originals/tabula.vim	2009-06-04 20:53:30.000000000 -0700
-+++ patched/tabula.vim	2010-04-21 21:48:37.000000000 -0700
++++ patched/tabula.vim	2010-04-23 20:36:14.000000000 -0700
 @@ -24,8 +24,10 @@
  "   such that text files be displayed other than e.g. c sources
  " =============================================================================
@@ -30,7 +30,15 @@
  "------------------------------------------------------------------------------
  " Preprocessor Variants:
  "------------------------------------------------------------------------------
-@@ -455,6 +457,13 @@
+@@ -347,7 +349,6 @@
+ hi WarningMsg           guifg=#000087   guibg=#FFFF00                   ctermfg=18      ctermbg=11
+ hi WildMenu             guifg=#20012e   guibg=#00a675   gui=bold        ctermfg=NONE    ctermbg=NONE    cterm=bold
+ "
+-hi pythonPreCondit                                                      ctermfg=2                       cterm=NONE
+ hi tkWidget             guifg=#D5B11C   guibg=bg        gui=bold        ctermfg=7                       cterm=bold
+ hi tclBookends          guifg=#7CFC94   guibg=NONE      gui=bold        ctermfg=2                       cterm=bold
+ 
+@@ -455,6 +456,12 @@
  hi BadWord              guifg=#E4E300                   gui=underline   ctermfg=11                      cterm=underline
  
  
@@ -39,7 +47,6 @@
 +hi NonText gui=bold
 +hi Underlined guifg=#80a0ff
 +hi lCursor guibg=fg guifg=bg
-+hi pythonPreCondit guifg=NONE
 +
  "==============================================================================
  "                              Options Processor                           {{{1
