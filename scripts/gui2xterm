@@ -268,21 +268,14 @@ class LineProducer(object):
         )
     ''', re.VERBOSE | re.IGNORECASE)
 
-    _bad_link_matcher = re.compile(r'''
+    _link_matcher = re.compile(r'''
         [ \t]*
         hi(g(h(l(i(g(ht?)?)?)?)?)?)?
-        [ \t]+
+        ([ \t]+|[ \t]*(?P<force>!)[ \t]*)
         (def(a(u(lt?)?)?)?[ \t]+)?
         link
         [ \t]+
-        (SpecialKey|NonText|Directory|ErrorMsg|IncSearch|Search|MoreMsg
-        |ModeMsg|LineNr|Question|StatusLine|StatusLineNC|VertSplit|Title
-        |Visual|VisualNOS|WarningMsg|WildMenu|Folded|FoldColumn|DiffAdd
-        |DiffChange|DiffDelete|DiffText|SignColumn|SpellBad|SpellCap|SpellRare
-        |SpellLocal|Pmenu|PmenuSel|PmenuSbar|PmenuThumb|TabLine|TabLineSel
-        |TabLineFill|CursorColumn|CursorLine|Cursor|lCursor|MatchParen|Comment
-        |Constant|Special|Identifier|Statement|PreProc|Type|Underlined|Ignore
-        |Error|Todo)\b
+        (?P<groupname>\w+)
     ''', re.VERBOSE | re.IGNORECASE)
 
     _line_matcher = re.compile(r'.*\n?')
@@ -290,8 +283,25 @@ class LineProducer(object):
     _contline_matcher = re.compile(r'[^\n]*(\n[ \t]*\\[^\n]*)*\n?')
     _continue_matcher = re.compile(r'\n[ \t]*\\')
 
+    # These groups have settings by default, which causes any link attempt
+    # to fail unless it is forced with '!'.
+    _default_groups = set([
+        'specialkey', 'nontext', 'directory', 'errormsg', 'incsearch',
+        'search', 'moremsg', 'modemsg', 'linenr', 'question', 'statusline',
+        'statuslinenc', 'vertsplit', 'title', 'visual', 'visualnos',
+        'warningmsg', 'wildmenu', 'folded', 'foldcolumn', 'diffadd',
+        'diffchange', 'diffdelete', 'difftext', 'signcolumn', 'spellbad',
+        'spellcap', 'spellrare', 'spelllocal', 'pmenu', 'pmenusel',
+        'pmenusbar', 'pmenuthumb', 'tabline', 'tablinesel', 'tablinefill',
+        'cursorcolumn', 'cursorline', 'cursor', 'lcursor', 'matchparen',
+        'comment', 'constant', 'special', 'identifier', 'statement', 'preproc',
+        'type', 'underlined', 'ignore', 'error', 'todo',
+    ])
+
     def __init__(self, data):
         self._data = data
+        self.linked = set()
+        self.failed_links = set()
 
     def _joined_line(self):
         lines = self._contline_matcher.match(self._data).group()
@@ -301,19 +311,29 @@ class LineProducer(object):
     def __iter__(self):
         while self._data:
             (joined, i) = self._joined_line()
+
+            m = self._link_matcher.match(joined)
+            if m:
+                groupname = m.group('groupname')
+                forced = m.group('force') is not None
+                if groupname.lower() in self._default_groups and not forced:
+                    # Default groups need to be forced to link.
+                    self.failed_links.add(groupname)
+                else:
+                    self.linked.add(groupname)
+
             m = self._hi_matcher.match(joined)
             if m:
                 yield HighlightLine(m)
-            else:
-                m = self._line_matcher.match(self._data)
-                line = m.group()
-                if self._bad_link_matcher.match(line):
-                    print >> sys.stderr, 'Warning: likely bad link.'
-                    print >> sys.stderr, line.strip()
-                i = len(line)
-                yield line
+                self._data = self._data[i:]
+                continue
 
-            self._data = self._data[i:]
+            # Here we don't use the joined line because the content isn't
+            # important. It's better to maintain the original formatting.
+            m = self._line_matcher.match(self._data)
+            line = m.group()
+            yield line
+            self._data = self._data[len(line):]
 
 class HighlightLine(object):
     def __init__(self, match):
@@ -447,17 +467,23 @@ class SettingsValidator(object):
         self.settings.fill()
         self.overrides = overrides
 
-    def validate(self):
+    def validate(self, skip=None):
         '''
         try to validate settings, reporting issues on stderr.
         '''
+        if skip is None:
+            skip = []
+
         recommended = ColorSchemeSettings()
         for group in self.settings.groups():
             recommended.update(self._validate_group(group))
 
+        for group in skip:
+            recommended.remove(group)
+
         if recommended:
-            print >> sys.stderr, "Warning: some default values won't look right."
-            print >> sys.stderr, 'You might want to try adding these:'
+            print >> sys.stderr, 'Warning: some default values may not look '\
+                                 'right.\nYou might want to try adding these:'
             for group in sorted(recommended.groups()):
                 params = recommended.get_group(group)
                 param_str = ' '.join('%s=%s' % (pname, pval) for (pname, pval)
@@ -582,7 +608,12 @@ def main(args=None):
             sys.stdout.write(line)
 
     validator = SettingsValidator(settings, dark, group_overrides)
-    validator.validate()
+    validator.validate(lines.linked)
+
+    if lines.failed_links:
+        print >> sys.stderr, 'Warning: these links might fail:'
+        links = sorted(lines.failed_links)
+        print >> sys.stderr, '\n'.join(links)
 
     return 0
 
