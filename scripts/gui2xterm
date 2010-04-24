@@ -438,13 +438,14 @@ def find_params(hl):
     return result
 
 class SettingsValidator(object):
-    def __init__(self, settings, dark):
+    def __init__(self, settings, dark, overrides):
         if dark:
             self.settings = ColorSchemeSettings.dark_defaults()
         else:
             self.settings = ColorSchemeSettings.light_defaults()
         self.settings.update(settings)
         self.settings.fill()
+        self.overrides = overrides
 
     def validate(self):
         '''
@@ -468,10 +469,14 @@ class SettingsValidator(object):
         # This assumes all gui and cterm parameters are present
         # because they should come from the Default object.
         params = self.settings.get_group(group)
+        overrides = self.overrides.get_group(group, {})
         recommended = {} # {'param' : 'value'}
-        recommended.update(self._validate_attrs(params))
-        recommended.update(self._validate_fg(params))
-        recommended.update(self._validate_bg(params))
+        if 'cterm' not in overrides:
+            recommended.update(self._validate_attrs(params))
+        if 'ctermfg' not in overrides:
+            recommended.update(self._validate_fg(params))
+        if 'ctermbg' not in overrides:
+            recommended.update(self._validate_bg(params))
 
         result = ColorSchemeSettings()
         if recommended:
@@ -576,7 +581,7 @@ def main(args=None):
         else:
             sys.stdout.write(line)
 
-    validator = SettingsValidator(settings, dark)
+    validator = SettingsValidator(settings, dark, group_overrides)
     validator.validate()
 
     return 0
