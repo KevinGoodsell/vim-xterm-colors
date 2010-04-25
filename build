@@ -213,7 +213,14 @@ schemes = [
     ('autumn2.vim',           ['--light']),
     ('autumnleaf.vim',        ['--light']),
     ('bclear.vim',            ['--light', '--spell=none']),
-    ('biogoo.vim',            ['--light', '--spell=none']),
+    ('biogoo.vim',            [
+        '--light',
+        '--spell=none',
+        '-a', 'SpellBad', 'underline',
+        '-a', 'SpellCap', 'underline',
+        '-a', 'SpellRare', 'underline',
+        '-a', 'SpellLocal', 'underline',
+    ]),
     ('buttercream.vim',       ['--light']),
     ('chela_light.vim',       [
         '--light',
