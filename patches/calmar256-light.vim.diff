@@ -1,0 +1,35 @@
+--- originals/calmar256-light.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/calmar256-light.vim	2010-04-26 10:52:48.000000000 -0700
+@@ -93,7 +93,7 @@
+             \ ["Title",         "bold", "18",   "",     "",         ""   ],
+             \ ["Visual",        "",     "",     "220",  "",         ""   ],
+             \ ["Comment",       "",     "21",   "255",  "",         ""   ],
+-            \ ["Costant",       "",     "58",   "",     "",         ""   ],
++            \ ["Constant",      "",     "58",   "",     "",         ""   ],
+             \ ["String",        "",     "160",  "",     "",         ""   ],
+             \ ["Error",         "",     "130",  "",     "",         ""   ],
+             \ ["Identifier",    "",     "31",   "",     "",         ""   ],
+@@ -112,12 +112,12 @@
+             \ ["Pmenu",         "",     "229",  "29",   "",         ""   ],
+             \ ["PmenuSel",      "bold", "232",  "226",  "",         ""   ],
+             \ ["PmenuSbar",     "",     "16",   "119",  "",         ""   ],
+-            \ ["PmenuThumb",    "",     "16",   "11",   "",         ""   ],
++            \ ["PmenuThumb",    "",     "16",   "226",  "",         ""   ],
+             \ ["SpellBad",      "undercurl", "","",     "undercurl","160"  ],
+             \ ["SpellRare",     "",     "",     "228",  "",         ""   ],
+             \ ["SpellLocal",    "",     "",     "224",  "",         ""   ],
+             \ ["SpellCap",      "",     "",     "247",  "",         ""   ],
+-            \ ["MatchParen",    "bold", "15",   "22",   "",         ""   ],
++            \ ["MatchParen",    "bold", "231",  "22",   "",         ""   ],
+             \ ["TabLine",       "",     "252",  "22",   "",         ""   ],
+             \ ["TabLineSel",    "bold", "253",  "30",   "",         ""   ],
+             \ ["TabLineFill",   "",     "247",  "16",   "",         ""   ]]
+@@ -157,7 +157,7 @@
+ "
+ function! s:guisetcolor(colarg)
+     " if gui-style is empty use (c)term-style also for gui
+-        if a:colarg[4] == ""
++        if a:colarg[4] == "NONE"
+             let guival = a:colarg[1]
+         else
+             let guival = a:colarg[4]

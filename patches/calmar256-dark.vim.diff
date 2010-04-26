@@ -1,0 +1,43 @@
+--- originals/calmar256-dark.vim	2010-04-05 10:31:09.000000000 -0700
++++ patched/calmar256-dark.vim	2010-04-26 10:51:06.000000000 -0700
+@@ -93,14 +93,14 @@
+             \ ["Title",         "bold", "98",   "",     "",         ""   ],
+             \ ["Visual",        "",     "",     "238",  "",         ""   ],
+             \ ["Comment",       "",     "37",   "",     "",         ""   ],
+-            \ ["Costant",       "",     "73",   "",     "",         ""   ],
++            \ ["Constant",      "",     "73",   "",     "",         ""   ],
+             \ ["String",        "",     "190",  "",     "",         ""   ],
+             \ ["Error",         "",     "69",   "",     "",         ""   ],
+             \ ["Identifier",    "",     "81",   "",     "",         ""   ],
+             \ ["Ignore",        "",     "",     "",     "",         ""   ],
+             \ ["Number",        "bold", "50",   "",     "",         ""   ],
+             \ ["PreProc",       "",     "178",  "",     "",         ""   ],
+-            \ ["Special",       "",     "15",   "234",  "",         ""   ],
++            \ ["Special",       "",     "231",  "234",  "",         ""   ],
+             \ ["SpecialChar",   "",     "155",  "",     "",         ""   ],
+             \ ["Statement",     "",     "36",   "",     "",         ""   ],
+             \ ["Todo",          "bold", "16",   "148",  "",         ""   ],
+@@ -112,12 +112,12 @@
+             \ ["Pmenu",         "",     "228",  "236",  "",         ""   ],
+             \ ["PmenuSel",      "bold", "226",  "232",  "",         ""   ],
+             \ ["PmenuSbar",     "",     "119",  "16",   "",         ""   ],
+-            \ ["PmenuThumb",    "",     "11",   "16",   "",         ""   ],
++            \ ["PmenuThumb",    "",     "226",  "16",   "",         ""   ],
+             \ ["SpellBad",      "underline", "","",     "undercurl","160"],
+             \ ["SpellRare",     "",     "82",   "233",  "",         ""   ],
+             \ ["SpellLocal",    "",     "227",  "234",  "",         ""   ],
+             \ ["SpellCap",      "",     "46",   "236",  "",         ""   ],
+-            \ ["MatchParen",    "bold", "15",   "22",   "",         ""   ],
++            \ ["MatchParen",    "bold", "231",  "22",   "",         ""   ],
+             \ ["TabLine",       "",     "253",  "30",   "",         ""   ],
+             \ ["TabLineSel",    "bold", "247",  "16",   "",         ""   ],
+             \ ["TabLineFill",   "",     "247",  "16",   "",         ""   ]]
+@@ -157,7 +157,7 @@
+ "
+ function! s:guisetcolor(colarg)
+     " if gui-style is empty use (c)term-style also for gui
+-        if a:colarg[4] == ""
++        if a:colarg[4] == "NONE"
+             let guival = a:colarg[1]
+         else
+             let guival = a:colarg[4]
