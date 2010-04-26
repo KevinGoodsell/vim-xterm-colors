@@ -1,0 +1,173 @@
+#!/usr/bin/env python
+
+# For Xterms:
+# ^[ (ESC LBRACKET) is the control sequence introducer.
+# Character attributes use ^[${PARAMS}m
+# ^[0m = default attributes
+# ^[38;5;${COLOR}m = foreground color
+# ^[48;5;${COLOR}m = background color
+#
+# Reference:
+# http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+
+import sys
+from optparse import OptionParser
+
+def set_attr(val):
+    return '\x1b[%sm' % val
+
+def reset():
+    return set_attr('0')
+
+def set_foreground(val):
+    return set_attr('38;5;%s' % val)
+
+def set_background(val):
+    return set_attr('48;5;%s' % val)
+
+def as_rgb(color):
+    rgb_base = 16
+    gray_base = 232
+    if color < rgb_base:
+        raise ValueError("Can't convert value to RGB: %d" % color)
+    if color >= gray_base:
+        index = color - gray_base
+        val = 8 + 10 * index
+        return (val, val, val)
+
+    index = color - rgb_base
+    blue_index = index % 6
+    index /= 6
+    green_index = index % 6
+    index /= 6
+    red_index = index
+    vals = [0, 95, 135, 175, 215, 255]
+    return (vals[red_index], vals[green_index], vals[blue_index])
+
+def luminance(r, g=None, b=None):
+    if g is None:
+        # All values are in r, unpack
+        r, g, b = r
+
+    # Luminance function is:
+    # Y = 0.2126 R + 0.7152 G + 0.0722 B
+    y = 2126 * r + 7152 * g + 722 * b
+    return y / 10000
+
+class ColorBlock(object):
+    def width(self):
+        return 2
+
+    def __call__(self, color):
+        return '%s  %s' % (set_background(color), reset())
+
+class LabeledColorBlock(object):
+    white = 231
+    black = 16
+
+    def width(self):
+        return 10
+
+    def __call__(self, color):
+        if color < 16:
+            return '%s          %s' % (set_background(color), reset())
+        else:
+            (r, g, b) = as_rgb(color)
+            l = luminance(r, g, b)
+            fg = self.white if l < 128 else self.black
+            return '%s%s %02x/%02x/%02x %s' % (
+                set_background(color), set_foreground(fg), r, g, b, reset())
+
+color_block = LabeledColorBlock()
+
+def system_colors():
+    for i in range(8):
+        print ' %2d %s  %2d %s' % (i, color_block(i), i+8, color_block(i+8))
+
+def color_cube(columns=2):
+    # Colors are 16 + 36*red + 6*green + blue
+    base_color = 16
+
+    squares = []
+    for red in range(6):
+        top_label = [str(i).center(color_block.width()) for i in range(6)]
+        lines = ['    ' + ''.join(top_label)]
+        for green in range(6):
+            rg = base_color + 36*red + 6*green
+            line = ['%3d ' % rg]
+            for blue in range(6):
+                color = base_color + 36*red + 6*green + blue
+                line.append(color_block(color))
+
+            lines.append(''.join(line))
+
+        squares.append(lines)
+
+    row_squares = []
+    for row in range(6 / columns):
+        row_squares.append(squares[row*columns:(row+1)*columns])
+
+    rows = []
+    for row_square in row_squares:
+        lines = []
+        for line in zip(*row_square):
+            lines.append('  '.join(line))
+        rows.append('\n'.join(lines))
+
+    print '\n\n'.join(rows)
+
+def grayscale(columns=6):
+    # Colors end at 16 + 36*5 + 6*5 + 5 = 231
+    # Therefore grays begin at 232.
+    base_color = 232
+    gray_count = 24
+    rows = gray_count / columns
+
+    labels = [str(i).center(color_block.width()) for i in range(columns)]
+    print '    %s' % ''.join(labels)
+
+    for row in range(rows):
+        first_color = base_color + row * columns
+        items = ['%3d ' % first_color]
+        for i in range(columns):
+            items.append(color_block(first_color + i))
+        print ''.join(items)
+
+def parse_options(args):
+    parser = OptionParser()
+    parser.add_option('-s', '--short', action='store_true',
+                      help="use short format")
+    parser.add_option('-w', '--wide', action='store_true',
+                      help="use a wider format (up to 140 chars)")
+
+    (opts, arguments) = parser.parse_args(args)
+    return (opts, arguments)
+
+def main(args=None):
+    if args is None:
+        args = sys.argv[1:]
+
+    (opts, arguments) = parse_options(args)
+    if opts.short:
+        global color_block
+        color_block = ColorBlock()
+        cube_columns = 6 if opts.wide else 3
+    else:
+        cube_columns = 2 if opts.wide else 1
+
+    print 'System Colors:'
+    print
+    system_colors()
+
+    print
+    print 'Color Cube:'
+    print
+    color_cube(cube_columns)
+
+    print
+    print 'Grayscale:'
+    print
+    grayscale()
+
+if __name__ == '__main__':
+    sys.exit(main())
