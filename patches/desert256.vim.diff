@@ -1,5 +1,5 @@
 --- originals/desert256.vim	2010-01-20 22:45:12.000000000 -0800
-+++ patched/desert256.vim	2010-04-21 12:46:46.000000000 -0700
++++ patched/desert256.vim	2010-04-27 20:07:09.000000000 -0700
 @@ -19,6 +19,8 @@
  " converting color names to #rrggbb form, but decided it was just not worth
  " the effort.  Maybe someone seeing this may decide otherwise...
@@ -27,7 +27,7 @@
      call <SID>X("Visual", "6b8e23", "f0e68c", "reverse")
      "VisualNOS
      call <SID>X("WarningMsg", "fa8072", "", "")
-@@ -286,6 +288,24 @@
+@@ -286,6 +288,27 @@
      "Error
      call <SID>X("Todo", "ff4500", "eeee00", "")
  
@@ -42,7 +42,10 @@
 +    call <SID>X("SignColumn", "00ffff", "bebebe", "")
 +    call <SID>X("Pmenu", "", "ff00ff", "")
 +    call <SID>X("TabLine", "cccccc", "a9a9a9", "")
++    call <SID>X("CursorColumn", "", "666666", "")
++    call <SID>X("CursorLine", "", "666666", "NONE")
 +    call <SID>X("MatchParen", "", "008b8b", "")
++    call <SID>X("Underlined", "80a0ff", "", "underline")
 +    call <SID>X("Error", "ffffff", "ff0000", "")
 +    hi SpellBad ctermbg=88
 +    hi SpellCap ctermbg=19
