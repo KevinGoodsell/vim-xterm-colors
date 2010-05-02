@@ -2,6 +2,7 @@ from __future__ import division
 
 import re
 import subprocess
+import sys
 
 class Color(object):
     def __init__(self, red, green, blue):
@@ -68,21 +69,42 @@ class Color(object):
     def as_hex(self):
         return '%02X%02X%02X' % (self.red, self.green, self.blue)
 
-    def nearest_xterm(self):
+    def nearest_xterm(self, debug=False):
+        # Check overrides
+        if self in self._xterm_overrides:
+            return self._xterm_overrides[self]
+
+        # Check cache
         if self in self._nearest_cache:
             return self._nearest_cache[self]
 
-        if self in self._xterm_overrides:
-            xterm = self._xterm_overrides[self]
+        if debug:
+            nearest = self._nearest_xterms(5)
+            text = ', '.join(str(x) for (dist, x) in nearest)
+            print >> sys.stderr, '%r possible matches: %s' % (self, text)
         else:
-            # Brute-force search, could be better
-            distances = [(color_distance(self, x), x)
-                         for x in self._color_map.keys()]
-            (dist, c) = min(distances)
-            xterm = self._color_map[c]
+            nearest = self._nearest_xterms(1)
 
+        (dist, xterm) = nearest[0]
+
+        # Add to cache
         self._nearest_cache[self] = xterm
         return xterm
+
+    def _nearest_xterms(self, count, max_grays=1):
+        g_distances = [(color_distance(self, x), x)
+                       for x in self._xterm_grays]
+        c_distances = [(color_distance(self, x), x)
+                       for x in self._xterm_colors]
+        if count == 1:
+            result = [min(g_distances + c_distances)]
+        else:
+            g_distances.sort()
+            dists = c_distances + g_distances[:max_grays]
+            dists.sort()
+            result = dists[:count]
+
+        return [(dist, self._color_map[c]) for (dist, c) in result]
 
     def _tuple(self):
         return (self.__class__, self.red, self.green, self.blue)
@@ -97,8 +119,19 @@ class Color(object):
         return '%s(0x%02x, 0x%02x, 0x%02x)' % (self.__class__.__name__,
                                                self.red, self.green, self.blue)
 
-Color._color_map = dict([(Color.from_xterm_color(i), i)
-                         for i in range(16, 256)])
+# grays are distributed every (36+6+1) in the colorcube (16 to 231), and make
+# up the last elements, 232 to 255.
+_xterm_gray_indices = set(range(16, 232, 36+6+1) + range(232, 256))
+Color._color_map = {}
+Color._xterm_grays = []
+Color._xterm_colors = []
+for i in range(16, 256):
+    c = Color.from_xterm_color(i)
+    Color._color_map[c] = i
+    if i in _xterm_gray_indices:
+        Color._xterm_grays.append(c)
+    else:
+        Color._xterm_colors.append(c)
 
 def color_distance(color1, color2):
     # http://www.compuphase.com/cmetric.htm
@@ -151,7 +184,6 @@ def _get_color_names():
     return result
 
 if __name__ == '__main__':
-    import sys
     import math
 
     for color in sys.argv[1:]:
@@ -160,9 +192,6 @@ if __name__ == '__main__':
         except ValueError:
             continue
 
-        distances = [(color_distance(c, x), x)
-                     for x in Color._color_map.keys()]
-        distances.sort()
-        nearest = ['%d (%f)' % (Color._color_map[x], math.sqrt(d))
-                   for (d, x) in distances[:10]]
-        print '%s = %r: %s' % (color, c, ', '.join(nearest))
+        dists = c._nearest_xterms(8, 2)
+        pieces = ['%d (%f)' % (x, math.sqrt(d)) for (d, x) in dists]
+        print '%s = %r: %s' % (color, c, ', '.join(pieces))
