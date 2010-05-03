@@ -1,5 +1,5 @@
 --- originals/simpleandfriendly.vim	2010-01-20 23:43:36.000000000 -0800
-+++ patched/simpleandfriendly.vim	2010-04-21 21:45:52.000000000 -0700
++++ patched/simpleandfriendly.vim	2010-05-02 16:35:52.000000000 -0700
 @@ -10,6 +10,7 @@
  " *line number colors changed
  " *current line highlighting
@@ -8,6 +8,15 @@
  
  " First remove all existing highlighting.
  set background=light
+@@ -22,7 +23,7 @@
+ 
+ "set the highlighting of the current line to true - then give it a color
+ "delete next line to turn off current line highlighting for this color scheme
+-set cul
++"set cul
+ hi cursorline gui=underline 
+ "guibg=grey91 
+ hi visual guibg=grey80 guifg=black
 @@ -63,3 +64,34 @@
  hi Special 	guibg=grey90	guifg=Slateblue	gui=UNDERLINE
  
