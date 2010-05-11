@@ -430,9 +430,9 @@ def make_test_file(schemefile, extra_cmds=None, variation=None):
     else:
         outname = '%s-%02d' % (scheme, variation)
 
-    # Using the full here works around a fabricate problem. Vim uses fchdir,
-    # which fabricate doesn't know about, so fabricate gets the cwd wrong
-    # and comes up with the wrong file path.
+    # Using the full path here works around a fabricate problem. Vim uses
+    # fchdir, which fabricate doesn't know about, so fabricate gets the cwd
+    # wrong and comes up with the wrong file path.
     hipath = '%s/test/%s.hi' % (os.path.abspath(os.getcwd()), outname)
     vim_cmds = [
         'set nocompatible',
