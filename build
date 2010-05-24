@@ -32,7 +32,10 @@ schemes = [
     ('camo.vim',            []),
     ('candy.vim',           ['-b', 'DiffChange', '52']),
     ('candycode.vim',       []),
-    ('clarity.vim',         []),
+    ('clarity.vim',         [
+        '-b', 'Normal', '17',
+        '-b', 'NonText', '24',
+    ]),
     # In spite of declaring itself dark (and therefore requiring dark defaults
     # for matching), cleanphp is light and --spell=dark is illegible.
     ('cleanphp.vim',        ['--spell=light']),
@@ -58,6 +61,8 @@ schemes = [
         '-b', 'SpellRare', 'bg',
         '-a', 'SpellRare', 'underline',
         '-b', 'SpellLocal', '23',
+        '-b', 'Normal', '17',
+        '-c', '102848', '17',
     ]),
     ('dw_blue.vim',         []),
     ('dw_cyan.vim',         []),
@@ -70,7 +75,7 @@ schemes = [
     ('freya.vim',           []),
     ('fruity.vim',          []),
     ('golden.vim',          []),
-    ('guardian.vim',        []),
+    ('guardian.vim',        ['-b', 'NonText', '24']),
     ('herald.vim',          [
         '-b', 'PmenuThumb', '88',
         '-b', 'SpellCap', '25',
@@ -103,7 +108,11 @@ schemes = [
         '-b', 'SpellLocal', '130',
     ]),
     ('manxome.vim',         []),
-    ('maroloccio.vim',      ['-c', '8f3231', '88']),
+    ('maroloccio.vim',      [
+        '-b', 'Normal', '17',
+        '-c', '8f3231', '88',
+        '-c', '333366', '60',
+    ]),
     ('matrix.vim',          [
         '-c', '113311', '22',
         '-c', '226622', '28',
@@ -114,7 +123,11 @@ schemes = [
         '-b', 'SpellRare', 'bg',
         '-a', 'SpellRare', 'underline',
     ]),
-    ('moss.vim',            []),
+    ('moss.vim',            [
+        '-c', '082926', '22',
+        '-c', '0C2628', '22',
+        '-c', '22364C', '23',
+    ]),
     ('motus.vim',           []),
     ('mustang.vim',         []),
     ('navajo-night.vim',    [
