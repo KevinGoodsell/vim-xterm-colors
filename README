@@ -1,0 +1,67 @@
+Vim Color Schemes for 256-color xterms
+======================================
+
+This is a project to provide good-quality Vim color schemes for those of
+us who work in a terminal. Many good color schemes are available for the
+GUI version of Vim, but few of them offer adequate color terminal
+support. This project converts over 100 color schemes to support
+256-color terminals using colors as similar as possible to the GUI
+colors.
+
+Most of the color schemes here come from the Color Sampler Pack:
+
+http://www.vim.org/scripts/script.php?script_id=625
+
+How do I use it?
+----------------
+You can download the source and build it yourself by running the script
+named 'build', but I plan on providing a pre-built package that will be
+preferable for most users. Check the Downloads section. Color scheme
+files are usually placed in $VIM/colors, where $VIM is your personal Vim
+directory (~/.vim on Unix-like systems). The Vim documentation has full
+details.
+
+Please note that these color schemes will not generally look good on
+lower-color terminals. You should probably use something like this in
+your vimrc file:
+
+if &t_Co == 256 || has('gui_running')
+    colorscheme desert256   " Or some other high-color scheme
+else
+    colorscheme desert      " Or some other low-color scheme
+endif
+
+To test color representations on your terminal, try running 'termcolors'
+found in the 'scripts' directory.
+
+How does it work?
+-----------------
+The script gui2xterm automatically adds color xterm support to a color
+scheme file, but this only works reliably if steps are taken to prepare
+the color scheme first. To do that, there are patches for most of the
+color schemes in the 'patches' directory. In some cases these patches
+also fix bug in the original color schemes. Please read README.patches
+for details.
+
+For a small number of color schemes, gui2xterm can't do anything useful.
+Since color schemes are simply Vim scripts, they can arrive at their
+final result in arbitrary ways that gui2xterm can't recognize. Some of
+these color schemes are converted by a patch without running gui2xterm.
+Others are not converted or included in the results.
+
+For color schemes that are converted with gui2xterm, there is often a
+need to override resulting colors to make the color scheme look better.
+This is done with hand-picked options to gui2xterm which are customized
+for each color scheme in the 'build' script.
+
+How good are the results?
+-------------------------
+The quality of the results varies. Some color schemes look almost
+identical to the GUI version. A few look really bad. Most are close
+enough to be very usable.
+
+The really bad color schemes are generally ones that prominently use
+dark, non-gray colors. The colors that are available using the xterm
+color-mapping scheme just don't include dark reds, greens, etc. For
+example, in HTML-style hex-code colors, the darkest red available is
+#5f0000. There's no easy way to work around this.

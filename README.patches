@@ -1,0 +1,152 @@
+What the Patches Do
+===================
+
+The patches that are applied before (or instead of) automatic conversion of
+color schemes serve several purposes: fixing bugs, working around limitations
+of Vim, and working around limitations of the conversion script, to name a few.
+This file will describe each type of change made in the patches.
+
+Of course any change made by the patches *could* have been made directly
+in the color scheme files. I used patches instead because I didn't want
+to distribute partially modified versions of files that are copyrighted
+by other people. Aside from the potential for causing confusion, this
+could be illegal. The final color schemes include a notice to make it
+clear that the file is modified from the original.
+
+Tagging Files
+-------------
+Every color scheme that is modified has a comment added to emphasize
+this fact. Rather than adding the entire comment in every single patch,
+which would make it inconvenient to update, a small "tag" comment is
+added that looks like this:
+
+" VIM-XTERM-TAG
+
+This is expanded by the build process to include (hopefully) useful
+information.
+
+Adding Explicit Defaults
+------------------------
+Many patches include a list of 'hi' commands at the end (and
+occasionally in the middle). These commands explicitly set GUI colors
+that are already set by default, so they have no effect on the
+appearance of the color scheme in the GUI. However, the gui2xterm script
+needs the colors to be stated explicitly so that it can detect them and
+provide terminal equivalents. Without these, gui2xterm will print a
+warning about using default colors that might not look right (and it
+still erroneously prints that warning in some cases).
+
+Likewise some color schemes (e.g., desert256) that rely on their own
+terminal color definitions instead of gui2xterm are modified to be
+explicit about colors and font attributes.
+
+Additionally defaults are occasionally added in existing 'hi'
+expressions.
+
+Bug Fix: 'background' Set Incorrectly
+-------------------------------------
+The proper usage of the 'background' setting seems to elude most people,
+and understandably so. It is simultaneously used to toggle between
+light- and dark-background variants of a color scheme (for the rare
+color schemes that support this), indicate what variant the user
+desires, indicate what type of background a color scheme provides, and
+determine what default colors will be loaded before the color scheme
+gets its shot at setting colors. While it is intended to be descriptive
+(telling Vim what kind of background you have so that it can choose
+appropriate default colors), setting it also reloads the current color
+scheme with new default colors, which can confuse the user. Adding to
+the confusion, setting the 'Normal' highlight group also changes
+'background', often incorrectly.
+
+The value of 'background' is relevant to certain runtime scripts in Vim,
+and therefore it has to be set *before* commands like "hi clear" and
+"syntax reset" in order to get the intended defaults (though color
+schemes commonly replace these defaults anyway).
+
+Removing cterm Color Definitions
+--------------------------------
+Some color schemes already include color terminal support (though
+usually not very good and not designed for 256-color terminals). If this
+appears in the same 'hi' command as the GUI color support, the gui2xterm
+script will simply update it in-place. However, if there are separate
+commands for setting cterm colors, these are usually removed by the
+patches. This is sometimes necessary (when the existing cterm color
+definitions would follow and replace the definitions added by
+gui2xterm), and sometimes just done for convenience, so there aren't
+multiple contradictory color definitions in the final color scheme.
+
+Bug Fix: 'colors_name' Not Set Correctly
+----------------------------------------
+A few color schemes fail to correctly set the variable colors_name. It's
+rather easy to miss the significance of this, but any time the color
+scheme has to be reloaded (like when 'background' is set), Vim does the
+equivalent of:
+
+exec 'colorscheme ' . colors_name
+
+Therefore, reloading will not work correctly unless colors_name matches
+the name of the color scheme file.
+
+It's also important for colors_name to be set after the 'hi clear'
+command, because this clears the value of colors_name.
+
+Bug Fix: Ineffectual Links
+--------------------------
+Linking highlight groups sometimes requires the '!' modifier to the 'hi'
+command:
+
+hi! link Question ModeMsg
+
+The '!' is necessary when the group being modified already has colors
+assigned. Since some groups have default colors and some don't, it's
+hard to guess when the '!' is needed, and there's no message to tell you
+that the link has failed.
+
+Bug Fix: 'background' Modified by Setting 'Normal' Highlight Group
+------------------------------------------------------------------
+Vim sets 'background' automatically based on the background color set in
+the 'Normal' highlight group. Unfortunately it often sets it
+incorrectly. This makes little difference for most color schemes, which
+explicitly set 'background'. However, color schemes that use the
+existing value of 'background' to determine whether to use a dark
+variant or a light variant need to keep the value of 'background' they
+started with--otherwise the color scheme will spontaneously change when
+it is reloaded.
+
+To support this, some patches reset 'background' after the 'Normal'
+group is set.
+
+General Bug Fixes
+-----------------
+There are some bug fixes that are specific to particular color schemes,
+especially when they define and use their own functions for more
+advanced functionality.
+
+Some color schemes simply have typos for things like names of highlight
+groups. These have been fixed wherever they have been found.
+
+Avoiding Use of Unreliable Color Numbers
+----------------------------------------
+A few color schemes have existing support for color terminals that is
+used instead of running the gui2xterm script on them. In these cases,
+color numbers below 16 are generally swapped for another color. This is
+because the colors 0 through 15 are customizable and therefore not
+reliable.
+
+Bug Fix: Using 'fg' and 'bg' Before Defining 'Normal' Group
+-----------------------------------------------------------
+In GUI color schemes it seems to be fine to use the pseudo-colors 'fg'
+and 'bg' before the 'Normal' highlight group is defined, but it produces
+an error in terminal color schemes. Because of this, some patches move
+the 'Normal' group definition closer to the top of the file.
+
+Reverting Settings Changes
+--------------------------
+A few color schemes define autocmds or modify settings such as
+guicursor. Some patches add an autocmd to remove autocmds and revert
+settings when a new color scheme is loaded. Some changes, such as
+setting cursorline, are simply removed since they have nothing to do
+with color schemes and would override the users choice of settings.
+
+Also, in 'lettuce', the name of the autocmd group was changed from the
+rather generic "Syntax_extensions" to "Lettuce_extensions".
