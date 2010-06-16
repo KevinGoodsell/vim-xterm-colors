@@ -1,6 +1,15 @@
 --- originals/calmar256-light.vim	2010-04-05 10:31:09.000000000 -0700
-+++ patched/calmar256-light.vim	2010-04-26 10:52:48.000000000 -0700
-@@ -93,7 +93,7 @@
++++ patched/calmar256-light.vim	2010-06-16 11:33:16.000000000 -0700
+@@ -9,6 +9,8 @@
+ " set t_Co=256
+ " in your vimrc"}}}
+ 
++" VIM-XTERM-TAG
++
+ " {{{ t_Co=256 is set - check 
+ if &t_Co != 256 && ! has("gui_running")
+     echomsg ""
+@@ -93,7 +95,7 @@
              \ ["Title",         "bold", "18",   "",     "",         ""   ],
              \ ["Visual",        "",     "",     "220",  "",         ""   ],
              \ ["Comment",       "",     "21",   "255",  "",         ""   ],
@@ -9,7 +18,7 @@
              \ ["String",        "",     "160",  "",     "",         ""   ],
              \ ["Error",         "",     "130",  "",     "",         ""   ],
              \ ["Identifier",    "",     "31",   "",     "",         ""   ],
-@@ -112,12 +112,12 @@
+@@ -112,12 +114,12 @@
              \ ["Pmenu",         "",     "229",  "29",   "",         ""   ],
              \ ["PmenuSel",      "bold", "232",  "226",  "",         ""   ],
              \ ["PmenuSbar",     "",     "16",   "119",  "",         ""   ],
@@ -24,7 +33,7 @@
              \ ["TabLine",       "",     "252",  "22",   "",         ""   ],
              \ ["TabLineSel",    "bold", "253",  "30",   "",         ""   ],
              \ ["TabLineFill",   "",     "247",  "16",   "",         ""   ]]
-@@ -157,7 +157,7 @@
+@@ -157,7 +159,7 @@
  "
  function! s:guisetcolor(colarg)
      " if gui-style is empty use (c)term-style also for gui
