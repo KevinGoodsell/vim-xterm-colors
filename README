@@ -4,7 +4,7 @@ Vim Color Schemes for 256-color xterms
 This is a project to provide good-quality Vim color schemes for those of
 us who work in a terminal. Many good color schemes are available for the
 GUI version of Vim, but few of them offer adequate color terminal
-support. This project converts over 100 color schemes to support
+support. This project modifies over 100 color schemes to also support
 256-color terminals using colors as similar as possible to the GUI
 colors.
 
@@ -15,11 +15,12 @@ http://www.vim.org/scripts/script.php?script_id=625
 How do I use it?
 ----------------
 You can download the source and build it yourself by running the script
-named 'build', but I plan on providing a pre-built package that will be
-preferable for most users. Check the Downloads section. Color scheme
-files are usually placed in $VIM/colors, where $VIM is your personal Vim
-directory (~/.vim on Unix-like systems). The Vim documentation has full
-details.
+named 'build' if you are on a Unix-like system with Python and X
+installed (the X colors database is used to resolve color names).  I
+also plan on providing a pre-built package that will be preferable for
+most users. Check the Downloads section. Color scheme files are usually
+placed in $VIM/colors, where $VIM is your personal Vim directory (~/.vim
+on Unix-like systems). The Vim documentation has full details.
 
 Please note that these color schemes will not generally look good on
 lower-color terminals. You should probably use something like this in
