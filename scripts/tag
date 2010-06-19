@@ -5,7 +5,8 @@ import sys
 tag = '''\
 " NOTE: This colorscheme has been modified from the original. The changes are
 " primarily to add (or modify) 256-color xterm support, but may include other
-" changes also (e.g., bug fixes).
+" changes also (e.g., bug fixes). Details can be found at:
+" http://github.com/KevinGoodsell/vim-xterm-colors
 '''
 
 def main(args=None):
