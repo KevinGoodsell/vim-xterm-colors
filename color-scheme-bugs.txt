@@ -1,0 +1,253 @@
+A brief summary of bugs found in color schemes. Some of these are true
+bugs in the original color scheme and some are only relevant to the
+converted color schemes. A longer description of some common bugs can be
+found in README.patches.
+
+adrian
+------
+* sets 'background' in the wrong place
+
+autumn2
+-------
+* sets colors_name to the wrong value
+
+autumnleaf
+----------
+* sets colors_name to the wrong value (case only)
+* links missing required '!'
+
+baycomb
+-------
+* cterm only bugs:
+  - setting 'Normal' group sets 'background' incorrectly
+
+bclear
+------
+* sets 'background' in the wrong place
+
+bluegreen
+---------
+* sets colors_name to the wrong value
+
+calmar256-dark
+--------------
+* misspelled group name: Costant
+* uses unreliable cterm colors 11 and 15
+* s:guisetcolor checks for an empty string value where all empty strings
+  were previously replaced with "NONE"
+
+calmar256-light
+---------------
+* same bugs as calmar256-dark
+
+cleanphp
+--------
+* tries to link 'IncSearch' without '!' though 'IncSearch' was
+  previously set
+
+colorer
+-------
+* misspelled group name: Charachter
+
+dante
+-----
+* fails to set 'background'
+
+darkslategray
+-------------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+darkspectrum
+------------
+* sets 'background' in the wrong place
+* misspelled group name: FoldeColumn
+* tries to link 'Error', 'Question', and 'VisualNos' without '!', and
+  VisualNos was previously set
+
+desert256
+---------
+* 'MoreMsg', 'Question', and 'Title' are bold in the GUI but not in the
+  terminal
+
+earendel
+--------
+* cterm only bugs:
+  - setting 'Normal' group sets 'background' incorrectly
+
+ekvoli
+------
+* fails to set 'background' to a consistent value
+
+golden
+------
+* sets 'background' in the wrong place
+* tries to link 'IncSearch' without '!'
+
+guardian
+--------
+* tries to link 'IncSearch', 'MoreMsg', and 'WarningMsg' without '!'
+* sets colors_name to the wrong value (case only)
+* sets colors_name twice (same value each time)
+
+habiLight
+---------
+* misspelled group name: SpellLocale
+
+herald
+------
+* sets 'background' in the wrong place
+
+ironman
+-------
+* misspelled group name: SpellLocale
+
+jellybeans
+----------
+* cterm attributes sometimes don't match GUI attributes
+* the 'italic' attribute isn't always properly stripped out of cterm
+  attributes
+* tries to link 'Error' without '!'
+
+leo
+---
+* sets colors_name in the wrong place, and to the wrong value
+
+lettuce
+-------
+* leaves autocmds when the color scheme is changed, including commands
+  that modify some highlight groups
+
+manxome
+-------
+* sets 'background' in the wrong place
+* 'Error' group sets guibg to two different values, doesn't set guifg
+  (likely typo)
+
+maroloccio
+----------
+* fails to set 'background' (though the existing value is used in the
+  cterm color support, in which case the value will probably be reset
+  incorrectly when the 'Normal' group is set)
+
+martin_krischik
+---------------
+* leaves guicursor modified when the color scheme is changed
+
+molokai
+-------
+* sets 'background' in the wrong place
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+moria
+-----
+* cterm only bugs:
+  - setting 'Normal' group sets 'background' incorrectly
+
+navajo-night
+------------
+* 'Folded' group sets guifg to two different values
+
+navajo
+------
+* 'Folded' group sets guifg to two different values
+
+neverness
+---------
+* sets 'Normal' group twice
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+nightshimmer
+------------
+* refers to a non-existent color, MediumPurple1g, but only in comments
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+no_quarter
+----------
+* 'perlShellCommand' sets guibg to two different values, doesn't set
+  guifg (likely typo)
+
+oceanblack
+----------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+oceandeep
+---------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+oceanlight
+----------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+peaksea
+-------
+* cterm only bugs:
+  - setting 'Normal' group sets 'background' incorrectly
+
+rdark
+-----
+* only sets 'CursorLine' group when 'rdark_current_line' is non-zero
+
+robinhood
+---------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+satori
+------
+* sets 'background' in the wrong place, and not to a consistent value
+
+silent
+------
+* sets 'background' in the wrong place
+* misspelled group name: Chatacter
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+simpleandfriendly
+-----------------
+* unnecessarily sets 'cursorline'
+
+summerfruit256
+--------------
+* the 'italic' attribute produces bad cterm colors
+* some groups are bold in the GUI but not in the terminal
+* some group colors don't match well in the GUI and terminal
+
+tabula
+------
+* sets 'background' in the wrong place
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
+
+tango2
+------
+* 'Folded' group sets guibg to two different colors, doesn't set guifg
+  (likely typo)
+
+tcsoft
+------
+* sets colors_name to the wrong value (case only)
+
+wombat256
+---------
+* some group colors don't match well in the GUI and terminal
+
+wuye
+----
+* sets 'background' in the wrong place
+
+xemacs
+------
+* 'WildMenu' group sets guibg to two different colors
+
+zenburn
+-------
+* cterm only bugs:
+  - uses 'fg' or 'bg' before the 'Normal' group is set
